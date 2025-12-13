@@ -26,10 +26,10 @@ const CONFIG = {
   imageQuality: 85,
   imageWidth: 480,
   imageHeight: 672,
-  delayBetweenCards: 300,      // ms entre chaque carte
-  delayBetweenUploads: 200,    // ms entre chaque upload
-  retryAttempts: 3,
-  retryDelay: 2000,
+  delayBetweenCards: 500,      // ms entre chaque carte (augmenté)
+  delayBetweenUploads: 300,    // ms entre chaque upload
+  retryAttempts: 5,            // Plus de tentatives
+  retryDelay: 3000,            // Délai plus long entre retries
   progressFile: 'scripts/logs/pokemon-missing-images-progress.json',
 }
 
@@ -152,7 +152,7 @@ async function optimizeImage(buffer: Buffer): Promise<Buffer> {
 }
 
 /**
- * Upload une image dans Supabase Storage
+ * Upload une image dans Supabase Storage avec retry
  */
 async function uploadToStorage(
   buffer: Buffer,
@@ -163,15 +163,35 @@ async function uploadToStorage(
   const cleanNumber = cardNumber.split('/')[0]
   const filePath = `${seriesCode}/${language}/${cleanNumber}.webp`
 
-  const { error } = await supabase.storage
-    .from('pokemon-cards')
-    .upload(filePath, buffer, {
-      contentType: 'image/webp',
-      upsert: true,
-    })
+  for (let attempt = 1; attempt <= CONFIG.retryAttempts; attempt++) {
+    try {
+      const { error } = await supabase.storage
+        .from('pokemon-cards')
+        .upload(filePath, buffer, {
+          contentType: 'image/webp',
+          upsert: true,
+        })
 
-  if (error) {
-    throw new Error(`Upload failed: ${error.message}`)
+      if (error) {
+        // Si c'est une erreur de parsing HTML, c'est probablement un rate limit
+        if (error.message.includes('Unexpected token') || error.message.includes('<html>')) {
+          if (attempt < CONFIG.retryAttempts) {
+            await delay(CONFIG.retryDelay * attempt) // Délai exponentiel
+            continue
+          }
+        }
+        throw new Error(`Upload failed: ${error.message}`)
+      }
+
+      // Upload réussi
+      break
+    } catch (err) {
+      if (attempt < CONFIG.retryAttempts) {
+        await delay(CONFIG.retryDelay * attempt)
+        continue
+      }
+      throw err
+    }
   }
 
   const { data: urlData } = supabase.storage
