@@ -10,7 +10,7 @@ import type { CollectionStatsByLanguage } from "@/app/series/[tcg]/page";
 import { LANGUAGE_FLAGS, LANGUAGE_ORDER } from "@/lib/constants/languages";
 
 // Composant pour gérer les erreurs d'image de série (format bannière)
-function SeriesBannerImage({ src, alt, usecover, position }: { src: string; alt: string; usecover?: boolean; position?: 'center' | 'questDeep' | 'questPalace' }) {
+function SeriesBannerImage({ src, alt, usecover, position }: { src: string; alt: string; usecover?: boolean; position?: 'center' | 'questDeep' | 'questPalace' | 'top40' }) {
   const [hasError, setHasError] = useState(false);
 
   if (hasError) {
@@ -21,7 +21,7 @@ function SeriesBannerImage({ src, alt, usecover, position }: { src: string; alt:
     );
   }
 
-  const positionClass = position === 'questDeep' ? 'object-[center_20%]' : position === 'questPalace' ? 'object-[center_40%]' : 'object-center';
+  const positionClass = position === 'questDeep' ? 'object-[center_20%]' : position === 'questPalace' ? 'object-[center_40%]' : position === 'top40' ? 'object-[center_40%]' : 'object-center';
 
   return (
     <Image
@@ -143,12 +143,12 @@ export function SeriesGrid({ series, tcgSlug, isLoggedIn, collectionStats }: Ser
                 const isLorcanaSeries = tcgSlug === 'lorcana';
                 const isSpecialSeries = isQuestSeries || isPromoSeries;
                 const shouldUseCover = isSpecialSeries || isRiftboundSeries || isOnePieceSeries || isStarWarsSeries || isLorcanaSeries;
-                const imagePosition = serie.code === 'QuestDeep' ? 'questDeep' : serie.code === 'QuestPalace' ? 'questPalace' : 'center';
+                const imagePosition = serie.code === 'QuestDeep' ? 'questDeep' : serie.code === 'QuestPalace' ? 'questPalace' : serie.code === 'Lueur' ? 'top40' : 'center';
                 const aspectRatio = isOnePieceSeries || isStarWarsSeries ? 'aspect-[16/9]' : isRiftboundSeries ? 'aspect-[2.36/1]' : isPromoSeries ? 'aspect-[3.0/1]' : isQuestSeries ? 'aspect-[3.2/1]' : 'aspect-[4/1]';
                 return (
               <div className={`relative ${aspectRatio} bg-amber-50 dark:bg-slate-900`}>
                 {serie.image_url ? (
-                  <SeriesBannerImage src={serie.image_url} alt={getSeriesName(serie)} usecover={shouldUseCover} position={imagePosition as 'center' | 'questDeep' | 'questPalace'} />
+                  <SeriesBannerImage src={serie.image_url} alt={getSeriesName(serie)} usecover={shouldUseCover} position={imagePosition as 'center' | 'questDeep' | 'questPalace' | 'top40'} />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-primary/20 to-primary/10">
                     <Layers className="w-16 h-16 text-muted-foreground/30" />
