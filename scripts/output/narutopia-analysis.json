@@ -1,0 +1,26 @@
+{
+  "scrImages": [],
+  "rImages": [],
+  "allImageUrls": [
+    "https://narutopia.fr/wp-content/uploads/2023/05/NARUTOPIA-1-60x60.webp",
+    "https://narutopia.fr/wp-content/uploads/2023/05/cropped-cropped-NARUTOPIA-1-1-60x60.webp",
+    "https://narutopia.fr/wp-content/uploads/2023/05/BP-008-213x300.webp",
+    "https://narutopia.fr/wp-content/uploads/2023/05/SE-008-213x300.webp",
+    "https://narutopia.fr/wp-content/uploads/2023/05/20TH-ANNIVERSARY-213x300.jpg.webp",
+    "https://narutopia.fr/wp-content/uploads/2023/05/SV-GOLD-004-213x300.webp",
+    "https://narutopia.fr/wp-content/uploads/2023/05/SCR-001-213x300.webp"
+  ],
+  "urlPatterns": {
+    "fullSize": [
+      "https://narutopia.fr/wp-content/uploads/2023/05/NARUTOPIA-1-60x60.webp",
+      "https://narutopia.fr/wp-content/uploads/2023/05/cropped-cropped-NARUTOPIA-1-1-60x60.webp"
+    ],
+    "thumbnails": [
+      "https://narutopia.fr/wp-content/uploads/2023/05/BP-008-213x300.webp",
+      "https://narutopia.fr/wp-content/uploads/2023/05/SE-008-213x300.webp",
+      "https://narutopia.fr/wp-content/uploads/2023/05/20TH-ANNIVERSARY-213x300.jpg.webp",
+      "https://narutopia.fr/wp-content/uploads/2023/05/SV-GOLD-004-213x300.webp",
+      "https://narutopia.fr/wp-content/uploads/2023/05/SCR-001-213x300.webp"
+    ]
+  }
+}

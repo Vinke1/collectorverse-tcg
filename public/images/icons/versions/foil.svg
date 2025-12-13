@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Sparkle/Star emoji style -->
+  <defs>
+    <radialGradient id="sparkle" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+
+  <!-- Main star -->
+  <path d="M50,15 L58,42 L87,45 L66,63 L73,92 L50,77 L27,92 L34,63 L13,45 L42,42 Z"
+        fill="url(#sparkle)" stroke="#FFD700" stroke-width="2"/>
+
+  <!-- Small sparkles around -->
+  <circle cx="30" cy="25" r="3" fill="#FFD700"/>
+  <circle cx="70" cy="30" r="2.5" fill="#FFD700"/>
+  <circle cx="25" cy="70" r="2" fill="#FFD700"/>
+  <circle cx="75" cy="75" r="2.5" fill="#FFD700"/>
+
+  <!-- Light rays -->
+  <line x1="50" y1="10" x2="50" y2="5" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+  <line x1="50" y1="90" x2="50" y2="95" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+  <line x1="10" y1="50" x2="5" y2="50" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+  <line x1="90" y1="50" x2="95" y2="50" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+</svg>

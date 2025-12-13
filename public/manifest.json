@@ -1,0 +1,43 @@
+{
+  "name": "CollectorVerse TCG",
+  "short_name": "CollectorVerse",
+  "description": "Gérez vos collections de cartes TCG (Pokémon, Lorcana, One Piece)",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "background_color": "#ffffff",
+  "theme_color": "#9333ea",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["entertainment", "lifestyle", "games"],
+  "lang": "fr",
+  "dir": "ltr"
+}
