@@ -99,7 +99,7 @@ export default function Home() {
         backgroundVideo: "/image/starwars.mp4",
         stats: t.home.tcg.starwars.stats,
         colSpan: "md:col-span-1",
-        videoScale: "object-contain",
+        videoScale: "object-cover object-bottom",
       },
     ];
 
