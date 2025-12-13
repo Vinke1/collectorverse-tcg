@@ -149,7 +149,8 @@
       "Bash(powershell -ExecutionPolicy Bypass -File \".claude/scripts/auto-commit.ps1\")",
       "Bash(del \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\check-starwars-data.ts\")",
       "Bash(del \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\check-starwars-storage.ts\")",
-      "Bash(del \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\update-lueur-image.ts\")"
+      "Bash(del \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\update-lueur-image.ts\")",
+      "Bash(del \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\logs\\onepiece-download-progress.json\")"
     ],
     "deny": [],
     "ask": []
