@@ -71,6 +71,7 @@ export default function Home() {
         gradient: "from-indigo-400 to-purple-500",
         shadowColor: "rgba(99, 102, 241, 0.4)",
         icon: Gamepad2,
+        iconImage: "/image/lol.jpg",
         backgroundVideo: "/image/RiftBound.mp4",
         titleImage: "/image/RiftBoundTexte.png",
         stats: t.home.tcg.riftbound.stats,
