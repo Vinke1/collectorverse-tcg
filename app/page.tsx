@@ -99,7 +99,7 @@ export default function Home() {
         backgroundVideo: "/image/starwars.mp4",
         stats: t.home.tcg.starwars.stats,
         colSpan: "md:col-span-1",
-        videoScale: "scale-90",
+        videoScale: "object-contain",
       },
     ];
 
@@ -165,7 +165,11 @@ export default function Home() {
                     loop
                     muted
                     playsInline
-                    className={cn("w-full h-full object-cover transition-transform duration-700", game.videoScale || "scale-105 group-hover:scale-100")}
+                    className={cn(
+                      "w-full h-full transition-transform duration-700",
+                      game.videoScale?.includes("object-") ? game.videoScale : "object-cover",
+                      !game.videoScale?.includes("object-") && (game.videoScale || "scale-105 group-hover:scale-100")
+                    )}
                   />
                 ) : game.backgroundImage ? (
                   <Image
