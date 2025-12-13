@@ -140,8 +140,9 @@ export function SeriesGrid({ series, tcgSlug, isLoggedIn, collectionStats }: Ser
                 const isRiftboundSeries = tcgSlug === 'riftbound';
                 const isOnePieceSeries = tcgSlug === 'onepiece';
                 const isStarWarsSeries = tcgSlug === 'starwars';
+                const isLorcanaSeries = tcgSlug === 'lorcana';
                 const isSpecialSeries = isQuestSeries || isPromoSeries;
-                const shouldUseCover = isSpecialSeries || isRiftboundSeries || isOnePieceSeries || isStarWarsSeries;
+                const shouldUseCover = isSpecialSeries || isRiftboundSeries || isOnePieceSeries || isStarWarsSeries || isLorcanaSeries;
                 const imagePosition = serie.code === 'QuestDeep' ? 'questDeep' : serie.code === 'QuestPalace' ? 'questPalace' : 'center';
                 const aspectRatio = isOnePieceSeries || isStarWarsSeries ? 'aspect-[16/9]' : isRiftboundSeries ? 'aspect-[2.36/1]' : isPromoSeries ? 'aspect-[3.0/1]' : isQuestSeries ? 'aspect-[3.2/1]' : 'aspect-[4/1]';
                 return (
