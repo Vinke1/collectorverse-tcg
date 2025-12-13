@@ -38,6 +38,7 @@ export function Header({ user }: HeaderProps) {
     { name: t.nav.onepiece, href: "/series/onepiece" },
     { name: t.nav.riftbound, href: "/series/riftbound" },
     { name: t.nav.naruto, href: "/series/naruto" },
+    { name: t.nav.starwars, href: "/series/starwars" },
   ];
 
   const currentFlag = SUPPORTED_LANGUAGES.find((l) => l.code === language)?.flag || "/images/flags/fr.svg";
