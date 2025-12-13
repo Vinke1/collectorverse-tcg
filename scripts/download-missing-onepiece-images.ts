@@ -304,11 +304,11 @@ async function main() {
         continue
       }
 
-      // List images in storage
+      // List images in storage (increase limit to handle large series)
       const storagePath = `${series.code}/${language}`
       const { data: storageFiles } = await supabase.storage
         .from('onepiece-cards')
-        .list(storagePath)
+        .list(storagePath, { limit: 500 })
 
       const existingImages = new Set(
         (storageFiles || [])
