@@ -97,13 +97,13 @@ function saveProgress(progress: ProgressData) {
 function getSeriesSlug(seriesCode: string, language: string): string {
   // Map of series codes to their slugs per language
   const slugMap: Record<string, Record<string, string>> = {
-    // French slugs
+    // French slugs (verified from opecards.fr)
     'fr': {
       'OP13': 'op13-successeurs',
       'OP12': 'op12-l-heritage-du-maitre',
       'OP11': 'op11-des-poings-vifs-comme-l-eclair',
       'OP10': 'op10-sang-royal',
-      'OP09': 'op09-les-quatre-empereurs',
+      'OP09': 'op09-les-nouveaux-empereurs',
       'OP08': 'op08-two-legends',
       'OP07': 'op07-500-years-in-the-future',
       'OP06': 'op06-wings-of-the-captain',
@@ -112,14 +112,14 @@ function getSeriesSlug(seriesCode: string, language: string): string {
       'OP03': 'op03-pillars-of-strength',
       'OP02': 'op02-paramount-war',
       'OP01': 'op01-romance-dawn',
-      'ST21': 'st21-deck-de-demarrage-gear-5',
       'ST22': 'st22-deck-de-demarrage-ace-et-newgate',
-      'ST20': 'st20-deck-de-demarrage-yellow-charlotte-katakuri',
-      'ST19': 'st19-deck-de-demarrage-black-smoker',
-      'ST18': 'st18-deck-de-demarrage-purple-monkey-d-luffy',
-      'ST17': 'st17-deck-de-demarrage-blue-donquixote-doflamingo',
-      'ST16': 'st16-deck-de-demarrage-green-uta',
-      'ST15': 'st15-deck-de-demarrage-red-edward-newgate',
+      'ST21': 'st21-deck-de-demarrage-ex-gear-5th',
+      'ST20': 'st20-deck-pour-debutant-charlotte-katakuri',
+      'ST19': 'st19-deck-pour-debutant-smoker',
+      'ST18': 'st18-deck-pour-debutant-monkey-d-luffy',
+      'ST17': 'st17-deck-pour-debutant-donquixote-doflamingo',
+      'ST16': 'st16-deck-pour-debutant-uta',
+      'ST15': 'st15-deck-pour-debutant-edward-newgate',
       'ST14': 'st14-3d2y',
       'ST13': 'st13-ultra-deck-the-three-brothers',
       'ST12': 'st12-zoro-sanji',
@@ -138,7 +138,7 @@ function getSeriesSlug(seriesCode: string, language: string): string {
       'PRB02': 'prb02-fr-one-piece-card-the-best-volume-2',
       'EB01': 'eb01-memorial-collection',
       'EB02': 'eb02-anime-25th-collection',
-      'P': 'p-promo-cards',
+      'P': 'p-cartes-promotionnelles',
       'STP': 'stp-tournoi-boutique-promo',
     },
     // English slugs (use prefix en-)
@@ -279,6 +279,13 @@ async function main() {
       continue
     }
 
+    // Skip PRB01/PRB02 - these are "Best Of" compilations with reprints
+    // Their URLs are based on original series (op01, op02...) not prb01/prb02
+    if (series.code === 'PRB01' || series.code === 'PRB02') {
+      logger.warn(`${series.code}: Serie "Best Of" avec reprints - necessite traitement special, ignore`)
+      continue
+    }
+
     for (const language of languagesToCheck) {
       // Check if series is available in this language
       if (!isSeriesAvailableInLanguage(series.code, language)) {
@@ -309,11 +316,19 @@ async function main() {
           .map(f => f.name.replace('.webp', ''))
       )
 
-      // Find missing cards
+      // Find missing cards (exclude special cards like -PR, -ALT, -TR for now)
       const missingCards = cards.filter(card => {
-        const paddedNumber = card.number.toString().padStart(3, '0')
-        const rawNumber = card.number.toString()
-        return !existingImages.has(paddedNumber) && !existingImages.has(rawNumber)
+        const cardNumber = card.number.toString()
+        const paddedNumber = cardNumber.padStart(3, '0')
+
+        // Skip special cards (parallels, alt art, treasure rare)
+        // These have URLs based on their ORIGINAL series, not the current series
+        if (cardNumber.includes('-PR') || cardNumber.includes('-ALT') ||
+            cardNumber.includes('-TR') || cardNumber.includes('-SP')) {
+          return false
+        }
+
+        return !existingImages.has(paddedNumber) && !existingImages.has(cardNumber)
       })
 
       if (missingCards.length > 0) {
