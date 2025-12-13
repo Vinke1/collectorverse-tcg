@@ -386,6 +386,35 @@ The download script saves progress to `scripts/logs/starwars-download-progress.j
 
 ---
 
+## Session en cours - État actuel (13 Décembre 2024)
+
+### Où nous en sommes :
+1. **Code prêt** - MVP fonctionnel avec toutes les fonctionnalités de base
+2. **GitHub** - Code poussé sur https://github.com/Vinke1/collectorverse-tcg
+3. **Auto-commit** - Hook configuré pour commit/push automatique après chaque prompt Claude
+4. **Pages légales** - Mentions légales (`/legal`) et politique de confidentialité (`/privacy`) créées
+5. **Footer** - Ajouté avec liens légaux
+
+### Prochaine étape à faire :
+**Déploiement sur Vercel :**
+1. Aller sur https://vercel.com
+2. Se connecter avec GitHub
+3. Cliquer "Add New Project"
+4. Importer le repo `collectorverse-tcg`
+5. Ajouter les variables d'environnement :
+   - `NEXT_PUBLIC_SUPABASE_URL` = ta valeur
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = ta valeur
+   - `NEXT_PUBLIC_APP_URL` = https://collectorverse-tcg.vercel.app
+6. Cliquer Deploy
+
+### Après Vercel, il restera à faire :
+- [ ] Configurer Sentry (error tracking)
+- [ ] Ajouter Analytics (Plausible ou PostHog)
+- [ ] Marketing : posts Reddit/Discord/Facebook
+- [ ] SEO : sitemap.xml, robots.txt
+
+---
+
 ## MVP & Go-to-Market Checklist
 
 ### Phase 1 : Pré-lancement (Obligatoire avant beta)
