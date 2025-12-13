@@ -95,8 +95,9 @@ export default function Home() {
         gradient: "from-yellow-400 to-amber-600",
         shadowColor: "rgba(245, 158, 11, 0.4)",
         icon: Sparkles,
+        backgroundVideo: "/image/starwars.mp4",
         stats: t.home.tcg.starwars.stats,
-        colSpan: "md:col-span-2",
+        colSpan: "md:col-span-1",
       },
     ];
 
