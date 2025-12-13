@@ -81,6 +81,11 @@ function saveProgress(progress: Progress) {
 
 async function downloadImage(url: string): Promise<Buffer> {
   return new Promise((resolve, reject) => {
+    // Vérifier que l'URL est valide
+    if (!url || typeof url !== 'string') {
+      reject(new Error(`URL invalide: ${typeof url}`))
+      return
+    }
     const protocol = url.startsWith('https') ? https : http
 
     const request = protocol.get(url, {
@@ -180,11 +185,16 @@ async function scrapeCardImage(page: Page, cardPageUrl: string): Promise<string 
       if (jsonLdScript) {
         try {
           const jsonLd = JSON.parse(jsonLdScript.textContent || '{}')
-          if (jsonLd.image && Array.isArray(jsonLd.image) && jsonLd.image.length > 0) {
-            return jsonLd.image[0]
-          }
-          if (typeof jsonLd.image === 'string') {
-            return jsonLd.image
+          if (jsonLd.image) {
+            if (Array.isArray(jsonLd.image) && jsonLd.image.length > 0) {
+              // Retourner la première image qui est une string
+              for (const img of jsonLd.image) {
+                if (typeof img === 'string') return img
+              }
+            }
+            if (typeof jsonLd.image === 'string') {
+              return jsonLd.image
+            }
           }
         } catch (e) {
           // Ignore JSON parse errors
@@ -194,20 +204,28 @@ async function scrapeCardImage(page: Page, cardPageUrl: string): Promise<string 
       // Méthode 2: og:image meta tag
       const ogImage = document.querySelector('meta[property="og:image"]')
       if (ogImage) {
-        return ogImage.getAttribute('content')
+        const content = ogImage.getAttribute('content')
+        if (content && typeof content === 'string') return content
       }
 
       // Méthode 3: Image principale de la carte
       const mainImage = document.querySelector('.card-image img, .card-detail img, img[src*="cards"]')
       if (mainImage) {
-        return (mainImage as HTMLImageElement).src
+        const src = (mainImage as HTMLImageElement).src
+        if (src && typeof src === 'string') return src
       }
 
       return null
     })
 
-    return imageUrl
+    // Vérifier que c'est bien une string
+    if (imageUrl && typeof imageUrl === 'string') {
+      return imageUrl
+    }
+
+    return null
   } catch (e) {
+    console.log(`    ⚠️ Erreur scraping ${cardPageUrl}: ${e}`)
     return null
   }
 }
@@ -320,13 +338,13 @@ async function scrapeSeriesPage(page: Page, seriesUrl: string, targetCards: Card
           const number = match ? match[1] : ''
           const rarity = match ? match[2] : ''
 
-          // Détecter les variantes
+          // Détecter les variantes (ordre important!)
           let variant = ''
-          if (href.includes('version-2') || href.includes('-v2-')) variant = 'ALT'
-          else if (href.includes('full-art') || href.includes('sp-parallele')) variant = 'SP'
-          else if (href.includes('parallele') && !href.includes('sp-parallele')) variant = 'PR'
-          else if (href.includes('treasure-rare')) variant = 'TR'
-          else if (href.includes('jolly-roger') || href.includes('manga-rare')) variant = 'MG'
+          if (href.includes('treasure-rare')) variant = 'TR'
+          else if (href.includes('manga-rare') || href.includes('jolly-roger')) variant = 'MG'
+          else if (href.includes('sp-parallele') || href.includes('full-art')) variant = 'SP'
+          else if (href.includes('parallele')) variant = 'PR'
+          else if (href.includes('version-2') || href.includes('-v2-')) variant = 'ALT'
 
           return { href, number, variant, rarity }
         })
