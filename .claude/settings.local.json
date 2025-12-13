@@ -146,7 +146,9 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(powershell -ExecutionPolicy Bypass -File \".claude/scripts/auto-commit.ps1\")"
+      "Bash(powershell -ExecutionPolicy Bypass -File \".claude/scripts/auto-commit.ps1\")",
+      "Bash(del \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\check-starwars-data.ts\")",
+      "Bash(del \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\check-starwars-storage.ts\")"
     ],
     "deny": [],
     "ask": []
