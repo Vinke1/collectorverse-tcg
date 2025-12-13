@@ -28,18 +28,6 @@ export default function Home() {
 
   const tcgGames: TcgGame[] = [
       {
-        name: t.nav.pokemon,
-        description: t.home.tcg.pokemon.desc,
-        href: "/series/pokemon",
-        gradient: "from-yellow-400 to-red-500",
-        shadowColor: "rgba(255, 200, 0, 0.4)",
-        icon: Zap,
-        iconImage: "/image/pokeball.png",
-        backgroundVideo: "/image/pokemon.mp4",
-        stats: t.home.tcg.pokemon.stats,
-        colSpan: "md:col-span-2",
-      },
-      {
         name: t.nav.lorcana,
         description: t.home.tcg.lorcana.desc,
         href: "/series/lorcana",
@@ -51,6 +39,18 @@ export default function Home() {
         titleImage: "/image/LorcanaTexte.png",
         stats: t.home.tcg.lorcana.stats,
         colSpan: "md:col-span-1",
+      },
+      {
+        name: t.nav.pokemon,
+        description: t.home.tcg.pokemon.desc,
+        href: "/series/pokemon",
+        gradient: "from-yellow-400 to-red-500",
+        shadowColor: "rgba(255, 200, 0, 0.4)",
+        icon: Zap,
+        iconImage: "/image/pokeball.png",
+        backgroundVideo: "/image/pokemon.mp4",
+        stats: t.home.tcg.pokemon.stats,
+        colSpan: "md:col-span-2",
       },
       {
         name: t.nav.onepiece,
