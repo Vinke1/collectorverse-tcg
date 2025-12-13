@@ -21,7 +21,7 @@ function SeriesBannerImage({ src, alt, usecover, position }: { src: string; alt:
     );
   }
 
-  const positionClass = position === 'questDeep' ? 'object-[center_20%]' : position === 'questPalace' ? 'object-[center_40%]' : position === 'top40' ? 'object-[center_40%]' : 'object-center';
+  const positionClass = position === 'questDeep' ? 'object-[center_20%]' : position === 'questPalace' ? 'object-[center_40%]' : position === 'top40' ? 'object-[center_20%]' : 'object-center';
 
   return (
     <Image
