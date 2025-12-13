@@ -20,6 +20,7 @@ interface TcgGame {
   titleImage?: string;
   stats: string;
   colSpan?: string;
+  videoScale?: string; // Custom scale for video (e.g., "scale-90")
 }
 
 export default function Home() {
@@ -98,6 +99,7 @@ export default function Home() {
         backgroundVideo: "/image/starwars.mp4",
         stats: t.home.tcg.starwars.stats,
         colSpan: "md:col-span-1",
+        videoScale: "scale-90",
       },
     ];
 
@@ -163,7 +165,7 @@ export default function Home() {
                     loop
                     muted
                     playsInline
-                    className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
+                    className={cn("w-full h-full object-cover transition-transform duration-700", game.videoScale || "scale-105 group-hover:scale-100")}
                   />
                 ) : game.backgroundImage ? (
                   <Image
