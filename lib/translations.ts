@@ -9,6 +9,7 @@ export const translations = {
       onepiece: "One Piece",
       riftbound: "Riftbound",
       naruto: "Naruto",
+      starwars: "Star Wars",
       login: "Connexion",
       logout: "Se déconnecter",
       menu: "Menu"
@@ -38,6 +39,10 @@ export const translations = {
         naruto: {
           desc: "La voie du Ninja",
           stats: "300+ cartes"
+        },
+        starwars: {
+          desc: "La galaxie lointaine",
+          stats: "3000+ cartes"
         }
       }
     },
@@ -112,6 +117,20 @@ export const translations = {
         "OGN": "Origines",
         "SFD": "Forgé par les Esprits",
         "OGS": "Origines - Épreuves"
+      },
+      starwars: {
+        "SOR": "Étincelle de Rébellion",
+        "SHD": "Ombres de la Galaxie",
+        "TWI": "Crépuscule de la République",
+        "JTL": "Passage en Vitesse Lumière",
+        "LOF": "Légendes de la Force",
+        "SEC": "Secrets du Pouvoir",
+        "WSOR": "Weekly Play - Étincelle de Rébellion",
+        "WSHD": "Weekly Play - Ombres de la Galaxie",
+        "WTWI": "Weekly Play - Crépuscule de la République",
+        "WJTL": "Weekly Play - Passage en Vitesse Lumière",
+        "WLOF": "Weekly Play - Légendes de la Force",
+        "OP": "Cartes Promotionnelles"
       }
     },
     filters: {
@@ -352,6 +371,7 @@ export const translations = {
       onepiece: "One Piece",
       riftbound: "Riftbound",
       naruto: "Naruto",
+      starwars: "Star Wars",
       login: "Login",
       logout: "Logout",
       menu: "Menu"
@@ -381,6 +401,10 @@ export const translations = {
         naruto: {
           desc: "Way of the Ninja",
           stats: "300+ cards"
+        },
+        starwars: {
+          desc: "A Galaxy Far, Far Away",
+          stats: "3000+ cards"
         }
       }
     },
@@ -455,6 +479,20 @@ export const translations = {
         "OGN": "Origins",
         "SFD": "Spiritforged",
         "OGS": "Origins - Proving Grounds"
+      },
+      starwars: {
+        "SOR": "Spark of Rebellion",
+        "SHD": "Shadows of the Galaxy",
+        "TWI": "Twilight of the Republic",
+        "JTL": "Jump to Lightspeed",
+        "LOF": "Legends of the Force",
+        "SEC": "Secrets of Power",
+        "WSOR": "Weekly Play - Spark of Rebellion",
+        "WSHD": "Weekly Play - Shadows of the Galaxy",
+        "WTWI": "Weekly Play - Twilight of the Republic",
+        "WJTL": "Weekly Play - Jump to Lightspeed",
+        "WLOF": "Weekly Play - Legends of the Force",
+        "OP": "Promotional Cards"
       }
     },
     filters: {
@@ -695,6 +733,7 @@ export const translations = {
       onepiece: "ワンピース",
       riftbound: "リフトバウンド",
       naruto: "ナルト",
+      starwars: "スター・ウォーズ",
       login: "ログイン",
       logout: "ログアウト",
       menu: "メニュー"
@@ -724,6 +763,10 @@ export const translations = {
         naruto: {
           desc: "忍者の道",
           stats: "300+ カード"
+        },
+        starwars: {
+          desc: "遥か彼方の銀河系",
+          stats: "3000+ カード"
         }
       }
     },
@@ -798,6 +841,20 @@ export const translations = {
         "OGN": "オリジンズ",
         "SFD": "スピリットフォージド",
         "OGS": "オリジンズ - プルービンググラウンド"
+      },
+      starwars: {
+        "SOR": "反乱の火花",
+        "SHD": "銀河の影",
+        "TWI": "共和国の黄昏",
+        "JTL": "光速へのジャンプ",
+        "LOF": "フォースの伝説",
+        "SEC": "力の秘密",
+        "WSOR": "ウィークリープレイ - 反乱の火花",
+        "WSHD": "ウィークリープレイ - 銀河の影",
+        "WTWI": "ウィークリープレイ - 共和国の黄昏",
+        "WJTL": "ウィークリープレイ - 光速へのジャンプ",
+        "WLOF": "ウィークリープレイ - フォースの伝説",
+        "OP": "プロモカード"
       }
     },
     filters: {
@@ -1038,6 +1095,7 @@ export const translations = {
       onepiece: "海贼王",
       riftbound: "裂隙征服",
       naruto: "火影忍者",
+      starwars: "星球大战",
       login: "登录",
       logout: "退出",
       menu: "菜单"
@@ -1067,6 +1125,10 @@ export const translations = {
         naruto: {
           desc: "忍者之道",
           stats: "300+ 卡牌"
+        },
+        starwars: {
+          desc: "遥远的银河系",
+          stats: "3000+ 卡牌"
         }
       }
     },
@@ -1141,6 +1203,20 @@ export const translations = {
         "OGN": "起源",
         "SFD": "灵魂锻造",
         "OGS": "起源 - 试炼场"
+      },
+      starwars: {
+        "SOR": "反叛的火花",
+        "SHD": "银河暗影",
+        "TWI": "共和国的黄昏",
+        "JTL": "光速跳跃",
+        "LOF": "原力传说",
+        "SEC": "力量之秘",
+        "WSOR": "每周游戏 - 反叛的火花",
+        "WSHD": "每周游戏 - 银河暗影",
+        "WTWI": "每周游戏 - 共和国的黄昏",
+        "WJTL": "每周游戏 - 光速跳跃",
+        "WLOF": "每周游戏 - 原力传说",
+        "OP": "促销卡"
       }
     },
     filters: {

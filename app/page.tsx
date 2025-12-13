@@ -86,7 +86,17 @@ export default function Home() {
         backgroundImage: "/image/Naruto.mp4",
         backgroundVideo: "/image/Naruto.mp4",
         stats: t.home.tcg.naruto.stats,
-        colSpan: "md:col-span-3",
+        colSpan: "md:col-span-1",
+      },
+      {
+        name: t.nav.starwars,
+        description: t.home.tcg.starwars.desc,
+        href: "/series/starwars",
+        gradient: "from-yellow-400 to-amber-600",
+        shadowColor: "rgba(245, 158, 11, 0.4)",
+        icon: Sparkles,
+        stats: t.home.tcg.starwars.stats,
+        colSpan: "md:col-span-2",
       },
     ];
 
@@ -154,13 +164,15 @@ export default function Home() {
                     playsInline
                     className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
                   />
-                ) : (
+                ) : game.backgroundImage ? (
                   <Image
-                    src={game.backgroundImage || ""}
+                    src={game.backgroundImage}
                     alt={game.name}
                     fill
                     className="object-cover"
                   />
+                ) : (
+                  <div className={cn("absolute inset-0 bg-gradient-to-br", game.gradient)} />
                 )}
                 {/* Gradient Overlay - Forcé en sombre pour garder le contraste avec le texte blanc */}
                 <div className={cn("absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-500")} />
