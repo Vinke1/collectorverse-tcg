@@ -23,7 +23,8 @@ const TCG_DISPLAY_NAMES: Record<string, string> = {
   lorcana: "Disney Lorcana",
   onepiece: "One Piece Card Game",
   riftbound: "Riftbound",
-  naruto: "Naruto TCG"
+  naruto: "Naruto TCG",
+  starwars: "Star Wars Unlimited"
 };
 
 /**
