@@ -7,8 +7,12 @@
     "LOF",
     "SEC",
     "WSOR",
-    "WSHD"
+    "WSHD",
+    "WTWI",
+    "WJTL",
+    "WLOF",
+    "OP"
   ],
   "failed": [],
-  "lastRun": "2025-12-13T16:49:47.463Z"
+  "lastRun": "2025-12-13T16:51:41.120Z"
 }
