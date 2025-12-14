@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2025-12-14T18:14:03.591Z",
+  "generatedAt": "2025-12-14T18:30:23.939Z",
   "summary": {
     "totalTCGs": 6,
     "totalCards": 117983,
-    "totalStorageImages": 52098,
+    "totalStorageImages": 94523,
     "cardsWithImages": 109160,
     "cardsWithoutImages": 8823,
     "externalUrls": 218,
@@ -21,7 +21,358 @@
       "externalUrls": 0,
       "nullUrls": 0,
       "storageImages": 5631,
-      "series": [],
+      "series": [
+        {
+          "code": "Archazia",
+          "name": "L'Île d'Archazia",
+          "language": "FR",
+          "totalCards": 85,
+          "cardsWithImages": 85,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Archazia",
+          "name": "L'Île d'Archazia",
+          "language": "EN",
+          "totalCards": 197,
+          "cardsWithImages": 197,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Azurite",
+          "name": "La Mer Azurite",
+          "language": "FR",
+          "totalCards": 419,
+          "cardsWithImages": 419,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Azurite",
+          "name": "La Mer Azurite",
+          "language": "EN",
+          "totalCards": 313,
+          "cardsWithImages": 313,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Azurite",
+          "name": "La Mer Azurite",
+          "language": "JP",
+          "totalCards": 229,
+          "cardsWithImages": 229,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Ciel",
+          "name": "Ciel Scintillant",
+          "language": "FR",
+          "totalCards": 444,
+          "cardsWithImages": 444,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Ciel",
+          "name": "Ciel Scintillant",
+          "language": "EN",
+          "totalCards": 408,
+          "cardsWithImages": 408,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Ciel",
+          "name": "Ciel Scintillant",
+          "language": "JP",
+          "totalCards": 443,
+          "cardsWithImages": 443,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "D100",
+          "name": "Disney 100",
+          "language": "FR",
+          "totalCards": 10,
+          "cardsWithImages": 10,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "D100",
+          "name": "Disney 100",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 12,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Faboulus",
+          "name": "Fabuleux",
+          "language": "FR",
+          "totalCards": 21,
+          "cardsWithImages": 21,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Faboulus",
+          "name": "Fabuleux",
+          "language": "EN",
+          "totalCards": 134,
+          "cardsWithImages": 134,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "FirstChapter",
+          "name": "Premier Chapitre",
+          "language": "FR",
+          "totalCards": 213,
+          "cardsWithImages": 213,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "FirstChapter",
+          "name": "Premier Chapitre",
+          "language": "EN",
+          "totalCards": 204,
+          "cardsWithImages": 204,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "FirstChapter",
+          "name": "Premier Chapitre",
+          "language": "JP",
+          "totalCards": 163,
+          "cardsWithImages": 163,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Floodborn",
+          "name": "L'Ascension Des Floodborn",
+          "language": "FR",
+          "totalCards": 217,
+          "cardsWithImages": 217,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Floodborn",
+          "name": "L'Ascension Des Floodborn",
+          "language": "EN",
+          "totalCards": 205,
+          "cardsWithImages": 205,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Floodborn",
+          "name": "L'Ascension Des Floodborn",
+          "language": "JP",
+          "totalCards": 203,
+          "cardsWithImages": 203,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Ink",
+          "name": "Les Terres d'Encres",
+          "language": "FR",
+          "totalCards": 223,
+          "cardsWithImages": 223,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Ink",
+          "name": "Les Terres d'Encres",
+          "language": "EN",
+          "totalCards": 203,
+          "cardsWithImages": 203,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Ink",
+          "name": "Les Terres d'Encres",
+          "language": "JP",
+          "totalCards": 208,
+          "cardsWithImages": 208,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Jafar",
+          "name": "Le Règne de Jafar",
+          "language": "FR",
+          "totalCards": 85,
+          "cardsWithImages": 85,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Jafar",
+          "name": "Le Règne de Jafar",
+          "language": "EN",
+          "totalCards": 205,
+          "cardsWithImages": 205,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Lueur",
+          "name": "Lueurs dans les Profondeurs",
+          "language": "FR",
+          "totalCards": 7,
+          "cardsWithImages": 7,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Lueur",
+          "name": "Lueurs dans les Profondeurs",
+          "language": "EN",
+          "totalCards": 204,
+          "cardsWithImages": 204,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Promo",
+          "name": "Cartes promotionnelles",
+          "language": "FR",
+          "totalCards": 59,
+          "cardsWithImages": 59,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Promo",
+          "name": "Cartes promotionnelles",
+          "language": "EN",
+          "totalCards": 85,
+          "cardsWithImages": 85,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Promo",
+          "name": "Cartes promotionnelles",
+          "language": "JP",
+          "totalCards": 12,
+          "cardsWithImages": 12,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "QuestDeep",
+          "name": "Quête des Illumineurs - Menace des profondeurs",
+          "language": "FR",
+          "totalCards": 33,
+          "cardsWithImages": 33,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "QuestDeep",
+          "name": "Quête des Illumineurs - Menace des profondeurs",
+          "language": "EN",
+          "totalCards": 34,
+          "cardsWithImages": 34,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "QuestPalace",
+          "name": "Quête des Illumineurs - Vol au Palais",
+          "language": "FR",
+          "totalCards": 3,
+          "cardsWithImages": 3,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "QuestPalace",
+          "name": "Quête des Illumineurs - Vol au Palais",
+          "language": "EN",
+          "totalCards": 4,
+          "cardsWithImages": 4,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Ursula",
+          "name": "Le Retour d'Ursula",
+          "language": "FR",
+          "totalCards": 221,
+          "cardsWithImages": 221,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Ursula",
+          "name": "Le Retour d'Ursula",
+          "language": "EN",
+          "totalCards": 159,
+          "cardsWithImages": 159,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "Ursula",
+          "name": "Le Retour d'Ursula",
+          "language": "JP",
+          "totalCards": 222,
+          "cardsWithImages": 222,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        }
+      ],
       "externalUrlDetails": []
     },
     {
@@ -34,7 +385,18 @@
       "externalUrls": 0,
       "nullUrls": 0,
       "storageImages": 0,
-      "series": [],
+      "series": [
+        {
+          "code": "KAYOU",
+          "name": "Naruto Kayou",
+          "language": "ZH",
+          "totalCards": 1670,
+          "cardsWithImages": 1670,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        }
+      ],
       "externalUrlDetails": []
     },
     {
@@ -48,6 +410,66 @@
       "nullUrls": 0,
       "storageImages": 4589,
       "series": [
+        {
+          "code": "EB01",
+          "name": "Memorial Collection",
+          "language": "EN",
+          "totalCards": 79,
+          "cardsWithImages": 79,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP01",
+          "name": "Romance Dawn",
+          "language": "EN",
+          "totalCards": 153,
+          "cardsWithImages": 153,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP01",
+          "name": "Romance Dawn",
+          "language": "JP",
+          "totalCards": 141,
+          "cardsWithImages": 141,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP02",
+          "name": "Paramount War",
+          "language": "EN",
+          "totalCards": 153,
+          "cardsWithImages": 153,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP03",
+          "name": "Pillars of Strength",
+          "language": "EN",
+          "totalCards": 149,
+          "cardsWithImages": 149,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP04",
+          "name": "Kingdoms of Intrigue",
+          "language": "EN",
+          "totalCards": 143,
+          "cardsWithImages": 143,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
         {
           "code": "OP05",
           "name": "Awakening of the New Era",
@@ -149,6 +571,26 @@
           "nullUrls": 0
         },
         {
+          "code": "OP12",
+          "name": "L'Heritage du Maitre",
+          "language": "FR",
+          "totalCards": 145,
+          "cardsWithImages": 145,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP12",
+          "name": "L'Heritage du Maitre",
+          "language": "EN",
+          "totalCards": 145,
+          "cardsWithImages": 145,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "OP13",
           "name": "Successeurs",
           "language": "FR",
@@ -189,6 +631,196 @@
           "nullUrls": 0
         },
         {
+          "code": "PRB01",
+          "name": "One Piece Card - The Best Vol.1",
+          "language": "FR",
+          "totalCards": 176,
+          "cardsWithImages": 176,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "PRB01",
+          "name": "One Piece Card - The Best Vol.1",
+          "language": "EN",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "PRB02",
+          "name": "One Piece Card - The Best Vol.2",
+          "language": "FR",
+          "totalCards": 158,
+          "cardsWithImages": 158,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "PRB02",
+          "name": "One Piece Card - The Best Vol.2",
+          "language": "EN",
+          "totalCards": 158,
+          "cardsWithImages": 158,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST01",
+          "name": "Equipage du Chapeau de Paille",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST01",
+          "name": "Equipage du Chapeau de Paille",
+          "language": "JP",
+          "totalCards": 22,
+          "cardsWithImages": 22,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST02",
+          "name": "Pire Generation",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST03",
+          "name": "Sept Grands Corsaires",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST04",
+          "name": "Pirates de Cent Betes",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST05",
+          "name": "ONE PIECE FILM edition",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST06",
+          "name": "Marine",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST07",
+          "name": "Equipage de Big Mom",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST08",
+          "name": "Monkey D. Luffy",
+          "language": "EN",
+          "totalCards": 15,
+          "cardsWithImages": 15,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST09",
+          "name": "Yamato",
+          "language": "EN",
+          "totalCards": 15,
+          "cardsWithImages": 15,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST10",
+          "name": "Ultra Deck: Les Trois Capitaines",
+          "language": "EN",
+          "totalCards": 18,
+          "cardsWithImages": 18,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST11",
+          "name": "Uta",
+          "language": "EN",
+          "totalCards": 15,
+          "cardsWithImages": 15,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST12",
+          "name": "Zoro & Sanji",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST13",
+          "name": "Ultra Deck: Les Trois Freres",
+          "language": "EN",
+          "totalCards": 35,
+          "cardsWithImages": 35,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST14",
+          "name": "3D2Y",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "ST15",
           "name": "RED Edward Newgate",
           "language": "FR",
@@ -196,6 +828,16 @@
           "cardsWithImages": 13,
           "cardsWithoutImages": 0,
           "externalUrls": 10,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST15",
+          "name": "RED Edward Newgate",
+          "language": "EN",
+          "totalCards": 5,
+          "cardsWithImages": 5,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
           "nullUrls": 0
         },
         {
@@ -209,6 +851,16 @@
           "nullUrls": 0
         },
         {
+          "code": "ST16",
+          "name": "GREEN Uta",
+          "language": "EN",
+          "totalCards": 5,
+          "cardsWithImages": 5,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "ST17",
           "name": "BLUE Donquixote Doflamingo",
           "language": "FR",
@@ -216,6 +868,16 @@
           "cardsWithImages": 12,
           "cardsWithoutImages": 0,
           "externalUrls": 10,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST17",
+          "name": "BLUE Donquixote Doflamingo",
+          "language": "EN",
+          "totalCards": 5,
+          "cardsWithImages": 5,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
           "nullUrls": 0
         },
         {
@@ -229,6 +891,16 @@
           "nullUrls": 0
         },
         {
+          "code": "ST18",
+          "name": "PURPLE Monkey D. Luffy",
+          "language": "EN",
+          "totalCards": 5,
+          "cardsWithImages": 5,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "ST19",
           "name": "BLACK Smoker",
           "language": "FR",
@@ -239,6 +911,16 @@
           "nullUrls": 0
         },
         {
+          "code": "ST19",
+          "name": "BLACK Smoker",
+          "language": "EN",
+          "totalCards": 5,
+          "cardsWithImages": 5,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "ST20",
           "name": "YELLOW Charlotte Katakuri",
           "language": "FR",
@@ -246,6 +928,56 @@
           "cardsWithImages": 14,
           "cardsWithoutImages": 0,
           "externalUrls": 10,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST20",
+          "name": "YELLOW Charlotte Katakuri",
+          "language": "EN",
+          "totalCards": 5,
+          "cardsWithImages": 5,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST21",
+          "name": "Gear 5",
+          "language": "FR",
+          "totalCards": 32,
+          "cardsWithImages": 32,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST21",
+          "name": "Gear 5",
+          "language": "EN",
+          "totalCards": 32,
+          "cardsWithImages": 32,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST22",
+          "name": "Ace & Newgate",
+          "language": "FR",
+          "totalCards": 31,
+          "cardsWithImages": 31,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST22",
+          "name": "Ace & Newgate",
+          "language": "EN",
+          "totalCards": 31,
+          "cardsWithImages": 31,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
           "nullUrls": 0
         },
         {
@@ -285,7 +1017,7 @@
       "cardsWithoutImages": 8823,
       "externalUrls": 0,
       "nullUrls": 8823,
-      "storageImages": 38849,
+      "storageImages": 81274,
       "series": [
         {
           "code": "2011bw",
@@ -388,6 +1120,326 @@
           "nullUrls": 25
         },
         {
+          "code": "A1",
+          "name": "Genetic Apex",
+          "language": "FR",
+          "totalCards": 286,
+          "cardsWithImages": 286,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A1",
+          "name": "Genetic Apex",
+          "language": "EN",
+          "totalCards": 286,
+          "cardsWithImages": 286,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A1",
+          "name": "Genetic Apex",
+          "language": "DE",
+          "totalCards": 286,
+          "cardsWithImages": 286,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A1",
+          "name": "Genetic Apex",
+          "language": "IT",
+          "totalCards": 286,
+          "cardsWithImages": 286,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A1",
+          "name": "Genetic Apex",
+          "language": "ES",
+          "totalCards": 286,
+          "cardsWithImages": 286,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A1a",
+          "name": "Mythical Island",
+          "language": "FR",
+          "totalCards": 86,
+          "cardsWithImages": 86,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A1a",
+          "name": "Mythical Island",
+          "language": "EN",
+          "totalCards": 86,
+          "cardsWithImages": 86,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A1a",
+          "name": "Mythical Island",
+          "language": "DE",
+          "totalCards": 86,
+          "cardsWithImages": 86,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A1a",
+          "name": "Mythical Island",
+          "language": "IT",
+          "totalCards": 86,
+          "cardsWithImages": 86,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A1a",
+          "name": "Mythical Island",
+          "language": "ES",
+          "totalCards": 86,
+          "cardsWithImages": 86,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2",
+          "name": "Space-Time Smackdown",
+          "language": "FR",
+          "totalCards": 207,
+          "cardsWithImages": 207,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2",
+          "name": "Space-Time Smackdown",
+          "language": "EN",
+          "totalCards": 207,
+          "cardsWithImages": 207,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2",
+          "name": "Space-Time Smackdown",
+          "language": "DE",
+          "totalCards": 207,
+          "cardsWithImages": 207,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2",
+          "name": "Space-Time Smackdown",
+          "language": "IT",
+          "totalCards": 207,
+          "cardsWithImages": 207,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2",
+          "name": "Space-Time Smackdown",
+          "language": "ES",
+          "totalCards": 207,
+          "cardsWithImages": 207,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2a",
+          "name": "Triumphant Light",
+          "language": "FR",
+          "totalCards": 96,
+          "cardsWithImages": 96,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2a",
+          "name": "Triumphant Light",
+          "language": "EN",
+          "totalCards": 96,
+          "cardsWithImages": 96,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2a",
+          "name": "Triumphant Light",
+          "language": "DE",
+          "totalCards": 96,
+          "cardsWithImages": 96,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2a",
+          "name": "Triumphant Light",
+          "language": "IT",
+          "totalCards": 96,
+          "cardsWithImages": 96,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2a",
+          "name": "Triumphant Light",
+          "language": "ES",
+          "totalCards": 96,
+          "cardsWithImages": 96,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2b",
+          "name": "Shining Revelry",
+          "language": "FR",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2b",
+          "name": "Shining Revelry",
+          "language": "EN",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2b",
+          "name": "Shining Revelry",
+          "language": "DE",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2b",
+          "name": "Shining Revelry",
+          "language": "IT",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A2b",
+          "name": "Shining Revelry",
+          "language": "ES",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A3",
+          "name": "Celestial Guardians",
+          "language": "FR",
+          "totalCards": 239,
+          "cardsWithImages": 239,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A3",
+          "name": "Celestial Guardians",
+          "language": "EN",
+          "totalCards": 239,
+          "cardsWithImages": 239,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A3",
+          "name": "Celestial Guardians",
+          "language": "DE",
+          "totalCards": 239,
+          "cardsWithImages": 239,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A3",
+          "name": "Celestial Guardians",
+          "language": "IT",
+          "totalCards": 239,
+          "cardsWithImages": 239,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A3",
+          "name": "Celestial Guardians",
+          "language": "ES",
+          "totalCards": 239,
+          "cardsWithImages": 239,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A3a",
+          "name": "Extradimensional Crisis",
+          "language": "FR",
+          "totalCards": 103,
+          "cardsWithImages": 103,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "A3a",
+          "name": "Extradimensional Crisis",
+          "language": "EN",
+          "totalCards": 103,
+          "cardsWithImages": 103,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "A3b",
           "name": "Eevee Grove",
           "language": "FR",
@@ -396,6 +1448,16 @@
           "cardsWithoutImages": 107,
           "externalUrls": 0,
           "nullUrls": 107
+        },
+        {
+          "code": "A3b",
+          "name": "Eevee Grove",
+          "language": "EN",
+          "totalCards": 107,
+          "cardsWithImages": 107,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "A4",
@@ -408,6 +1470,16 @@
           "nullUrls": 241
         },
         {
+          "code": "A4",
+          "name": "Wisdom of Sea and Sky",
+          "language": "EN",
+          "totalCards": 241,
+          "cardsWithImages": 241,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "A4a",
           "name": "Secluded Springs",
           "language": "FR",
@@ -416,6 +1488,156 @@
           "cardsWithoutImages": 105,
           "externalUrls": 0,
           "nullUrls": 105
+        },
+        {
+          "code": "A4a",
+          "name": "Secluded Springs",
+          "language": "EN",
+          "totalCards": 105,
+          "cardsWithImages": 105,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "B1",
+          "name": "Mega Rising",
+          "language": "EN",
+          "totalCards": 331,
+          "cardsWithImages": 331,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "base1",
+          "name": "Base Set",
+          "language": "FR",
+          "totalCards": 102,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "base1",
+          "name": "Base Set",
+          "language": "EN",
+          "totalCards": 102,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "base1",
+          "name": "Base Set",
+          "language": "DE",
+          "totalCards": 102,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 102,
+          "externalUrls": 0,
+          "nullUrls": 102
+        },
+        {
+          "code": "base2",
+          "name": "Jungle",
+          "language": "FR",
+          "totalCards": 64,
+          "cardsWithImages": 64,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "base2",
+          "name": "Jungle",
+          "language": "EN",
+          "totalCards": 64,
+          "cardsWithImages": 64,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "base2",
+          "name": "Jungle",
+          "language": "DE",
+          "totalCards": 64,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 64,
+          "externalUrls": 0,
+          "nullUrls": 64
+        },
+        {
+          "code": "base3",
+          "name": "Fossil",
+          "language": "FR",
+          "totalCards": 62,
+          "cardsWithImages": 62,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "base3",
+          "name": "Fossil",
+          "language": "EN",
+          "totalCards": 62,
+          "cardsWithImages": 62,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "base3",
+          "name": "Fossil",
+          "language": "DE",
+          "totalCards": 62,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 62,
+          "externalUrls": 0,
+          "nullUrls": 62
+        },
+        {
+          "code": "base4",
+          "name": "Base Set 2",
+          "language": "EN",
+          "totalCards": 130,
+          "cardsWithImages": 130,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "base5",
+          "name": "Team Rocket",
+          "language": "FR",
+          "totalCards": 83,
+          "cardsWithImages": 83,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "base5",
+          "name": "Team Rocket",
+          "language": "EN",
+          "totalCards": 83,
+          "cardsWithImages": 83,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "base5",
+          "name": "Team Rocket",
+          "language": "DE",
+          "totalCards": 83,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 83,
+          "externalUrls": 0,
+          "nullUrls": 83
         },
         {
           "code": "basep",
@@ -428,6 +1650,16 @@
           "nullUrls": 26
         },
         {
+          "code": "basep",
+          "name": "Wizards Black Star Promos",
+          "language": "EN",
+          "totalCards": 53,
+          "cardsWithImages": 53,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "bog",
           "name": "Best of game",
           "language": "EN",
@@ -436,6 +1668,506 @@
           "cardsWithoutImages": 9,
           "externalUrls": 0,
           "nullUrls": 9
+        },
+        {
+          "code": "bw1",
+          "name": "Black & White",
+          "language": "FR",
+          "totalCards": 115,
+          "cardsWithImages": 115,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw1",
+          "name": "Black & White",
+          "language": "EN",
+          "totalCards": 115,
+          "cardsWithImages": 115,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw1",
+          "name": "Black & White",
+          "language": "DE",
+          "totalCards": 115,
+          "cardsWithImages": 115,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw1",
+          "name": "Black & White",
+          "language": "IT",
+          "totalCards": 115,
+          "cardsWithImages": 115,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw1",
+          "name": "Black & White",
+          "language": "ES",
+          "totalCards": 115,
+          "cardsWithImages": 115,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw10",
+          "name": "Plasma Blast",
+          "language": "FR",
+          "totalCards": 105,
+          "cardsWithImages": 105,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw10",
+          "name": "Plasma Blast",
+          "language": "EN",
+          "totalCards": 105,
+          "cardsWithImages": 105,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw10",
+          "name": "Plasma Blast",
+          "language": "DE",
+          "totalCards": 105,
+          "cardsWithImages": 105,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw11",
+          "name": "Legendary Treasures",
+          "language": "EN",
+          "totalCards": 140,
+          "cardsWithImages": 140,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw2",
+          "name": "Emerging Powers",
+          "language": "FR",
+          "totalCards": 98,
+          "cardsWithImages": 98,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw2",
+          "name": "Emerging Powers",
+          "language": "EN",
+          "totalCards": 98,
+          "cardsWithImages": 98,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw2",
+          "name": "Emerging Powers",
+          "language": "DE",
+          "totalCards": 98,
+          "cardsWithImages": 98,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw2",
+          "name": "Emerging Powers",
+          "language": "IT",
+          "totalCards": 98,
+          "cardsWithImages": 98,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw2",
+          "name": "Emerging Powers",
+          "language": "ES",
+          "totalCards": 98,
+          "cardsWithImages": 98,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw3",
+          "name": "Noble Victories",
+          "language": "FR",
+          "totalCards": 102,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw3",
+          "name": "Noble Victories",
+          "language": "EN",
+          "totalCards": 102,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw3",
+          "name": "Noble Victories",
+          "language": "DE",
+          "totalCards": 102,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw3",
+          "name": "Noble Victories",
+          "language": "IT",
+          "totalCards": 102,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw3",
+          "name": "Noble Victories",
+          "language": "ES",
+          "totalCards": 102,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw4",
+          "name": "Next Destinies",
+          "language": "FR",
+          "totalCards": 103,
+          "cardsWithImages": 103,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw4",
+          "name": "Next Destinies",
+          "language": "EN",
+          "totalCards": 103,
+          "cardsWithImages": 103,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw4",
+          "name": "Next Destinies",
+          "language": "DE",
+          "totalCards": 103,
+          "cardsWithImages": 103,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw4",
+          "name": "Next Destinies",
+          "language": "IT",
+          "totalCards": 103,
+          "cardsWithImages": 103,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw4",
+          "name": "Next Destinies",
+          "language": "ES",
+          "totalCards": 103,
+          "cardsWithImages": 103,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw5",
+          "name": "Dark Explorers",
+          "language": "FR",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw5",
+          "name": "Dark Explorers",
+          "language": "EN",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw5",
+          "name": "Dark Explorers",
+          "language": "DE",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw5",
+          "name": "Dark Explorers",
+          "language": "IT",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw5",
+          "name": "Dark Explorers",
+          "language": "ES",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw6",
+          "name": "Dragons Exalted",
+          "language": "FR",
+          "totalCards": 128,
+          "cardsWithImages": 128,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw6",
+          "name": "Dragons Exalted",
+          "language": "EN",
+          "totalCards": 128,
+          "cardsWithImages": 128,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw6",
+          "name": "Dragons Exalted",
+          "language": "DE",
+          "totalCards": 128,
+          "cardsWithImages": 128,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw6",
+          "name": "Dragons Exalted",
+          "language": "IT",
+          "totalCards": 128,
+          "cardsWithImages": 128,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw6",
+          "name": "Dragons Exalted",
+          "language": "ES",
+          "totalCards": 128,
+          "cardsWithImages": 128,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw7",
+          "name": "Boundaries Crossed",
+          "language": "FR",
+          "totalCards": 153,
+          "cardsWithImages": 153,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw7",
+          "name": "Boundaries Crossed",
+          "language": "EN",
+          "totalCards": 153,
+          "cardsWithImages": 153,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw7",
+          "name": "Boundaries Crossed",
+          "language": "DE",
+          "totalCards": 153,
+          "cardsWithImages": 153,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw7",
+          "name": "Boundaries Crossed",
+          "language": "IT",
+          "totalCards": 153,
+          "cardsWithImages": 153,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw7",
+          "name": "Boundaries Crossed",
+          "language": "ES",
+          "totalCards": 153,
+          "cardsWithImages": 153,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw8",
+          "name": "Plasma Storm",
+          "language": "FR",
+          "totalCards": 138,
+          "cardsWithImages": 138,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw8",
+          "name": "Plasma Storm",
+          "language": "EN",
+          "totalCards": 138,
+          "cardsWithImages": 138,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw8",
+          "name": "Plasma Storm",
+          "language": "DE",
+          "totalCards": 138,
+          "cardsWithImages": 138,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw8",
+          "name": "Plasma Storm",
+          "language": "IT",
+          "totalCards": 138,
+          "cardsWithImages": 138,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw8",
+          "name": "Plasma Storm",
+          "language": "ES",
+          "totalCards": 138,
+          "cardsWithImages": 138,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw9",
+          "name": "Plasma Freeze",
+          "language": "FR",
+          "totalCards": 122,
+          "cardsWithImages": 122,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw9",
+          "name": "Plasma Freeze",
+          "language": "EN",
+          "totalCards": 122,
+          "cardsWithImages": 122,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw9",
+          "name": "Plasma Freeze",
+          "language": "DE",
+          "totalCards": 122,
+          "cardsWithImages": 122,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw9",
+          "name": "Plasma Freeze",
+          "language": "IT",
+          "totalCards": 122,
+          "cardsWithImages": 122,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bw9",
+          "name": "Plasma Freeze",
+          "language": "ES",
+          "totalCards": 122,
+          "cardsWithImages": 122,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "bwp",
+          "name": "BW Black Star Promos",
+          "language": "FR",
+          "totalCards": 99,
+          "cardsWithImages": 99,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "bwp",
@@ -468,6 +2200,36 @@
           "nullUrls": 27
         },
         {
+          "code": "cel25",
+          "name": "Celebrations",
+          "language": "DE",
+          "totalCards": 25,
+          "cardsWithImages": 24,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "cel25",
+          "name": "Celebrations",
+          "language": "IT",
+          "totalCards": 25,
+          "cardsWithImages": 24,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "cel25",
+          "name": "Celebrations",
+          "language": "ES",
+          "totalCards": 25,
+          "cardsWithImages": 24,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
           "code": "col1",
           "name": "Call of Legends",
           "language": "FR",
@@ -476,6 +2238,46 @@
           "cardsWithoutImages": 47,
           "externalUrls": 0,
           "nullUrls": 47
+        },
+        {
+          "code": "col1",
+          "name": "Call of Legends",
+          "language": "EN",
+          "totalCards": 106,
+          "cardsWithImages": 106,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "col1",
+          "name": "Call of Legends",
+          "language": "DE",
+          "totalCards": 106,
+          "cardsWithImages": 98,
+          "cardsWithoutImages": 8,
+          "externalUrls": 0,
+          "nullUrls": 8
+        },
+        {
+          "code": "dc1",
+          "name": "Double Crisis",
+          "language": "FR",
+          "totalCards": 34,
+          "cardsWithImages": 34,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dc1",
+          "name": "Double Crisis",
+          "language": "EN",
+          "totalCards": 34,
+          "cardsWithImages": 34,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "det1",
@@ -488,9 +2290,99 @@
           "nullUrls": 18
         },
         {
+          "code": "det1",
+          "name": "Detective Pikachu",
+          "language": "EN",
+          "totalCards": 18,
+          "cardsWithImages": 18,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "det1",
+          "name": "Detective Pikachu",
+          "language": "DE",
+          "totalCards": 18,
+          "cardsWithImages": 18,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "det1",
+          "name": "Detective Pikachu",
+          "language": "IT",
+          "totalCards": 18,
+          "cardsWithImages": 18,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "det1",
+          "name": "Detective Pikachu",
+          "language": "ES",
+          "totalCards": 18,
+          "cardsWithImages": 18,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dp1",
+          "name": "Diamond & Pearl",
+          "language": "FR",
+          "totalCards": 130,
+          "cardsWithImages": 130,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dp1",
+          "name": "Diamond & Pearl",
+          "language": "EN",
+          "totalCards": 130,
+          "cardsWithImages": 130,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dp1",
+          "name": "Diamond & Pearl",
+          "language": "DE",
+          "totalCards": 130,
+          "cardsWithImages": 130,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "dp2",
           "name": "Mysterious Treasures",
           "language": "FR",
+          "totalCards": 124,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 124,
+          "externalUrls": 0,
+          "nullUrls": 124
+        },
+        {
+          "code": "dp2",
+          "name": "Mysterious Treasures",
+          "language": "EN",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dp2",
+          "name": "Mysterious Treasures",
+          "language": "DE",
           "totalCards": 124,
           "cardsWithImages": 0,
           "cardsWithoutImages": 124,
@@ -508,9 +2400,49 @@
           "nullUrls": 132
         },
         {
+          "code": "dp3",
+          "name": "Secret Wonders",
+          "language": "EN",
+          "totalCards": 132,
+          "cardsWithImages": 132,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dp3",
+          "name": "Secret Wonders",
+          "language": "DE",
+          "totalCards": 132,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 132,
+          "externalUrls": 0,
+          "nullUrls": 132
+        },
+        {
           "code": "dp4",
           "name": "Great Encounters",
           "language": "FR",
+          "totalCards": 106,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 106,
+          "externalUrls": 0,
+          "nullUrls": 106
+        },
+        {
+          "code": "dp4",
+          "name": "Great Encounters",
+          "language": "EN",
+          "totalCards": 106,
+          "cardsWithImages": 106,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dp4",
+          "name": "Great Encounters",
+          "language": "DE",
           "totalCards": 106,
           "cardsWithImages": 0,
           "cardsWithoutImages": 106,
@@ -528,6 +2460,26 @@
           "nullUrls": 100
         },
         {
+          "code": "dp5",
+          "name": "Majestic Dawn",
+          "language": "EN",
+          "totalCards": 100,
+          "cardsWithImages": 100,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dp5",
+          "name": "Majestic Dawn",
+          "language": "DE",
+          "totalCards": 100,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 100,
+          "externalUrls": 0,
+          "nullUrls": 100
+        },
+        {
           "code": "dp6",
           "name": "Legends Awakened",
           "language": "FR",
@@ -538,6 +2490,56 @@
           "nullUrls": 146
         },
         {
+          "code": "dp6",
+          "name": "Legends Awakened",
+          "language": "EN",
+          "totalCards": 146,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dp6",
+          "name": "Legends Awakened",
+          "language": "DE",
+          "totalCards": 146,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 146,
+          "externalUrls": 0,
+          "nullUrls": 146
+        },
+        {
+          "code": "dp7",
+          "name": "Stormfront",
+          "language": "FR",
+          "totalCards": 106,
+          "cardsWithImages": 106,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dp7",
+          "name": "Stormfront",
+          "language": "EN",
+          "totalCards": 106,
+          "cardsWithImages": 106,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dp7",
+          "name": "Stormfront",
+          "language": "DE",
+          "totalCards": 106,
+          "cardsWithImages": 106,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "dpp",
           "name": "DP Black Star Promos",
           "language": "FR",
@@ -546,6 +2548,76 @@
           "cardsWithoutImages": 42,
           "externalUrls": 0,
           "nullUrls": 42
+        },
+        {
+          "code": "dpp",
+          "name": "DP Black Star Promos",
+          "language": "EN",
+          "totalCards": 56,
+          "cardsWithImages": 56,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dpp",
+          "name": "DP Black Star Promos",
+          "language": "DE",
+          "totalCards": 56,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 56,
+          "externalUrls": 0,
+          "nullUrls": 56
+        },
+        {
+          "code": "dv1",
+          "name": "Dragon Vault",
+          "language": "FR",
+          "totalCards": 20,
+          "cardsWithImages": 20,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "dv1",
+          "name": "Dragon Vault",
+          "language": "EN",
+          "totalCards": 21,
+          "cardsWithImages": 21,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ecard1",
+          "name": "Expedition Base Set",
+          "language": "FR",
+          "totalCards": 165,
+          "cardsWithImages": 165,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ecard1",
+          "name": "Expedition Base Set",
+          "language": "EN",
+          "totalCards": 165,
+          "cardsWithImages": 165,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ecard1",
+          "name": "Expedition Base Set",
+          "language": "DE",
+          "totalCards": 165,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 165,
+          "externalUrls": 0,
+          "nullUrls": 165
         },
         {
           "code": "ecard2",
@@ -568,6 +2640,16 @@
           "nullUrls": 40
         },
         {
+          "code": "ecard2",
+          "name": "Aquapolis",
+          "language": "DE",
+          "totalCards": 186,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 186,
+          "externalUrls": 0,
+          "nullUrls": 186
+        },
+        {
           "code": "ecard3",
           "name": "Skyridge",
           "language": "EN",
@@ -576,6 +2658,366 @@
           "cardsWithoutImages": 32,
           "externalUrls": 0,
           "nullUrls": 32
+        },
+        {
+          "code": "ecard3",
+          "name": "Skyridge",
+          "language": "DE",
+          "totalCards": 182,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 182,
+          "externalUrls": 0,
+          "nullUrls": 182
+        },
+        {
+          "code": "ex1",
+          "name": "Ruby & Sapphire",
+          "language": "FR",
+          "totalCards": 109,
+          "cardsWithImages": 109,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex1",
+          "name": "Ruby & Sapphire",
+          "language": "EN",
+          "totalCards": 109,
+          "cardsWithImages": 109,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex1",
+          "name": "Ruby & Sapphire",
+          "language": "DE",
+          "totalCards": 109,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 109,
+          "externalUrls": 0,
+          "nullUrls": 109
+        },
+        {
+          "code": "ex10",
+          "name": "Unseen Forces",
+          "language": "FR",
+          "totalCards": 117,
+          "cardsWithImages": 117,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex10",
+          "name": "Unseen Forces",
+          "language": "EN",
+          "totalCards": 117,
+          "cardsWithImages": 117,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex10",
+          "name": "Unseen Forces",
+          "language": "DE",
+          "totalCards": 117,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 117,
+          "externalUrls": 0,
+          "nullUrls": 117
+        },
+        {
+          "code": "ex11",
+          "name": "Delta Species",
+          "language": "FR",
+          "totalCards": 114,
+          "cardsWithImages": 114,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex11",
+          "name": "Delta Species",
+          "language": "EN",
+          "totalCards": 114,
+          "cardsWithImages": 114,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex11",
+          "name": "Delta Species",
+          "language": "DE",
+          "totalCards": 114,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 114,
+          "externalUrls": 0,
+          "nullUrls": 114
+        },
+        {
+          "code": "ex12",
+          "name": "Legend Maker",
+          "language": "FR",
+          "totalCards": 93,
+          "cardsWithImages": 93,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex12",
+          "name": "Legend Maker",
+          "language": "EN",
+          "totalCards": 93,
+          "cardsWithImages": 93,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex12",
+          "name": "Legend Maker",
+          "language": "DE",
+          "totalCards": 93,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 93,
+          "externalUrls": 0,
+          "nullUrls": 93
+        },
+        {
+          "code": "ex13",
+          "name": "Holon Phantoms",
+          "language": "FR",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex13",
+          "name": "Holon Phantoms",
+          "language": "EN",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex13",
+          "name": "Holon Phantoms",
+          "language": "DE",
+          "totalCards": 111,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 111,
+          "externalUrls": 0,
+          "nullUrls": 111
+        },
+        {
+          "code": "ex14",
+          "name": "Crystal Guardians",
+          "language": "FR",
+          "totalCards": 100,
+          "cardsWithImages": 100,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex14",
+          "name": "Crystal Guardians",
+          "language": "EN",
+          "totalCards": 100,
+          "cardsWithImages": 100,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex14",
+          "name": "Crystal Guardians",
+          "language": "DE",
+          "totalCards": 100,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 100,
+          "externalUrls": 0,
+          "nullUrls": 100
+        },
+        {
+          "code": "ex15",
+          "name": "Dragon Frontiers",
+          "language": "FR",
+          "totalCards": 101,
+          "cardsWithImages": 101,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex15",
+          "name": "Dragon Frontiers",
+          "language": "EN",
+          "totalCards": 101,
+          "cardsWithImages": 101,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex15",
+          "name": "Dragon Frontiers",
+          "language": "DE",
+          "totalCards": 101,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 101,
+          "externalUrls": 0,
+          "nullUrls": 101
+        },
+        {
+          "code": "ex16",
+          "name": "Power Keepers",
+          "language": "FR",
+          "totalCards": 108,
+          "cardsWithImages": 108,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex16",
+          "name": "Power Keepers",
+          "language": "EN",
+          "totalCards": 108,
+          "cardsWithImages": 108,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex16",
+          "name": "Power Keepers",
+          "language": "DE",
+          "totalCards": 108,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 108,
+          "externalUrls": 0,
+          "nullUrls": 108
+        },
+        {
+          "code": "ex2",
+          "name": "Sandstorm",
+          "language": "FR",
+          "totalCards": 100,
+          "cardsWithImages": 100,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex2",
+          "name": "Sandstorm",
+          "language": "EN",
+          "totalCards": 100,
+          "cardsWithImages": 100,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex2",
+          "name": "Sandstorm",
+          "language": "DE",
+          "totalCards": 100,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 100,
+          "externalUrls": 0,
+          "nullUrls": 100
+        },
+        {
+          "code": "ex3",
+          "name": "Dragon",
+          "language": "FR",
+          "totalCards": 100,
+          "cardsWithImages": 100,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex3",
+          "name": "Dragon",
+          "language": "EN",
+          "totalCards": 100,
+          "cardsWithImages": 100,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex3",
+          "name": "Dragon",
+          "language": "DE",
+          "totalCards": 100,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 100,
+          "externalUrls": 0,
+          "nullUrls": 100
+        },
+        {
+          "code": "ex4",
+          "name": "Team Magma vs Team Aqua",
+          "language": "FR",
+          "totalCards": 97,
+          "cardsWithImages": 97,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex4",
+          "name": "Team Magma vs Team Aqua",
+          "language": "EN",
+          "totalCards": 97,
+          "cardsWithImages": 97,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex4",
+          "name": "Team Magma vs Team Aqua",
+          "language": "DE",
+          "totalCards": 97,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 97,
+          "externalUrls": 0,
+          "nullUrls": 97
+        },
+        {
+          "code": "ex5",
+          "name": "Hidden Legends",
+          "language": "FR",
+          "totalCards": 102,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex5",
+          "name": "Hidden Legends",
+          "language": "EN",
+          "totalCards": 102,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "ex5.5",
@@ -588,6 +3030,106 @@
           "nullUrls": 5
         },
         {
+          "code": "ex6",
+          "name": "FireRed & LeafGreen",
+          "language": "FR",
+          "totalCards": 116,
+          "cardsWithImages": 116,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex6",
+          "name": "FireRed & LeafGreen",
+          "language": "EN",
+          "totalCards": 116,
+          "cardsWithImages": 116,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex6",
+          "name": "FireRed & LeafGreen",
+          "language": "DE",
+          "totalCards": 116,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 116,
+          "externalUrls": 0,
+          "nullUrls": 116
+        },
+        {
+          "code": "ex7",
+          "name": "Team Rocket Returns",
+          "language": "EN",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex8",
+          "name": "Deoxys",
+          "language": "FR",
+          "totalCards": 108,
+          "cardsWithImages": 108,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex8",
+          "name": "Deoxys",
+          "language": "EN",
+          "totalCards": 108,
+          "cardsWithImages": 108,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex8",
+          "name": "Deoxys",
+          "language": "DE",
+          "totalCards": 108,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 108,
+          "externalUrls": 0,
+          "nullUrls": 108
+        },
+        {
+          "code": "ex9",
+          "name": "Emerald",
+          "language": "FR",
+          "totalCards": 107,
+          "cardsWithImages": 107,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex9",
+          "name": "Emerald",
+          "language": "EN",
+          "totalCards": 107,
+          "cardsWithImages": 107,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ex9",
+          "name": "Emerald",
+          "language": "DE",
+          "totalCards": 107,
+          "cardsWithImages": 107,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "exu",
           "name": "Unseen Forces Unown Collection",
           "language": "EN",
@@ -598,9 +3140,109 @@
           "nullUrls": 27
         },
         {
+          "code": "fut2020",
+          "name": "Pokémon Futsal 2020",
+          "language": "EN",
+          "totalCards": 5,
+          "cardsWithImages": 5,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "g1",
+          "name": "Generations",
+          "language": "FR",
+          "totalCards": 115,
+          "cardsWithImages": 115,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "g1",
+          "name": "Generations",
+          "language": "EN",
+          "totalCards": 117,
+          "cardsWithImages": 117,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "gym1",
+          "name": "Gym Heroes",
+          "language": "EN",
+          "totalCards": 132,
+          "cardsWithImages": 132,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "gym2",
+          "name": "Gym Challenge",
+          "language": "EN",
+          "totalCards": 132,
+          "cardsWithImages": 132,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "hgss1",
+          "name": "HeartGold SoulSilver",
+          "language": "FR",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "hgss1",
+          "name": "HeartGold SoulSilver",
+          "language": "EN",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "hgss1",
+          "name": "HeartGold SoulSilver",
+          "language": "DE",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "hgss2",
           "name": "Unleashed",
           "language": "FR",
+          "totalCards": 96,
+          "cardsWithImages": 95,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "hgss2",
+          "name": "Unleashed",
+          "language": "EN",
+          "totalCards": 96,
+          "cardsWithImages": 96,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "hgss2",
+          "name": "Unleashed",
+          "language": "DE",
           "totalCards": 96,
           "cardsWithImages": 95,
           "cardsWithoutImages": 1,
@@ -618,9 +3260,49 @@
           "nullUrls": 1
         },
         {
+          "code": "hgss3",
+          "name": "Undaunted",
+          "language": "EN",
+          "totalCards": 91,
+          "cardsWithImages": 91,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "hgss3",
+          "name": "Undaunted",
+          "language": "DE",
+          "totalCards": 91,
+          "cardsWithImages": 90,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
           "code": "hgss4",
           "name": "Triumphant",
           "language": "FR",
+          "totalCards": 103,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "hgss4",
+          "name": "Triumphant",
+          "language": "EN",
+          "totalCards": 103,
+          "cardsWithImages": 103,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "hgss4",
+          "name": "Triumphant",
+          "language": "DE",
           "totalCards": 103,
           "cardsWithImages": 102,
           "cardsWithoutImages": 1,
@@ -638,6 +3320,66 @@
           "nullUrls": 9
         },
         {
+          "code": "lc",
+          "name": "Legendary Collection",
+          "language": "EN",
+          "totalCards": 110,
+          "cardsWithImages": 110,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "me01",
+          "name": "Mega Evolution",
+          "language": "FR",
+          "totalCards": 188,
+          "cardsWithImages": 188,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "me01",
+          "name": "Mega Evolution",
+          "language": "EN",
+          "totalCards": 188,
+          "cardsWithImages": 188,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "me01",
+          "name": "Mega Evolution",
+          "language": "DE",
+          "totalCards": 188,
+          "cardsWithImages": 188,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "me01",
+          "name": "Mega Evolution",
+          "language": "IT",
+          "totalCards": 188,
+          "cardsWithImages": 188,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "me01",
+          "name": "Mega Evolution",
+          "language": "ES",
+          "totalCards": 188,
+          "cardsWithImages": 188,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "me02",
           "name": "Phantasmal Flames",
           "language": "FR",
@@ -646,6 +3388,46 @@
           "cardsWithoutImages": 76,
           "externalUrls": 0,
           "nullUrls": 76
+        },
+        {
+          "code": "me02",
+          "name": "Phantasmal Flames",
+          "language": "EN",
+          "totalCards": 130,
+          "cardsWithImages": 130,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "me02",
+          "name": "Phantasmal Flames",
+          "language": "DE",
+          "totalCards": 130,
+          "cardsWithImages": 130,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "me02",
+          "name": "Phantasmal Flames",
+          "language": "IT",
+          "totalCards": 130,
+          "cardsWithImages": 130,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "me02",
+          "name": "Phantasmal Flames",
+          "language": "ES",
+          "totalCards": 130,
+          "cardsWithImages": 130,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "mep",
@@ -666,6 +3448,176 @@
           "cardsWithoutImages": 10,
           "externalUrls": 0,
           "nullUrls": 10
+        },
+        {
+          "code": "mep",
+          "name": "MEP Black Star Promos",
+          "language": "DE",
+          "totalCards": 10,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 10,
+          "externalUrls": 0,
+          "nullUrls": 10
+        },
+        {
+          "code": "mep",
+          "name": "MEP Black Star Promos",
+          "language": "IT",
+          "totalCards": 10,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 10,
+          "externalUrls": 0,
+          "nullUrls": 10
+        },
+        {
+          "code": "mep",
+          "name": "MEP Black Star Promos",
+          "language": "ES",
+          "totalCards": 10,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 10,
+          "externalUrls": 0,
+          "nullUrls": 10
+        },
+        {
+          "code": "neo1",
+          "name": "Neo Genesis",
+          "language": "FR",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "neo1",
+          "name": "Neo Genesis",
+          "language": "EN",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "neo1",
+          "name": "Neo Genesis",
+          "language": "DE",
+          "totalCards": 111,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 111,
+          "externalUrls": 0,
+          "nullUrls": 111
+        },
+        {
+          "code": "neo2",
+          "name": "Neo Discovery",
+          "language": "FR",
+          "totalCards": 75,
+          "cardsWithImages": 75,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "neo2",
+          "name": "Neo Discovery",
+          "language": "EN",
+          "totalCards": 75,
+          "cardsWithImages": 75,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "neo2",
+          "name": "Neo Discovery",
+          "language": "DE",
+          "totalCards": 75,
+          "cardsWithImages": 74,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "neo3",
+          "name": "Neo Revelation",
+          "language": "FR",
+          "totalCards": 66,
+          "cardsWithImages": 66,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "neo3",
+          "name": "Neo Revelation",
+          "language": "EN",
+          "totalCards": 66,
+          "cardsWithImages": 66,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "neo3",
+          "name": "Neo Revelation",
+          "language": "DE",
+          "totalCards": 66,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 66,
+          "externalUrls": 0,
+          "nullUrls": 66
+        },
+        {
+          "code": "neo4",
+          "name": "Neo Destiny",
+          "language": "FR",
+          "totalCards": 113,
+          "cardsWithImages": 113,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "neo4",
+          "name": "Neo Destiny",
+          "language": "EN",
+          "totalCards": 113,
+          "cardsWithImages": 113,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "neo4",
+          "name": "Neo Destiny",
+          "language": "DE",
+          "totalCards": 113,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 113,
+          "externalUrls": 0,
+          "nullUrls": 113
+        },
+        {
+          "code": "np",
+          "name": "Nintendo Black Star Promos",
+          "language": "EN",
+          "totalCards": 40,
+          "cardsWithImages": 40,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "P-A",
+          "name": "Promos-A",
+          "language": "FR",
+          "totalCards": 73,
+          "cardsWithImages": 73,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "P-A",
@@ -678,6 +3630,76 @@
           "nullUrls": 27
         },
         {
+          "code": "P-A",
+          "name": "Promos-A",
+          "language": "DE",
+          "totalCards": 73,
+          "cardsWithImages": 73,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "P-A",
+          "name": "Promos-A",
+          "language": "IT",
+          "totalCards": 73,
+          "cardsWithImages": 73,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "P-A",
+          "name": "Promos-A",
+          "language": "ES",
+          "totalCards": 92,
+          "cardsWithImages": 73,
+          "cardsWithoutImages": 19,
+          "externalUrls": 0,
+          "nullUrls": 19
+        },
+        {
+          "code": "pl1",
+          "name": "Platinum",
+          "language": "FR",
+          "totalCards": 133,
+          "cardsWithImages": 133,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pl1",
+          "name": "Platinum",
+          "language": "EN",
+          "totalCards": 133,
+          "cardsWithImages": 133,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pl1",
+          "name": "Platinum",
+          "language": "DE",
+          "totalCards": 133,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 133,
+          "externalUrls": 0,
+          "nullUrls": 133
+        },
+        {
+          "code": "pl2",
+          "name": "Rising Rivals",
+          "language": "FR",
+          "totalCards": 120,
+          "cardsWithImages": 120,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "pl2",
           "name": "Rising Rivals",
           "language": "EN",
@@ -686,6 +3708,286 @@
           "cardsWithoutImages": 1,
           "externalUrls": 0,
           "nullUrls": 1
+        },
+        {
+          "code": "pl2",
+          "name": "Rising Rivals",
+          "language": "DE",
+          "totalCards": 120,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 120,
+          "externalUrls": 0,
+          "nullUrls": 120
+        },
+        {
+          "code": "pl3",
+          "name": "Supreme Victors",
+          "language": "FR",
+          "totalCards": 150,
+          "cardsWithImages": 150,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pl3",
+          "name": "Supreme Victors",
+          "language": "EN",
+          "totalCards": 153,
+          "cardsWithImages": 153,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pl3",
+          "name": "Supreme Victors",
+          "language": "DE",
+          "totalCards": 153,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 153,
+          "externalUrls": 0,
+          "nullUrls": 153
+        },
+        {
+          "code": "pl4",
+          "name": "Arceus",
+          "language": "EN",
+          "totalCards": 111,
+          "cardsWithImages": 111,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pl4",
+          "name": "Arceus",
+          "language": "DE",
+          "totalCards": 111,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 111,
+          "externalUrls": 0,
+          "nullUrls": 111
+        },
+        {
+          "code": "pop1",
+          "name": "POP Series 1",
+          "language": "FR",
+          "totalCards": 16,
+          "cardsWithImages": 16,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop1",
+          "name": "POP Series 1",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop2",
+          "name": "POP Series 2",
+          "language": "FR",
+          "totalCards": 13,
+          "cardsWithImages": 13,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop2",
+          "name": "POP Series 2",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop3",
+          "name": "POP Series 3",
+          "language": "FR",
+          "totalCards": 10,
+          "cardsWithImages": 10,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop3",
+          "name": "POP Series 3",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop4",
+          "name": "POP Series 4",
+          "language": "FR",
+          "totalCards": 14,
+          "cardsWithImages": 14,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop4",
+          "name": "POP Series 4",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop5",
+          "name": "POP Series 5",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop6",
+          "name": "POP Series 6",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop7",
+          "name": "POP Series 7",
+          "language": "FR",
+          "totalCards": 2,
+          "cardsWithImages": 2,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop7",
+          "name": "POP Series 7",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop8",
+          "name": "POP Series 8",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop9",
+          "name": "POP Series 9",
+          "language": "FR",
+          "totalCards": 15,
+          "cardsWithImages": 15,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "pop9",
+          "name": "POP Series 9",
+          "language": "EN",
+          "totalCards": 17,
+          "cardsWithImages": 17,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "ru1",
+          "name": "Pokémon Rumble",
+          "language": "EN",
+          "totalCards": 16,
+          "cardsWithImages": 16,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "si1",
+          "name": "Southern Islands",
+          "language": "EN",
+          "totalCards": 18,
+          "cardsWithImages": 18,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm1",
+          "name": "Sun & Moon",
+          "language": "FR",
+          "totalCards": 163,
+          "cardsWithImages": 163,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm1",
+          "name": "Sun & Moon",
+          "language": "EN",
+          "totalCards": 172,
+          "cardsWithImages": 172,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm1",
+          "name": "Sun & Moon",
+          "language": "DE",
+          "totalCards": 163,
+          "cardsWithImages": 163,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm1",
+          "name": "Sun & Moon",
+          "language": "IT",
+          "totalCards": 163,
+          "cardsWithImages": 163,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm1",
+          "name": "Sun & Moon",
+          "language": "ES",
+          "totalCards": 163,
+          "cardsWithImages": 163,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "sm10",
@@ -698,6 +4000,46 @@
           "nullUrls": 38
         },
         {
+          "code": "sm10",
+          "name": "Unbroken Bonds",
+          "language": "EN",
+          "totalCards": 234,
+          "cardsWithImages": 234,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm10",
+          "name": "Unbroken Bonds",
+          "language": "DE",
+          "totalCards": 234,
+          "cardsWithImages": 234,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm10",
+          "name": "Unbroken Bonds",
+          "language": "IT",
+          "totalCards": 234,
+          "cardsWithImages": 234,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm10",
+          "name": "Unbroken Bonds",
+          "language": "ES",
+          "totalCards": 234,
+          "cardsWithImages": 234,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "sm11",
           "name": "Unified Minds",
           "language": "FR",
@@ -706,6 +4048,46 @@
           "cardsWithoutImages": 69,
           "externalUrls": 0,
           "nullUrls": 69
+        },
+        {
+          "code": "sm11",
+          "name": "Unified Minds",
+          "language": "EN",
+          "totalCards": 258,
+          "cardsWithImages": 258,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm11",
+          "name": "Unified Minds",
+          "language": "DE",
+          "totalCards": 258,
+          "cardsWithImages": 258,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm11",
+          "name": "Unified Minds",
+          "language": "IT",
+          "totalCards": 258,
+          "cardsWithImages": 258,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm11",
+          "name": "Unified Minds",
+          "language": "ES",
+          "totalCards": 258,
+          "cardsWithImages": 258,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "sm115",
@@ -718,6 +4100,76 @@
           "nullUrls": 69
         },
         {
+          "code": "sm115",
+          "name": "Hidden Fates",
+          "language": "EN",
+          "totalCards": 69,
+          "cardsWithImages": 69,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm12",
+          "name": "Cosmic Eclipse",
+          "language": "FR",
+          "totalCards": 271,
+          "cardsWithImages": 271,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm12",
+          "name": "Cosmic Eclipse",
+          "language": "EN",
+          "totalCards": 271,
+          "cardsWithImages": 271,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm12",
+          "name": "Cosmic Eclipse",
+          "language": "DE",
+          "totalCards": 271,
+          "cardsWithImages": 271,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm12",
+          "name": "Cosmic Eclipse",
+          "language": "IT",
+          "totalCards": 271,
+          "cardsWithImages": 271,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm12",
+          "name": "Cosmic Eclipse",
+          "language": "ES",
+          "totalCards": 271,
+          "cardsWithImages": 271,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm2",
+          "name": "Guardians Rising",
+          "language": "FR",
+          "totalCards": 169,
+          "cardsWithImages": 169,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "sm2",
           "name": "Guardians Rising",
           "language": "EN",
@@ -726,6 +4178,86 @@
           "cardsWithoutImages": 1,
           "externalUrls": 0,
           "nullUrls": 1
+        },
+        {
+          "code": "sm2",
+          "name": "Guardians Rising",
+          "language": "DE",
+          "totalCards": 169,
+          "cardsWithImages": 169,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm2",
+          "name": "Guardians Rising",
+          "language": "IT",
+          "totalCards": 169,
+          "cardsWithImages": 169,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm2",
+          "name": "Guardians Rising",
+          "language": "ES",
+          "totalCards": 169,
+          "cardsWithImages": 169,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm3",
+          "name": "Burning Shadows",
+          "language": "FR",
+          "totalCards": 169,
+          "cardsWithImages": 169,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm3",
+          "name": "Burning Shadows",
+          "language": "EN",
+          "totalCards": 169,
+          "cardsWithImages": 169,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm3",
+          "name": "Burning Shadows",
+          "language": "DE",
+          "totalCards": 169,
+          "cardsWithImages": 169,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm3",
+          "name": "Burning Shadows",
+          "language": "IT",
+          "totalCards": 169,
+          "cardsWithImages": 169,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm3",
+          "name": "Burning Shadows",
+          "language": "ES",
+          "totalCards": 169,
+          "cardsWithImages": 169,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "sm3.5",
@@ -746,6 +4278,146 @@
           "cardsWithoutImages": 78,
           "externalUrls": 0,
           "nullUrls": 78
+        },
+        {
+          "code": "sm3.5",
+          "name": "Shining Legends",
+          "language": "DE",
+          "totalCards": 78,
+          "cardsWithImages": 78,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm3.5",
+          "name": "Shining Legends",
+          "language": "IT",
+          "totalCards": 78,
+          "cardsWithImages": 78,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm3.5",
+          "name": "Shining Legends",
+          "language": "ES",
+          "totalCards": 78,
+          "cardsWithImages": 78,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm4",
+          "name": "Crimson Invasion",
+          "language": "FR",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm4",
+          "name": "Crimson Invasion",
+          "language": "EN",
+          "totalCards": 125,
+          "cardsWithImages": 125,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm4",
+          "name": "Crimson Invasion",
+          "language": "DE",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm4",
+          "name": "Crimson Invasion",
+          "language": "IT",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm4",
+          "name": "Crimson Invasion",
+          "language": "ES",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm5",
+          "name": "Ultra Prism",
+          "language": "FR",
+          "totalCards": 173,
+          "cardsWithImages": 173,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm5",
+          "name": "Ultra Prism",
+          "language": "EN",
+          "totalCards": 173,
+          "cardsWithImages": 173,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm5",
+          "name": "Ultra Prism",
+          "language": "DE",
+          "totalCards": 173,
+          "cardsWithImages": 173,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm5",
+          "name": "Ultra Prism",
+          "language": "IT",
+          "totalCards": 173,
+          "cardsWithImages": 173,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm5",
+          "name": "Ultra Prism",
+          "language": "ES",
+          "totalCards": 173,
+          "cardsWithImages": 173,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm6",
+          "name": "Forbidden Light",
+          "language": "FR",
+          "totalCards": 146,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "sm6",
@@ -758,6 +4430,86 @@
           "nullUrls": 6
         },
         {
+          "code": "sm6",
+          "name": "Forbidden Light",
+          "language": "DE",
+          "totalCards": 146,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm6",
+          "name": "Forbidden Light",
+          "language": "IT",
+          "totalCards": 146,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm6",
+          "name": "Forbidden Light",
+          "language": "ES",
+          "totalCards": 146,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm7",
+          "name": "Celestial Storm",
+          "language": "FR",
+          "totalCards": 183,
+          "cardsWithImages": 183,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm7",
+          "name": "Celestial Storm",
+          "language": "EN",
+          "totalCards": 183,
+          "cardsWithImages": 183,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm7",
+          "name": "Celestial Storm",
+          "language": "DE",
+          "totalCards": 183,
+          "cardsWithImages": 183,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm7",
+          "name": "Celestial Storm",
+          "language": "IT",
+          "totalCards": 183,
+          "cardsWithImages": 183,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm7",
+          "name": "Celestial Storm",
+          "language": "ES",
+          "totalCards": 183,
+          "cardsWithImages": 183,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "sm7.5",
           "name": "Dragon Majesty",
           "language": "FR",
@@ -771,6 +4523,36 @@
           "code": "sm7.5",
           "name": "Dragon Majesty",
           "language": "EN",
+          "totalCards": 78,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 78,
+          "externalUrls": 0,
+          "nullUrls": 78
+        },
+        {
+          "code": "sm7.5",
+          "name": "Dragon Majesty",
+          "language": "DE",
+          "totalCards": 78,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 78,
+          "externalUrls": 0,
+          "nullUrls": 78
+        },
+        {
+          "code": "sm7.5",
+          "name": "Dragon Majesty",
+          "language": "IT",
+          "totalCards": 78,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 78,
+          "externalUrls": 0,
+          "nullUrls": 78
+        },
+        {
+          "code": "sm7.5",
+          "name": "Dragon Majesty",
+          "language": "ES",
           "totalCards": 78,
           "cardsWithImages": 0,
           "cardsWithoutImages": 78,
@@ -788,6 +4570,96 @@
           "nullUrls": 40
         },
         {
+          "code": "sm8",
+          "name": "Lost Thunder",
+          "language": "EN",
+          "totalCards": 236,
+          "cardsWithImages": 236,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm8",
+          "name": "Lost Thunder",
+          "language": "DE",
+          "totalCards": 236,
+          "cardsWithImages": 236,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm8",
+          "name": "Lost Thunder",
+          "language": "IT",
+          "totalCards": 236,
+          "cardsWithImages": 236,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm8",
+          "name": "Lost Thunder",
+          "language": "ES",
+          "totalCards": 236,
+          "cardsWithImages": 236,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm9",
+          "name": "Team Up",
+          "language": "FR",
+          "totalCards": 196,
+          "cardsWithImages": 196,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm9",
+          "name": "Team Up",
+          "language": "EN",
+          "totalCards": 196,
+          "cardsWithImages": 196,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm9",
+          "name": "Team Up",
+          "language": "DE",
+          "totalCards": 196,
+          "cardsWithImages": 196,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm9",
+          "name": "Team Up",
+          "language": "IT",
+          "totalCards": 196,
+          "cardsWithImages": 196,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sm9",
+          "name": "Team Up",
+          "language": "ES",
+          "totalCards": 196,
+          "cardsWithImages": 196,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "sma",
           "name": "Yellow A Alternate",
           "language": "FR",
@@ -796,6 +4668,16 @@
           "cardsWithoutImages": 94,
           "externalUrls": 0,
           "nullUrls": 94
+        },
+        {
+          "code": "sma",
+          "name": "Yellow A Alternate",
+          "language": "EN",
+          "totalCards": 94,
+          "cardsWithImages": 94,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "smp",
@@ -818,6 +4700,836 @@
           "nullUrls": 63
         },
         {
+          "code": "smp",
+          "name": "SM Black Star Promos",
+          "language": "DE",
+          "totalCards": 236,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 236,
+          "externalUrls": 0,
+          "nullUrls": 236
+        },
+        {
+          "code": "smp",
+          "name": "SM Black Star Promos",
+          "language": "IT",
+          "totalCards": 236,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 236,
+          "externalUrls": 0,
+          "nullUrls": 236
+        },
+        {
+          "code": "smp",
+          "name": "SM Black Star Promos",
+          "language": "ES",
+          "totalCards": 236,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 236,
+          "externalUrls": 0,
+          "nullUrls": 236
+        },
+        {
+          "code": "sv01",
+          "name": "Scarlet & Violet",
+          "language": "FR",
+          "totalCards": 258,
+          "cardsWithImages": 258,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv01",
+          "name": "Scarlet & Violet",
+          "language": "EN",
+          "totalCards": 258,
+          "cardsWithImages": 258,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv01",
+          "name": "Scarlet & Violet",
+          "language": "DE",
+          "totalCards": 258,
+          "cardsWithImages": 258,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv01",
+          "name": "Scarlet & Violet",
+          "language": "IT",
+          "totalCards": 258,
+          "cardsWithImages": 258,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv01",
+          "name": "Scarlet & Violet",
+          "language": "ES",
+          "totalCards": 258,
+          "cardsWithImages": 258,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv02",
+          "name": "Paldea Evolved",
+          "language": "FR",
+          "totalCards": 279,
+          "cardsWithImages": 279,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv02",
+          "name": "Paldea Evolved",
+          "language": "EN",
+          "totalCards": 279,
+          "cardsWithImages": 279,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv02",
+          "name": "Paldea Evolved",
+          "language": "DE",
+          "totalCards": 279,
+          "cardsWithImages": 279,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv02",
+          "name": "Paldea Evolved",
+          "language": "IT",
+          "totalCards": 279,
+          "cardsWithImages": 279,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv02",
+          "name": "Paldea Evolved",
+          "language": "ES",
+          "totalCards": 279,
+          "cardsWithImages": 279,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv03",
+          "name": "Obsidian Flames",
+          "language": "FR",
+          "totalCards": 230,
+          "cardsWithImages": 230,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv03",
+          "name": "Obsidian Flames",
+          "language": "EN",
+          "totalCards": 230,
+          "cardsWithImages": 230,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv03",
+          "name": "Obsidian Flames",
+          "language": "DE",
+          "totalCards": 230,
+          "cardsWithImages": 230,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv03",
+          "name": "Obsidian Flames",
+          "language": "IT",
+          "totalCards": 230,
+          "cardsWithImages": 230,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv03",
+          "name": "Obsidian Flames",
+          "language": "ES",
+          "totalCards": 230,
+          "cardsWithImages": 230,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv03.5",
+          "name": "151",
+          "language": "FR",
+          "totalCards": 207,
+          "cardsWithImages": 207,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv03.5",
+          "name": "151",
+          "language": "EN",
+          "totalCards": 207,
+          "cardsWithImages": 207,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv03.5",
+          "name": "151",
+          "language": "DE",
+          "totalCards": 207,
+          "cardsWithImages": 207,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv03.5",
+          "name": "151",
+          "language": "IT",
+          "totalCards": 207,
+          "cardsWithImages": 207,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv03.5",
+          "name": "151",
+          "language": "ES",
+          "totalCards": 207,
+          "cardsWithImages": 207,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv04",
+          "name": "Paradox Rift",
+          "language": "FR",
+          "totalCards": 266,
+          "cardsWithImages": 266,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv04",
+          "name": "Paradox Rift",
+          "language": "EN",
+          "totalCards": 266,
+          "cardsWithImages": 266,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv04",
+          "name": "Paradox Rift",
+          "language": "DE",
+          "totalCards": 266,
+          "cardsWithImages": 266,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv04",
+          "name": "Paradox Rift",
+          "language": "IT",
+          "totalCards": 266,
+          "cardsWithImages": 266,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv04",
+          "name": "Paradox Rift",
+          "language": "ES",
+          "totalCards": 266,
+          "cardsWithImages": 266,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv04.5",
+          "name": "Paldean Fates",
+          "language": "FR",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv04.5",
+          "name": "Paldean Fates",
+          "language": "EN",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv04.5",
+          "name": "Paldean Fates",
+          "language": "DE",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv04.5",
+          "name": "Paldean Fates",
+          "language": "IT",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv04.5",
+          "name": "Paldean Fates",
+          "language": "ES",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv05",
+          "name": "Temporal Forces",
+          "language": "FR",
+          "totalCards": 218,
+          "cardsWithImages": 218,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv05",
+          "name": "Temporal Forces",
+          "language": "EN",
+          "totalCards": 218,
+          "cardsWithImages": 218,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv05",
+          "name": "Temporal Forces",
+          "language": "DE",
+          "totalCards": 218,
+          "cardsWithImages": 218,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv05",
+          "name": "Temporal Forces",
+          "language": "IT",
+          "totalCards": 218,
+          "cardsWithImages": 218,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv05",
+          "name": "Temporal Forces",
+          "language": "ES",
+          "totalCards": 218,
+          "cardsWithImages": 218,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv06",
+          "name": "Twilight Masquerade",
+          "language": "FR",
+          "totalCards": 226,
+          "cardsWithImages": 226,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv06",
+          "name": "Twilight Masquerade",
+          "language": "EN",
+          "totalCards": 226,
+          "cardsWithImages": 226,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv06",
+          "name": "Twilight Masquerade",
+          "language": "DE",
+          "totalCards": 226,
+          "cardsWithImages": 226,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv06",
+          "name": "Twilight Masquerade",
+          "language": "IT",
+          "totalCards": 226,
+          "cardsWithImages": 226,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv06",
+          "name": "Twilight Masquerade",
+          "language": "ES",
+          "totalCards": 226,
+          "cardsWithImages": 226,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv06.5",
+          "name": "Shrouded Fable",
+          "language": "FR",
+          "totalCards": 99,
+          "cardsWithImages": 99,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv06.5",
+          "name": "Shrouded Fable",
+          "language": "EN",
+          "totalCards": 99,
+          "cardsWithImages": 99,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv06.5",
+          "name": "Shrouded Fable",
+          "language": "DE",
+          "totalCards": 99,
+          "cardsWithImages": 99,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv06.5",
+          "name": "Shrouded Fable",
+          "language": "IT",
+          "totalCards": 99,
+          "cardsWithImages": 99,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv06.5",
+          "name": "Shrouded Fable",
+          "language": "ES",
+          "totalCards": 99,
+          "cardsWithImages": 99,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv07",
+          "name": "Stellar Crown",
+          "language": "FR",
+          "totalCards": 175,
+          "cardsWithImages": 175,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv07",
+          "name": "Stellar Crown",
+          "language": "EN",
+          "totalCards": 175,
+          "cardsWithImages": 175,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv07",
+          "name": "Stellar Crown",
+          "language": "DE",
+          "totalCards": 175,
+          "cardsWithImages": 175,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv07",
+          "name": "Stellar Crown",
+          "language": "IT",
+          "totalCards": 175,
+          "cardsWithImages": 175,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv07",
+          "name": "Stellar Crown",
+          "language": "ES",
+          "totalCards": 175,
+          "cardsWithImages": 175,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv08",
+          "name": "Surging Sparks",
+          "language": "FR",
+          "totalCards": 252,
+          "cardsWithImages": 252,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv08",
+          "name": "Surging Sparks",
+          "language": "EN",
+          "totalCards": 252,
+          "cardsWithImages": 252,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv08",
+          "name": "Surging Sparks",
+          "language": "DE",
+          "totalCards": 252,
+          "cardsWithImages": 252,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv08",
+          "name": "Surging Sparks",
+          "language": "IT",
+          "totalCards": 252,
+          "cardsWithImages": 252,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv08",
+          "name": "Surging Sparks",
+          "language": "ES",
+          "totalCards": 252,
+          "cardsWithImages": 252,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv08.5",
+          "name": "Prismatic Evolutions",
+          "language": "FR",
+          "totalCards": 180,
+          "cardsWithImages": 180,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv08.5",
+          "name": "Prismatic Evolutions",
+          "language": "EN",
+          "totalCards": 180,
+          "cardsWithImages": 180,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv08.5",
+          "name": "Prismatic Evolutions",
+          "language": "DE",
+          "totalCards": 180,
+          "cardsWithImages": 180,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv08.5",
+          "name": "Prismatic Evolutions",
+          "language": "IT",
+          "totalCards": 180,
+          "cardsWithImages": 180,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv08.5",
+          "name": "Prismatic Evolutions",
+          "language": "ES",
+          "totalCards": 180,
+          "cardsWithImages": 180,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv09",
+          "name": "Journey Together",
+          "language": "FR",
+          "totalCards": 190,
+          "cardsWithImages": 190,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv09",
+          "name": "Journey Together",
+          "language": "EN",
+          "totalCards": 190,
+          "cardsWithImages": 190,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv09",
+          "name": "Journey Together",
+          "language": "DE",
+          "totalCards": 190,
+          "cardsWithImages": 190,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv09",
+          "name": "Journey Together",
+          "language": "IT",
+          "totalCards": 190,
+          "cardsWithImages": 190,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv09",
+          "name": "Journey Together",
+          "language": "ES",
+          "totalCards": 190,
+          "cardsWithImages": 190,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10",
+          "name": "Destined Rivals",
+          "language": "FR",
+          "totalCards": 244,
+          "cardsWithImages": 244,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10",
+          "name": "Destined Rivals",
+          "language": "EN",
+          "totalCards": 244,
+          "cardsWithImages": 244,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10",
+          "name": "Destined Rivals",
+          "language": "DE",
+          "totalCards": 244,
+          "cardsWithImages": 244,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10",
+          "name": "Destined Rivals",
+          "language": "IT",
+          "totalCards": 244,
+          "cardsWithImages": 244,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10",
+          "name": "Destined Rivals",
+          "language": "ES",
+          "totalCards": 244,
+          "cardsWithImages": 244,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10.5b",
+          "name": "Black Bolt",
+          "language": "FR",
+          "totalCards": 172,
+          "cardsWithImages": 172,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10.5b",
+          "name": "Black Bolt",
+          "language": "EN",
+          "totalCards": 172,
+          "cardsWithImages": 172,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10.5b",
+          "name": "Black Bolt",
+          "language": "DE",
+          "totalCards": 172,
+          "cardsWithImages": 172,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10.5b",
+          "name": "Black Bolt",
+          "language": "IT",
+          "totalCards": 172,
+          "cardsWithImages": 172,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10.5b",
+          "name": "Black Bolt",
+          "language": "ES",
+          "totalCards": 172,
+          "cardsWithImages": 172,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10.5w",
+          "name": "White Flare",
+          "language": "FR",
+          "totalCards": 173,
+          "cardsWithImages": 173,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10.5w",
+          "name": "White Flare",
+          "language": "EN",
+          "totalCards": 173,
+          "cardsWithImages": 173,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10.5w",
+          "name": "White Flare",
+          "language": "DE",
+          "totalCards": 173,
+          "cardsWithImages": 173,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10.5w",
+          "name": "White Flare",
+          "language": "IT",
+          "totalCards": 173,
+          "cardsWithImages": 173,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "sv10.5w",
+          "name": "White Flare",
+          "language": "ES",
+          "totalCards": 173,
+          "cardsWithImages": 173,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "svp",
           "name": "SVP Black Star Promos",
           "language": "FR",
@@ -838,6 +5550,846 @@
           "nullUrls": 27
         },
         {
+          "code": "svp",
+          "name": "SVP Black Star Promos",
+          "language": "DE",
+          "totalCards": 192,
+          "cardsWithImages": 172,
+          "cardsWithoutImages": 20,
+          "externalUrls": 0,
+          "nullUrls": 20
+        },
+        {
+          "code": "svp",
+          "name": "SVP Black Star Promos",
+          "language": "IT",
+          "totalCards": 192,
+          "cardsWithImages": 192,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "svp",
+          "name": "SVP Black Star Promos",
+          "language": "ES",
+          "totalCards": 192,
+          "cardsWithImages": 172,
+          "cardsWithoutImages": 20,
+          "externalUrls": 0,
+          "nullUrls": 20
+        },
+        {
+          "code": "swsh1",
+          "name": "Sword & Shield",
+          "language": "FR",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh1",
+          "name": "Sword & Shield",
+          "language": "EN",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh1",
+          "name": "Sword & Shield",
+          "language": "DE",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh1",
+          "name": "Sword & Shield",
+          "language": "IT",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh1",
+          "name": "Sword & Shield",
+          "language": "ES",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh10",
+          "name": "Astral Radiance",
+          "language": "FR",
+          "totalCards": 246,
+          "cardsWithImages": 246,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh10",
+          "name": "Astral Radiance",
+          "language": "EN",
+          "totalCards": 246,
+          "cardsWithImages": 246,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh10",
+          "name": "Astral Radiance",
+          "language": "DE",
+          "totalCards": 246,
+          "cardsWithImages": 246,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh10",
+          "name": "Astral Radiance",
+          "language": "IT",
+          "totalCards": 246,
+          "cardsWithImages": 246,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh10",
+          "name": "Astral Radiance",
+          "language": "ES",
+          "totalCards": 246,
+          "cardsWithImages": 246,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh10.5",
+          "name": "Pokémon GO",
+          "language": "FR",
+          "totalCards": 88,
+          "cardsWithImages": 88,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh10.5",
+          "name": "Pokémon GO",
+          "language": "EN",
+          "totalCards": 88,
+          "cardsWithImages": 88,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh10.5",
+          "name": "Pokémon GO",
+          "language": "DE",
+          "totalCards": 88,
+          "cardsWithImages": 88,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh10.5",
+          "name": "Pokémon GO",
+          "language": "IT",
+          "totalCards": 88,
+          "cardsWithImages": 88,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh10.5",
+          "name": "Pokémon GO",
+          "language": "ES",
+          "totalCards": 88,
+          "cardsWithImages": 88,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh11",
+          "name": "Lost Origin",
+          "language": "FR",
+          "totalCards": 247,
+          "cardsWithImages": 247,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh11",
+          "name": "Lost Origin",
+          "language": "EN",
+          "totalCards": 247,
+          "cardsWithImages": 247,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh11",
+          "name": "Lost Origin",
+          "language": "DE",
+          "totalCards": 247,
+          "cardsWithImages": 247,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh11",
+          "name": "Lost Origin",
+          "language": "IT",
+          "totalCards": 247,
+          "cardsWithImages": 247,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh11",
+          "name": "Lost Origin",
+          "language": "ES",
+          "totalCards": 247,
+          "cardsWithImages": 247,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh12",
+          "name": "Silver Tempest",
+          "language": "FR",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh12",
+          "name": "Silver Tempest",
+          "language": "EN",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh12",
+          "name": "Silver Tempest",
+          "language": "DE",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh12",
+          "name": "Silver Tempest",
+          "language": "IT",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh12",
+          "name": "Silver Tempest",
+          "language": "ES",
+          "totalCards": 245,
+          "cardsWithImages": 245,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh12.5",
+          "name": "Crown Zenith",
+          "language": "FR",
+          "totalCards": 230,
+          "cardsWithImages": 230,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh12.5",
+          "name": "Crown Zenith",
+          "language": "EN",
+          "totalCards": 230,
+          "cardsWithImages": 230,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh12.5",
+          "name": "Crown Zenith",
+          "language": "DE",
+          "totalCards": 230,
+          "cardsWithImages": 230,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh12.5",
+          "name": "Crown Zenith",
+          "language": "IT",
+          "totalCards": 230,
+          "cardsWithImages": 230,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh12.5",
+          "name": "Crown Zenith",
+          "language": "ES",
+          "totalCards": 230,
+          "cardsWithImages": 230,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh2",
+          "name": "Rebel Clash",
+          "language": "FR",
+          "totalCards": 209,
+          "cardsWithImages": 209,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh2",
+          "name": "Rebel Clash",
+          "language": "EN",
+          "totalCards": 209,
+          "cardsWithImages": 209,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh2",
+          "name": "Rebel Clash",
+          "language": "DE",
+          "totalCards": 209,
+          "cardsWithImages": 209,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh2",
+          "name": "Rebel Clash",
+          "language": "IT",
+          "totalCards": 209,
+          "cardsWithImages": 209,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh2",
+          "name": "Rebel Clash",
+          "language": "ES",
+          "totalCards": 209,
+          "cardsWithImages": 209,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh3",
+          "name": "Darkness Ablaze",
+          "language": "FR",
+          "totalCards": 201,
+          "cardsWithImages": 201,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh3",
+          "name": "Darkness Ablaze",
+          "language": "EN",
+          "totalCards": 201,
+          "cardsWithImages": 201,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh3",
+          "name": "Darkness Ablaze",
+          "language": "DE",
+          "totalCards": 201,
+          "cardsWithImages": 201,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh3",
+          "name": "Darkness Ablaze",
+          "language": "IT",
+          "totalCards": 201,
+          "cardsWithImages": 201,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh3",
+          "name": "Darkness Ablaze",
+          "language": "ES",
+          "totalCards": 201,
+          "cardsWithImages": 201,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh3.5",
+          "name": "Champion's Path",
+          "language": "FR",
+          "totalCards": 80,
+          "cardsWithImages": 80,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh3.5",
+          "name": "Champion's Path",
+          "language": "EN",
+          "totalCards": 80,
+          "cardsWithImages": 80,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh3.5",
+          "name": "Champion's Path",
+          "language": "DE",
+          "totalCards": 80,
+          "cardsWithImages": 80,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh3.5",
+          "name": "Champion's Path",
+          "language": "IT",
+          "totalCards": 80,
+          "cardsWithImages": 80,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh3.5",
+          "name": "Champion's Path",
+          "language": "ES",
+          "totalCards": 80,
+          "cardsWithImages": 80,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh4",
+          "name": "Vivid Voltage",
+          "language": "FR",
+          "totalCards": 203,
+          "cardsWithImages": 203,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh4",
+          "name": "Vivid Voltage",
+          "language": "EN",
+          "totalCards": 203,
+          "cardsWithImages": 203,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh4",
+          "name": "Vivid Voltage",
+          "language": "DE",
+          "totalCards": 203,
+          "cardsWithImages": 203,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh4",
+          "name": "Vivid Voltage",
+          "language": "IT",
+          "totalCards": 203,
+          "cardsWithImages": 203,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh4",
+          "name": "Vivid Voltage",
+          "language": "ES",
+          "totalCards": 203,
+          "cardsWithImages": 203,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh4.5",
+          "name": "Shining Fates",
+          "language": "FR",
+          "totalCards": 195,
+          "cardsWithImages": 195,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh4.5",
+          "name": "Shining Fates",
+          "language": "EN",
+          "totalCards": 195,
+          "cardsWithImages": 195,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh4.5",
+          "name": "Shining Fates",
+          "language": "DE",
+          "totalCards": 195,
+          "cardsWithImages": 195,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh4.5",
+          "name": "Shining Fates",
+          "language": "IT",
+          "totalCards": 195,
+          "cardsWithImages": 195,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh4.5",
+          "name": "Shining Fates",
+          "language": "ES",
+          "totalCards": 195,
+          "cardsWithImages": 195,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh5",
+          "name": "Battle Styles",
+          "language": "FR",
+          "totalCards": 183,
+          "cardsWithImages": 183,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh5",
+          "name": "Battle Styles",
+          "language": "EN",
+          "totalCards": 183,
+          "cardsWithImages": 183,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh5",
+          "name": "Battle Styles",
+          "language": "DE",
+          "totalCards": 183,
+          "cardsWithImages": 183,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh5",
+          "name": "Battle Styles",
+          "language": "IT",
+          "totalCards": 183,
+          "cardsWithImages": 183,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh5",
+          "name": "Battle Styles",
+          "language": "ES",
+          "totalCards": 183,
+          "cardsWithImages": 183,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh6",
+          "name": "Chilling Reign",
+          "language": "FR",
+          "totalCards": 233,
+          "cardsWithImages": 233,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh6",
+          "name": "Chilling Reign",
+          "language": "EN",
+          "totalCards": 233,
+          "cardsWithImages": 233,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh6",
+          "name": "Chilling Reign",
+          "language": "DE",
+          "totalCards": 233,
+          "cardsWithImages": 233,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh6",
+          "name": "Chilling Reign",
+          "language": "IT",
+          "totalCards": 233,
+          "cardsWithImages": 233,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh6",
+          "name": "Chilling Reign",
+          "language": "ES",
+          "totalCards": 233,
+          "cardsWithImages": 233,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh7",
+          "name": "Evolving Skies",
+          "language": "FR",
+          "totalCards": 237,
+          "cardsWithImages": 237,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh7",
+          "name": "Evolving Skies",
+          "language": "EN",
+          "totalCards": 237,
+          "cardsWithImages": 237,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh7",
+          "name": "Evolving Skies",
+          "language": "DE",
+          "totalCards": 237,
+          "cardsWithImages": 237,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh7",
+          "name": "Evolving Skies",
+          "language": "IT",
+          "totalCards": 237,
+          "cardsWithImages": 237,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh7",
+          "name": "Evolving Skies",
+          "language": "ES",
+          "totalCards": 237,
+          "cardsWithImages": 237,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh8",
+          "name": "Fusion Strike",
+          "language": "FR",
+          "totalCards": 284,
+          "cardsWithImages": 284,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh8",
+          "name": "Fusion Strike",
+          "language": "EN",
+          "totalCards": 284,
+          "cardsWithImages": 284,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh8",
+          "name": "Fusion Strike",
+          "language": "DE",
+          "totalCards": 284,
+          "cardsWithImages": 284,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh8",
+          "name": "Fusion Strike",
+          "language": "IT",
+          "totalCards": 284,
+          "cardsWithImages": 284,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh8",
+          "name": "Fusion Strike",
+          "language": "ES",
+          "totalCards": 284,
+          "cardsWithImages": 284,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh9",
+          "name": "Brilliant Stars",
+          "language": "FR",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh9",
+          "name": "Brilliant Stars",
+          "language": "EN",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh9",
+          "name": "Brilliant Stars",
+          "language": "DE",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh9",
+          "name": "Brilliant Stars",
+          "language": "IT",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swsh9",
+          "name": "Brilliant Stars",
+          "language": "ES",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swshp",
+          "name": "SWSH Black Star Promos",
+          "language": "FR",
+          "totalCards": 285,
+          "cardsWithImages": 285,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "swshp",
           "name": "SWSH Black Star Promos",
           "language": "EN",
@@ -848,6 +6400,36 @@
           "nullUrls": 2
         },
         {
+          "code": "swshp",
+          "name": "SWSH Black Star Promos",
+          "language": "DE",
+          "totalCards": 285,
+          "cardsWithImages": 178,
+          "cardsWithoutImages": 107,
+          "externalUrls": 0,
+          "nullUrls": 107
+        },
+        {
+          "code": "swshp",
+          "name": "SWSH Black Star Promos",
+          "language": "IT",
+          "totalCards": 285,
+          "cardsWithImages": 285,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "swshp",
+          "name": "SWSH Black Star Promos",
+          "language": "ES",
+          "totalCards": 285,
+          "cardsWithImages": 178,
+          "cardsWithoutImages": 107,
+          "externalUrls": 0,
+          "nullUrls": 107
+        },
+        {
           "code": "tk-bw-e",
           "name": "BW trainer Kit (Excadrill)",
           "language": "FR",
@@ -868,6 +6450,16 @@
           "nullUrls": 30
         },
         {
+          "code": "tk-bw-e",
+          "name": "BW trainer Kit (Excadrill)",
+          "language": "ES",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "tk-bw-z",
           "name": "BW trainer Kit (Zoroark)",
           "language": "FR",
@@ -886,6 +6478,16 @@
           "cardsWithoutImages": 30,
           "externalUrls": 0,
           "nullUrls": 30
+        },
+        {
+          "code": "tk-bw-z",
+          "name": "BW trainer Kit (Zoroark)",
+          "language": "ES",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "tk-dp-l",
@@ -988,6 +6590,26 @@
           "nullUrls": 18
         },
         {
+          "code": "tk-sm-l",
+          "name": "SM trainer Kit (Lycanroc)",
+          "language": "IT",
+          "totalCards": 18,
+          "cardsWithImages": 18,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "tk-sm-l",
+          "name": "SM trainer Kit (Lycanroc)",
+          "language": "ES",
+          "totalCards": 18,
+          "cardsWithImages": 18,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "tk-sm-r",
           "name": "SM trainer Kit (Alolan Raichu)",
           "language": "FR",
@@ -1006,6 +6628,26 @@
           "cardsWithoutImages": 19,
           "externalUrls": 0,
           "nullUrls": 19
+        },
+        {
+          "code": "tk-sm-r",
+          "name": "SM trainer Kit (Alolan Raichu)",
+          "language": "IT",
+          "totalCards": 19,
+          "cardsWithImages": 19,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "tk-sm-r",
+          "name": "SM trainer Kit (Alolan Raichu)",
+          "language": "ES",
+          "totalCards": 19,
+          "cardsWithImages": 19,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "tk-xy-b",
@@ -1028,6 +6670,26 @@
           "nullUrls": 30
         },
         {
+          "code": "tk-xy-b",
+          "name": "XY trainer Kit (Bisharp)",
+          "language": "IT",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "tk-xy-b",
+          "name": "XY trainer Kit (Bisharp)",
+          "language": "ES",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "tk-xy-latia",
           "name": "XY trainer Kit (Latias)",
           "language": "FR",
@@ -1046,6 +6708,26 @@
           "cardsWithoutImages": 30,
           "externalUrls": 0,
           "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-latia",
+          "name": "XY trainer Kit (Latias)",
+          "language": "IT",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "tk-xy-latia",
+          "name": "XY trainer Kit (Latias)",
+          "language": "ES",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "tk-xy-latio",
@@ -1068,6 +6750,26 @@
           "nullUrls": 30
         },
         {
+          "code": "tk-xy-latio",
+          "name": "XY trainer Kit (Latios)",
+          "language": "IT",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "tk-xy-latio",
+          "name": "XY trainer Kit (Latios)",
+          "language": "ES",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "tk-xy-n",
           "name": "XY trainer Kit (Noivern)",
           "language": "FR",
@@ -1086,6 +6788,26 @@
           "cardsWithoutImages": 30,
           "externalUrls": 0,
           "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-n",
+          "name": "XY trainer Kit (Noivern)",
+          "language": "IT",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "tk-xy-n",
+          "name": "XY trainer Kit (Noivern)",
+          "language": "ES",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "tk-xy-p",
@@ -1108,6 +6830,26 @@
           "nullUrls": 30
         },
         {
+          "code": "tk-xy-p",
+          "name": "XY trainer Kit (Pikachu Libre)",
+          "language": "IT",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "tk-xy-p",
+          "name": "XY trainer Kit (Pikachu Libre)",
+          "language": "ES",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "tk-xy-su",
           "name": "XY trainer Kit (Suicune)",
           "language": "FR",
@@ -1126,6 +6868,26 @@
           "cardsWithoutImages": 30,
           "externalUrls": 0,
           "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-su",
+          "name": "XY trainer Kit (Suicune)",
+          "language": "IT",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "tk-xy-su",
+          "name": "XY trainer Kit (Suicune)",
+          "language": "ES",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "tk-xy-sy",
@@ -1148,6 +6910,26 @@
           "nullUrls": 30
         },
         {
+          "code": "tk-xy-sy",
+          "name": "XY trainer Kit (Sylveon)",
+          "language": "IT",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "tk-xy-sy",
+          "name": "XY trainer Kit (Sylveon)",
+          "language": "ES",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "tk-xy-w",
           "name": "XY trainer Kit (Wigglytuff)",
           "language": "FR",
@@ -1166,6 +6948,576 @@
           "cardsWithoutImages": 30,
           "externalUrls": 0,
           "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-w",
+          "name": "XY trainer Kit (Wigglytuff)",
+          "language": "IT",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "tk-xy-w",
+          "name": "XY trainer Kit (Wigglytuff)",
+          "language": "ES",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy0",
+          "name": "Kalos Starter Set",
+          "language": "FR",
+          "totalCards": 39,
+          "cardsWithImages": 39,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy0",
+          "name": "Kalos Starter Set",
+          "language": "EN",
+          "totalCards": 39,
+          "cardsWithImages": 39,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy0",
+          "name": "Kalos Starter Set",
+          "language": "DE",
+          "totalCards": 39,
+          "cardsWithImages": 39,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy0",
+          "name": "Kalos Starter Set",
+          "language": "IT",
+          "totalCards": 39,
+          "cardsWithImages": 39,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy1",
+          "name": "XY",
+          "language": "FR",
+          "totalCards": 146,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy1",
+          "name": "XY",
+          "language": "EN",
+          "totalCards": 146,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy1",
+          "name": "XY",
+          "language": "DE",
+          "totalCards": 146,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy1",
+          "name": "XY",
+          "language": "IT",
+          "totalCards": 146,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy1",
+          "name": "XY",
+          "language": "ES",
+          "totalCards": 146,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy10",
+          "name": "Fates Collide",
+          "language": "FR",
+          "totalCards": 129,
+          "cardsWithImages": 129,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy10",
+          "name": "Fates Collide",
+          "language": "EN",
+          "totalCards": 129,
+          "cardsWithImages": 129,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy10",
+          "name": "Fates Collide",
+          "language": "DE",
+          "totalCards": 129,
+          "cardsWithImages": 129,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy10",
+          "name": "Fates Collide",
+          "language": "IT",
+          "totalCards": 129,
+          "cardsWithImages": 129,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy10",
+          "name": "Fates Collide",
+          "language": "ES",
+          "totalCards": 129,
+          "cardsWithImages": 129,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy11",
+          "name": "Steam Siege",
+          "language": "FR",
+          "totalCards": 116,
+          "cardsWithImages": 116,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy11",
+          "name": "Steam Siege",
+          "language": "EN",
+          "totalCards": 116,
+          "cardsWithImages": 116,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy11",
+          "name": "Steam Siege",
+          "language": "DE",
+          "totalCards": 116,
+          "cardsWithImages": 116,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy11",
+          "name": "Steam Siege",
+          "language": "IT",
+          "totalCards": 116,
+          "cardsWithImages": 116,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy11",
+          "name": "Steam Siege",
+          "language": "ES",
+          "totalCards": 116,
+          "cardsWithImages": 116,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy12",
+          "name": "Evolutions",
+          "language": "FR",
+          "totalCards": 113,
+          "cardsWithImages": 113,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy12",
+          "name": "Evolutions",
+          "language": "EN",
+          "totalCards": 113,
+          "cardsWithImages": 113,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy12",
+          "name": "Evolutions",
+          "language": "DE",
+          "totalCards": 113,
+          "cardsWithImages": 113,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy12",
+          "name": "Evolutions",
+          "language": "IT",
+          "totalCards": 113,
+          "cardsWithImages": 113,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy12",
+          "name": "Evolutions",
+          "language": "ES",
+          "totalCards": 113,
+          "cardsWithImages": 113,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy2",
+          "name": "Flashfire",
+          "language": "FR",
+          "totalCards": 110,
+          "cardsWithImages": 110,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy2",
+          "name": "Flashfire",
+          "language": "EN",
+          "totalCards": 110,
+          "cardsWithImages": 110,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy2",
+          "name": "Flashfire",
+          "language": "DE",
+          "totalCards": 110,
+          "cardsWithImages": 110,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy2",
+          "name": "Flashfire",
+          "language": "IT",
+          "totalCards": 110,
+          "cardsWithImages": 110,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy2",
+          "name": "Flashfire",
+          "language": "ES",
+          "totalCards": 110,
+          "cardsWithImages": 110,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy3",
+          "name": "Furious Fists",
+          "language": "FR",
+          "totalCards": 114,
+          "cardsWithImages": 114,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy3",
+          "name": "Furious Fists",
+          "language": "EN",
+          "totalCards": 114,
+          "cardsWithImages": 114,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy3",
+          "name": "Furious Fists",
+          "language": "DE",
+          "totalCards": 114,
+          "cardsWithImages": 114,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy3",
+          "name": "Furious Fists",
+          "language": "IT",
+          "totalCards": 114,
+          "cardsWithImages": 114,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy3",
+          "name": "Furious Fists",
+          "language": "ES",
+          "totalCards": 114,
+          "cardsWithImages": 114,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy4",
+          "name": "Phantom Forces",
+          "language": "FR",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy4",
+          "name": "Phantom Forces",
+          "language": "EN",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy4",
+          "name": "Phantom Forces",
+          "language": "DE",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy4",
+          "name": "Phantom Forces",
+          "language": "IT",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy4",
+          "name": "Phantom Forces",
+          "language": "ES",
+          "totalCards": 124,
+          "cardsWithImages": 124,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy5",
+          "name": "Primal Clash",
+          "language": "FR",
+          "totalCards": 164,
+          "cardsWithImages": 164,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy5",
+          "name": "Primal Clash",
+          "language": "EN",
+          "totalCards": 164,
+          "cardsWithImages": 164,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy5",
+          "name": "Primal Clash",
+          "language": "DE",
+          "totalCards": 164,
+          "cardsWithImages": 164,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy5",
+          "name": "Primal Clash",
+          "language": "IT",
+          "totalCards": 164,
+          "cardsWithImages": 164,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy5",
+          "name": "Primal Clash",
+          "language": "ES",
+          "totalCards": 164,
+          "cardsWithImages": 164,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy6",
+          "name": "Roaring Skies",
+          "language": "FR",
+          "totalCards": 112,
+          "cardsWithImages": 112,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy6",
+          "name": "Roaring Skies",
+          "language": "EN",
+          "totalCards": 112,
+          "cardsWithImages": 112,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy6",
+          "name": "Roaring Skies",
+          "language": "DE",
+          "totalCards": 112,
+          "cardsWithImages": 112,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy6",
+          "name": "Roaring Skies",
+          "language": "IT",
+          "totalCards": 112,
+          "cardsWithImages": 112,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy6",
+          "name": "Roaring Skies",
+          "language": "ES",
+          "totalCards": 112,
+          "cardsWithImages": 112,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy7",
+          "name": "Ancient Origins",
+          "language": "FR",
+          "totalCards": 101,
+          "cardsWithImages": 101,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy7",
+          "name": "Ancient Origins",
+          "language": "EN",
+          "totalCards": 101,
+          "cardsWithImages": 101,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy7",
+          "name": "Ancient Origins",
+          "language": "DE",
+          "totalCards": 101,
+          "cardsWithImages": 101,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy7",
+          "name": "Ancient Origins",
+          "language": "IT",
+          "totalCards": 101,
+          "cardsWithImages": 101,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy7",
+          "name": "Ancient Origins",
+          "language": "ES",
+          "totalCards": 101,
+          "cardsWithImages": 101,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy8",
+          "name": "BREAKthrough",
+          "language": "FR",
+          "totalCards": 165,
+          "cardsWithImages": 165,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         },
         {
           "code": "xy8",
@@ -1178,6 +7530,86 @@
           "nullUrls": 1
         },
         {
+          "code": "xy8",
+          "name": "BREAKthrough",
+          "language": "DE",
+          "totalCards": 165,
+          "cardsWithImages": 165,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy8",
+          "name": "BREAKthrough",
+          "language": "IT",
+          "totalCards": 165,
+          "cardsWithImages": 165,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy8",
+          "name": "BREAKthrough",
+          "language": "ES",
+          "totalCards": 165,
+          "cardsWithImages": 165,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy9",
+          "name": "BREAKpoint",
+          "language": "FR",
+          "totalCards": 126,
+          "cardsWithImages": 126,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy9",
+          "name": "BREAKpoint",
+          "language": "EN",
+          "totalCards": 126,
+          "cardsWithImages": 126,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy9",
+          "name": "BREAKpoint",
+          "language": "DE",
+          "totalCards": 126,
+          "cardsWithImages": 126,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy9",
+          "name": "BREAKpoint",
+          "language": "IT",
+          "totalCards": 126,
+          "cardsWithImages": 126,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xy9",
+          "name": "BREAKpoint",
+          "language": "ES",
+          "totalCards": 126,
+          "cardsWithImages": 126,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
           "code": "xya",
           "name": "Yello A Alternate",
           "language": "FR",
@@ -1186,6 +7618,26 @@
           "cardsWithoutImages": 6,
           "externalUrls": 0,
           "nullUrls": 6
+        },
+        {
+          "code": "xyp",
+          "name": "XY Black Star Promos",
+          "language": "FR",
+          "totalCards": 142,
+          "cardsWithImages": 142,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "xyp",
+          "name": "XY Black Star Promos",
+          "language": "EN",
+          "totalCards": 216,
+          "cardsWithImages": 216,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
         }
       ],
       "externalUrlDetails": []
@@ -1200,7 +7652,38 @@
       "externalUrls": 0,
       "nullUrls": 0,
       "storageImages": 0,
-      "series": [],
+      "series": [
+        {
+          "code": "OGN",
+          "name": "Origins",
+          "language": "EN",
+          "totalCards": 310,
+          "cardsWithImages": 310,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "OGS",
+          "name": "Proving Grounds",
+          "language": "EN",
+          "totalCards": 24,
+          "cardsWithImages": 24,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "SFD",
+          "name": "Spiritforged",
+          "language": "EN",
+          "totalCards": 251,
+          "cardsWithImages": 251,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        }
+      ],
       "externalUrlDetails": []
     },
     {
@@ -1213,7 +7696,88 @@
       "externalUrls": 0,
       "nullUrls": 0,
       "storageImages": 3029,
-      "series": [],
+      "series": [
+        {
+          "code": "JTL",
+          "name": "Passage en Vitesse Lumière",
+          "language": "FR",
+          "totalCards": 531,
+          "cardsWithImages": 531,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "LOF",
+          "name": "Légendes de la Force",
+          "language": "FR",
+          "totalCards": 542,
+          "cardsWithImages": 542,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "SEC",
+          "name": "Secrets du Pouvoir",
+          "language": "FR",
+          "totalCards": 557,
+          "cardsWithImages": 557,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "SHD",
+          "name": "Ombres de la Galaxie",
+          "language": "FR",
+          "totalCards": 298,
+          "cardsWithImages": 298,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "SOR",
+          "name": "Étincelle de Rébellion",
+          "language": "FR",
+          "totalCards": 35,
+          "cardsWithImages": 35,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "TWI",
+          "name": "Crépuscule de la République",
+          "language": "FR",
+          "totalCards": 1026,
+          "cardsWithImages": 1026,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "WSHD",
+          "name": "Weekly Play - Ombres de la Galaxie",
+          "language": "FR",
+          "totalCards": 20,
+          "cardsWithImages": 20,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        },
+        {
+          "code": "WTWI",
+          "name": "Weekly Play - Crépuscule de la République",
+          "language": "FR",
+          "totalCards": 20,
+          "cardsWithImages": 20,
+          "cardsWithoutImages": 0,
+          "externalUrls": 0,
+          "nullUrls": 0
+        }
+      ],
       "externalUrlDetails": []
     }
   ]

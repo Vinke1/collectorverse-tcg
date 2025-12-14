@@ -22,7 +22,7 @@ interface TCGConfig {
 const TCG_CONFIGS: TCGConfig[] = [
   { slug: 'lorcana', name: 'Disney Lorcana', bucket: 'lorcana-cards', languages: ['fr', 'en', 'jp'] },
   { slug: 'onepiece', name: 'One Piece', bucket: 'onepiece-cards', languages: ['fr', 'en', 'jp'] },
-  { slug: 'pokemon', name: 'Pokemon', bucket: 'pokemon-cards', languages: ['fr', 'en', 'jp'] },
+  { slug: 'pokemon', name: 'Pokemon', bucket: 'pokemon-cards', languages: ['fr', 'en', 'jp', 'de', 'it', 'es'] },
   { slug: 'starwars', name: 'Star Wars Unlimited', bucket: 'starwars-cards', languages: ['fr', 'en'] },
   { slug: 'riftbound', name: 'Riftbound', bucket: 'riftbound-cards', languages: ['en'] },
   { slug: 'naruto', name: 'Naruto', bucket: 'naruto-cards', languages: ['fr', 'en', 'jp', 'zh'] },
@@ -279,7 +279,9 @@ async function analyzeAllImages() {
           }
         }
 
-        if (cardsWithoutImages > 0 || externalUrls > 0 || nullUrls > 0) {
+        // Always include series, or maybe filter out empty ones?
+        // Let's include all series that have cards in DB to show full coverage
+        if (seriesCards.length > 0) {
           tcgAnalysis.series.push({
             code: s.code,
             name: s.name,
