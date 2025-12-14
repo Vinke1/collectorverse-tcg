@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2025-12-14T11:50:38.093Z",
+  "generatedAt": "2025-12-14T18:14:03.591Z",
   "summary": {
     "totalTCGs": 6,
-    "totalCards": 117770,
-    "totalStorageImages": 51138,
-    "cardsWithImages": 108947,
+    "totalCards": 117983,
+    "totalStorageImages": 52098,
+    "cardsWithImages": 109160,
     "cardsWithoutImages": 8823,
-    "externalUrls": 556,
+    "externalUrls": 218,
     "nullUrls": 8823,
-    "coveragePercent": 92.51
+    "coveragePercent": 92.52
   },
   "byTCG": [
     {
@@ -40,13 +40,13 @@
     {
       "slug": "onepiece",
       "name": "One Piece Card Game",
-      "totalCards": 4034,
+      "totalCards": 4247,
       "totalSeries": 40,
-      "cardsWithImages": 4034,
+      "cardsWithImages": 4247,
       "cardsWithoutImages": 0,
-      "externalUrls": 556,
+      "externalUrls": 218,
       "nullUrls": 0,
-      "storageImages": 3629,
+      "storageImages": 4589,
       "series": [
         {
           "code": "OP05",
@@ -189,36 +189,6 @@
           "nullUrls": 0
         },
         {
-          "code": "PRB01",
-          "name": "One Piece Card - The Best Vol.1",
-          "language": "FR",
-          "totalCards": 150,
-          "cardsWithImages": 150,
-          "cardsWithoutImages": 0,
-          "externalUrls": 148,
-          "nullUrls": 0
-        },
-        {
-          "code": "PRB01",
-          "name": "One Piece Card - The Best Vol.1",
-          "language": "EN",
-          "totalCards": 78,
-          "cardsWithImages": 78,
-          "cardsWithoutImages": 0,
-          "externalUrls": 78,
-          "nullUrls": 0
-        },
-        {
-          "code": "PRB02",
-          "name": "One Piece Card - The Best Vol.2",
-          "language": "FR",
-          "totalCards": 148,
-          "cardsWithImages": 148,
-          "cardsWithoutImages": 0,
-          "externalUrls": 112,
-          "nullUrls": 0
-        },
-        {
           "code": "ST15",
           "name": "RED Edward Newgate",
           "language": "FR",
@@ -302,7 +272,7 @@
       "externalUrlDetails": [
         {
           "url": "static.opecards.fr",
-          "count": 556
+          "count": 218
         }
       ]
     },

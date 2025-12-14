@@ -386,6 +386,116 @@ The download script saves progress to `scripts/logs/starwars-download-progress.j
 
 ---
 
+## Pokemon - Image Download
+
+### Overview
+
+Pokemon cards are downloaded from TCGdex API (https://api.tcgdex.net). The process involves:
+1. Analyzing missing images in Supabase storage vs cards in database
+2. Downloading images from TCGdex assets (https://assets.tcgdex.net)
+3. Optimizing (Sharp: 480x672 WebP 85%) and uploading to Supabase storage
+4. Updating card `image_url` in database
+
+### Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/seed-pokemon.ts` | Seed Pokemon data from TCGdex API |
+| `scripts/analyze-pokemon-images.ts` | Analyze missing images (dry-run) |
+| `scripts/download-missing-pokemon-images.ts` | Download all missing images |
+
+### Configuration
+
+- **API**: https://api.tcgdex.net/v2
+- **Assets**: https://assets.tcgdex.net
+- **Storage bucket**: `pokemon-cards`
+- **Languages**: en, fr, es, it, pt, de
+- **Card ID**: Stored in `cards.tcgdex_id` column
+
+### Usage - Analyze Missing Images
+
+```bash
+# Analyze all Pokemon images
+npx tsx scripts/analyze-pokemon-images.ts
+```
+
+The script will:
+- Count total cards in database
+- Count total images in storage
+- Identify cards without images
+- Generate a detailed report in `scripts/logs/pokemon-images-analysis.json`
+
+### Usage - Download Missing Images
+
+```bash
+# Analyze what's missing (dry-run)
+npx tsx scripts/download-missing-pokemon-images.ts --dry-run
+
+# Download ALL missing images
+npx tsx scripts/download-missing-pokemon-images.ts
+
+# Download specific series only
+npx tsx scripts/download-missing-pokemon-images.ts --series swsh3
+
+# Limit number of cards (for testing)
+npx tsx scripts/download-missing-pokemon-images.ts --limit 50
+
+# Continue on errors
+npx tsx scripts/download-missing-pokemon-images.ts --continue-on-error
+```
+
+### Image URL Construction
+
+TCGdex uses a specific URL pattern for card images:
+
+```typescript
+// TCGdex ID format: {setCode}-{cardNumber}
+// Example: swsh3-143
+
+// Image URL: https://assets.tcgdex.net/{lang}/{setCode}/{cardNumber}/high.webp
+// Example: https://assets.tcgdex.net/en/swsh3/143/high.webp
+
+// Fallback to PNG if WebP fails:
+// https://assets.tcgdex.net/en/swsh3/143/high.png
+```
+
+### Storage Structure
+
+```
+pokemon-cards/
+├── swsh3/
+│   ├── en/
+│   │   ├── 1.webp
+│   │   ├── 2.webp
+│   │   └── ...
+│   ├── fr/
+│   │   └── ...
+│   └── de/
+│       └── ...
+├── base1/
+│   └── en/
+│       └── ...
+└── series/
+    ├── swsh3.webp
+    └── ...
+```
+
+### Progress & Recovery
+
+The download script saves progress to `scripts/logs/pokemon-download-progress.json`:
+- Tracks processed card IDs
+- Counts success, errors, and not found
+- Allows resuming after interruption
+- Automatically cleaned up on successful completion
+
+### Troubleshooting
+
+1. **"Image non trouvée (404)"**: Card image doesn't exist in TCGdex, try checking tcgdex_id
+2. **Missing tcgdex_id**: Script attempts to construct ID as `{seriesCode}-{cardNumber}`
+3. **WebP fails**: Script automatically falls back to PNG format
+
+---
+
 ## Session en cours - État actuel (13 Décembre 2024)
 
 ### Où nous en sommes :
