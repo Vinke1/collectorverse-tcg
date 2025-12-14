@@ -151,8 +151,12 @@ function parseCardParts(
     .replace(/\./g, '. ')
 
   // Construire l'URL de l'image
-  const langPath = lang === 'fr' ? 'fr' : lang
-  const imageUrl = `https://static.opecards.fr/cards/${langPath}/${seriesPrefix.toLowerCase()}${seriesNum}/image-cartes-a-collectionner-one-piece-card-game-tcg-opecards-${fullPath}.webp`
+  // EN: image-trading-cards-one-piece-card-game-tcg-opecards-...
+  // FR: image-cartes-a-collectionner-one-piece-card-game-tcg-opecards-...
+  // NOTE: Pour PRB, les images utilisent TOUJOURS "image-cartes-a-collectionner" même en EN
+  const langPath = lang === 'fr' ? 'fr' : lang === 'en' ? 'en' : lang
+  const imagePrefix = 'image-cartes-a-collectionner'
+  const imageUrl = `https://static.opecards.fr/cards/${langPath}/${seriesPrefix.toLowerCase()}${seriesNum}/${imagePrefix}-one-piece-card-game-tcg-opecards-${fullPath}.webp`
 
   return {
     url: `https://www.opecards.fr/cards/${fullPath}`,
