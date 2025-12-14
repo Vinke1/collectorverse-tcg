@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "setup:storage": "tsx scripts/setup-storage.ts",
@@ -63,7 +63,7 @@
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.553.0",
     "nanoid": "^5.1.6",
-    "next": "^15.5.6",
+    "next": "^16.0.10",
     "next-themes": "^0.4.6",
     "puppeteer": "^24.30.0",
     "qrcode.react": "^4.2.0",
@@ -85,7 +85,7 @@
     "autoprefixer": "^10.4.20",
     "dotenv": "^17.2.3",
     "eslint": "^9.14.0",
-    "eslint-config-next": "^15.5.6",
+    "eslint-config-next": "^16.0.10",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3"

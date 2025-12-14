@@ -156,7 +156,8 @@
       "Bash(npm ls:*)",
       "Bash(du -sh:*)",
       "Bash(for dir in \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\output\"/*)",
-      "Bash(do if [ -d \"$dir\" ])"
+      "Bash(do if [ -d \"$dir\" ])",
+      "Bash(ren middleware.ts proxy.ts)"
     ],
     "deny": [],
     "ask": []

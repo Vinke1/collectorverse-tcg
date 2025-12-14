@@ -12,6 +12,8 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  // Next.js 16: empty turbopack config to silence webpack warning
+  turbopack: {},
 };
 
 // En développement avec Turbopack : config simple sans plugins Webpack
