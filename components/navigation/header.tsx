@@ -66,6 +66,9 @@ export function Header({ user }: HeaderProps) {
             <span className="text-lg font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-gray-200 dark:to-gray-400 bg-clip-text text-transparent group-hover:text-neon transition-all duration-300">
               CollectorVerse
             </span>
+            <span className="ml-1.5 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-primary/20 text-primary border border-primary/30 rounded-md">
+              Beta
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
