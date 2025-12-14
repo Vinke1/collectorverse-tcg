@@ -1,0 +1,1250 @@
+{
+  "generatedAt": "2025-12-14T11:50:38.093Z",
+  "summary": {
+    "totalTCGs": 6,
+    "totalCards": 117770,
+    "totalStorageImages": 51138,
+    "cardsWithImages": 108947,
+    "cardsWithoutImages": 8823,
+    "externalUrls": 556,
+    "nullUrls": 8823,
+    "coveragePercent": 92.51
+  },
+  "byTCG": [
+    {
+      "slug": "lorcana",
+      "name": "Disney Lorcana",
+      "totalCards": 6090,
+      "totalSeries": 14,
+      "cardsWithImages": 6090,
+      "cardsWithoutImages": 0,
+      "externalUrls": 0,
+      "nullUrls": 0,
+      "storageImages": 5631,
+      "series": [],
+      "externalUrlDetails": []
+    },
+    {
+      "slug": "naruto",
+      "name": "Naruto Kayou",
+      "totalCards": 1670,
+      "totalSeries": 1,
+      "cardsWithImages": 1670,
+      "cardsWithoutImages": 0,
+      "externalUrls": 0,
+      "nullUrls": 0,
+      "storageImages": 0,
+      "series": [],
+      "externalUrlDetails": []
+    },
+    {
+      "slug": "onepiece",
+      "name": "One Piece Card Game",
+      "totalCards": 4034,
+      "totalSeries": 40,
+      "cardsWithImages": 4034,
+      "cardsWithoutImages": 0,
+      "externalUrls": 556,
+      "nullUrls": 0,
+      "storageImages": 3629,
+      "series": [
+        {
+          "code": "OP05",
+          "name": "Awakening of the New Era",
+          "language": "EN",
+          "totalCards": 149,
+          "cardsWithImages": 149,
+          "cardsWithoutImages": 0,
+          "externalUrls": 5,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP06",
+          "name": "Wings of the Captain",
+          "language": "EN",
+          "totalCards": 143,
+          "cardsWithImages": 143,
+          "cardsWithoutImages": 0,
+          "externalUrls": 7,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP07",
+          "name": "500 Years in the Future",
+          "language": "EN",
+          "totalCards": 143,
+          "cardsWithImages": 143,
+          "cardsWithoutImages": 0,
+          "externalUrls": 7,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP08",
+          "name": "Two Legends",
+          "language": "EN",
+          "totalCards": 143,
+          "cardsWithImages": 143,
+          "cardsWithoutImages": 0,
+          "externalUrls": 7,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP09",
+          "name": "The Four Emperors",
+          "language": "FR",
+          "totalCards": 153,
+          "cardsWithImages": 153,
+          "cardsWithoutImages": 0,
+          "externalUrls": 6,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP09",
+          "name": "The Four Emperors",
+          "language": "EN",
+          "totalCards": 153,
+          "cardsWithImages": 153,
+          "cardsWithoutImages": 0,
+          "externalUrls": 7,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP10",
+          "name": "Sang Royal",
+          "language": "FR",
+          "totalCards": 150,
+          "cardsWithImages": 150,
+          "cardsWithoutImages": 0,
+          "externalUrls": 7,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP10",
+          "name": "Sang Royal",
+          "language": "EN",
+          "totalCards": 151,
+          "cardsWithImages": 151,
+          "cardsWithoutImages": 0,
+          "externalUrls": 7,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP11",
+          "name": "Reve Sans Fin",
+          "language": "FR",
+          "totalCards": 147,
+          "cardsWithImages": 147,
+          "cardsWithoutImages": 0,
+          "externalUrls": 3,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP11",
+          "name": "Reve Sans Fin",
+          "language": "EN",
+          "totalCards": 152,
+          "cardsWithImages": 152,
+          "cardsWithoutImages": 0,
+          "externalUrls": 6,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP13",
+          "name": "Successeurs",
+          "language": "FR",
+          "totalCards": 159,
+          "cardsWithImages": 159,
+          "cardsWithoutImages": 0,
+          "externalUrls": 8,
+          "nullUrls": 0
+        },
+        {
+          "code": "OP13",
+          "name": "Successeurs",
+          "language": "EN",
+          "totalCards": 152,
+          "cardsWithImages": 152,
+          "cardsWithoutImages": 0,
+          "externalUrls": 1,
+          "nullUrls": 0
+        },
+        {
+          "code": "P",
+          "name": "Cartes Promotionnelles",
+          "language": "FR",
+          "totalCards": 32,
+          "cardsWithImages": 32,
+          "cardsWithoutImages": 0,
+          "externalUrls": 22,
+          "nullUrls": 0
+        },
+        {
+          "code": "P",
+          "name": "Cartes Promotionnelles",
+          "language": "EN",
+          "totalCards": 24,
+          "cardsWithImages": 24,
+          "cardsWithoutImages": 0,
+          "externalUrls": 23,
+          "nullUrls": 0
+        },
+        {
+          "code": "PRB01",
+          "name": "One Piece Card - The Best Vol.1",
+          "language": "FR",
+          "totalCards": 150,
+          "cardsWithImages": 150,
+          "cardsWithoutImages": 0,
+          "externalUrls": 148,
+          "nullUrls": 0
+        },
+        {
+          "code": "PRB01",
+          "name": "One Piece Card - The Best Vol.1",
+          "language": "EN",
+          "totalCards": 78,
+          "cardsWithImages": 78,
+          "cardsWithoutImages": 0,
+          "externalUrls": 78,
+          "nullUrls": 0
+        },
+        {
+          "code": "PRB02",
+          "name": "One Piece Card - The Best Vol.2",
+          "language": "FR",
+          "totalCards": 148,
+          "cardsWithImages": 148,
+          "cardsWithoutImages": 0,
+          "externalUrls": 112,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST15",
+          "name": "RED Edward Newgate",
+          "language": "FR",
+          "totalCards": 13,
+          "cardsWithImages": 13,
+          "cardsWithoutImages": 0,
+          "externalUrls": 10,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST16",
+          "name": "GREEN Uta",
+          "language": "FR",
+          "totalCards": 11,
+          "cardsWithImages": 11,
+          "cardsWithoutImages": 0,
+          "externalUrls": 10,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST17",
+          "name": "BLUE Donquixote Doflamingo",
+          "language": "FR",
+          "totalCards": 12,
+          "cardsWithImages": 12,
+          "cardsWithoutImages": 0,
+          "externalUrls": 10,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST18",
+          "name": "PURPLE Monkey D. Luffy",
+          "language": "FR",
+          "totalCards": 15,
+          "cardsWithImages": 15,
+          "cardsWithoutImages": 0,
+          "externalUrls": 10,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST19",
+          "name": "BLACK Smoker",
+          "language": "FR",
+          "totalCards": 15,
+          "cardsWithImages": 15,
+          "cardsWithoutImages": 0,
+          "externalUrls": 10,
+          "nullUrls": 0
+        },
+        {
+          "code": "ST20",
+          "name": "YELLOW Charlotte Katakuri",
+          "language": "FR",
+          "totalCards": 14,
+          "cardsWithImages": 14,
+          "cardsWithoutImages": 0,
+          "externalUrls": 10,
+          "nullUrls": 0
+        },
+        {
+          "code": "STP",
+          "name": "Promos Tournoi et Boutique",
+          "language": "FR",
+          "totalCards": 12,
+          "cardsWithImages": 12,
+          "cardsWithoutImages": 0,
+          "externalUrls": 12,
+          "nullUrls": 0
+        },
+        {
+          "code": "STP",
+          "name": "Promos Tournoi et Boutique",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 30,
+          "cardsWithoutImages": 0,
+          "externalUrls": 30,
+          "nullUrls": 0
+        }
+      ],
+      "externalUrlDetails": [
+        {
+          "url": "static.opecards.fr",
+          "count": 556
+        }
+      ]
+    },
+    {
+      "slug": "pokemon",
+      "name": "Pokémon TCG",
+      "totalCards": 102362,
+      "totalSeries": 197,
+      "cardsWithImages": 93539,
+      "cardsWithoutImages": 8823,
+      "externalUrls": 0,
+      "nullUrls": 8823,
+      "storageImages": 38849,
+      "series": [
+        {
+          "code": "2011bw",
+          "name": "Macdonald's Collection 2011",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "2012bw",
+          "name": "Macdonald's Collection 2012",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "2014xy",
+          "name": "Macdonald's Collection 2014",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "2015xy",
+          "name": "Macdonald's Collection 2015",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "2016xy",
+          "name": "Macdonald's Collection 2016",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "2017sm",
+          "name": "Macdonald's Collection 2017",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "2018sm",
+          "name": "Macdonald's Collection 2018",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "2019sm",
+          "name": "Macdonald's Collection 2019",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "2021swsh",
+          "name": "Macdonald's Collection 2021",
+          "language": "FR",
+          "totalCards": 21,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 21,
+          "externalUrls": 0,
+          "nullUrls": 21
+        },
+        {
+          "code": "2021swsh",
+          "name": "Macdonald's Collection 2021",
+          "language": "EN",
+          "totalCards": 25,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 25,
+          "externalUrls": 0,
+          "nullUrls": 25
+        },
+        {
+          "code": "A3b",
+          "name": "Eevee Grove",
+          "language": "FR",
+          "totalCards": 107,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 107,
+          "externalUrls": 0,
+          "nullUrls": 107
+        },
+        {
+          "code": "A4",
+          "name": "Wisdom of Sea and Sky",
+          "language": "FR",
+          "totalCards": 241,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 241,
+          "externalUrls": 0,
+          "nullUrls": 241
+        },
+        {
+          "code": "A4a",
+          "name": "Secluded Springs",
+          "language": "FR",
+          "totalCards": 105,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 105,
+          "externalUrls": 0,
+          "nullUrls": 105
+        },
+        {
+          "code": "basep",
+          "name": "Wizards Black Star Promos",
+          "language": "FR",
+          "totalCards": 26,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 26,
+          "externalUrls": 0,
+          "nullUrls": 26
+        },
+        {
+          "code": "bog",
+          "name": "Best of game",
+          "language": "EN",
+          "totalCards": 9,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 9,
+          "externalUrls": 0,
+          "nullUrls": 9
+        },
+        {
+          "code": "bwp",
+          "name": "BW Black Star Promos",
+          "language": "EN",
+          "totalCards": 101,
+          "cardsWithImages": 98,
+          "cardsWithoutImages": 3,
+          "externalUrls": 0,
+          "nullUrls": 3
+        },
+        {
+          "code": "cel25",
+          "name": "Celebrations",
+          "language": "FR",
+          "totalCards": 25,
+          "cardsWithImages": 24,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "cel25",
+          "name": "Celebrations",
+          "language": "EN",
+          "totalCards": 51,
+          "cardsWithImages": 24,
+          "cardsWithoutImages": 27,
+          "externalUrls": 0,
+          "nullUrls": 27
+        },
+        {
+          "code": "col1",
+          "name": "Call of Legends",
+          "language": "FR",
+          "totalCards": 47,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 47,
+          "externalUrls": 0,
+          "nullUrls": 47
+        },
+        {
+          "code": "det1",
+          "name": "Detective Pikachu",
+          "language": "FR",
+          "totalCards": 18,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 18,
+          "externalUrls": 0,
+          "nullUrls": 18
+        },
+        {
+          "code": "dp2",
+          "name": "Mysterious Treasures",
+          "language": "FR",
+          "totalCards": 124,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 124,
+          "externalUrls": 0,
+          "nullUrls": 124
+        },
+        {
+          "code": "dp3",
+          "name": "Secret Wonders",
+          "language": "FR",
+          "totalCards": 132,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 132,
+          "externalUrls": 0,
+          "nullUrls": 132
+        },
+        {
+          "code": "dp4",
+          "name": "Great Encounters",
+          "language": "FR",
+          "totalCards": 106,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 106,
+          "externalUrls": 0,
+          "nullUrls": 106
+        },
+        {
+          "code": "dp5",
+          "name": "Majestic Dawn",
+          "language": "FR",
+          "totalCards": 100,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 100,
+          "externalUrls": 0,
+          "nullUrls": 100
+        },
+        {
+          "code": "dp6",
+          "name": "Legends Awakened",
+          "language": "FR",
+          "totalCards": 146,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 146,
+          "externalUrls": 0,
+          "nullUrls": 146
+        },
+        {
+          "code": "dpp",
+          "name": "DP Black Star Promos",
+          "language": "FR",
+          "totalCards": 42,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 42,
+          "externalUrls": 0,
+          "nullUrls": 42
+        },
+        {
+          "code": "ecard2",
+          "name": "Aquapolis",
+          "language": "FR",
+          "totalCards": 184,
+          "cardsWithImages": 170,
+          "cardsWithoutImages": 14,
+          "externalUrls": 0,
+          "nullUrls": 14
+        },
+        {
+          "code": "ecard2",
+          "name": "Aquapolis",
+          "language": "EN",
+          "totalCards": 186,
+          "cardsWithImages": 146,
+          "cardsWithoutImages": 40,
+          "externalUrls": 0,
+          "nullUrls": 40
+        },
+        {
+          "code": "ecard3",
+          "name": "Skyridge",
+          "language": "EN",
+          "totalCards": 182,
+          "cardsWithImages": 150,
+          "cardsWithoutImages": 32,
+          "externalUrls": 0,
+          "nullUrls": 32
+        },
+        {
+          "code": "ex5.5",
+          "name": "Poké Card Creator Pack",
+          "language": "EN",
+          "totalCards": 5,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 5,
+          "externalUrls": 0,
+          "nullUrls": 5
+        },
+        {
+          "code": "exu",
+          "name": "Unseen Forces Unown Collection",
+          "language": "EN",
+          "totalCards": 27,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 27,
+          "externalUrls": 0,
+          "nullUrls": 27
+        },
+        {
+          "code": "hgss2",
+          "name": "Unleashed",
+          "language": "FR",
+          "totalCards": 96,
+          "cardsWithImages": 95,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "hgss3",
+          "name": "Undaunted",
+          "language": "FR",
+          "totalCards": 91,
+          "cardsWithImages": 90,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "hgss4",
+          "name": "Triumphant",
+          "language": "FR",
+          "totalCards": 103,
+          "cardsWithImages": 102,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "hgssp",
+          "name": "HGSS Black Star Promos",
+          "language": "EN",
+          "totalCards": 25,
+          "cardsWithImages": 16,
+          "cardsWithoutImages": 9,
+          "externalUrls": 0,
+          "nullUrls": 9
+        },
+        {
+          "code": "me02",
+          "name": "Phantasmal Flames",
+          "language": "FR",
+          "totalCards": 130,
+          "cardsWithImages": 54,
+          "cardsWithoutImages": 76,
+          "externalUrls": 0,
+          "nullUrls": 76
+        },
+        {
+          "code": "mep",
+          "name": "MEP Black Star Promos",
+          "language": "FR",
+          "totalCards": 10,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 10,
+          "externalUrls": 0,
+          "nullUrls": 10
+        },
+        {
+          "code": "mep",
+          "name": "MEP Black Star Promos",
+          "language": "EN",
+          "totalCards": 10,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 10,
+          "externalUrls": 0,
+          "nullUrls": 10
+        },
+        {
+          "code": "P-A",
+          "name": "Promos-A",
+          "language": "EN",
+          "totalCards": 100,
+          "cardsWithImages": 73,
+          "cardsWithoutImages": 27,
+          "externalUrls": 0,
+          "nullUrls": 27
+        },
+        {
+          "code": "pl2",
+          "name": "Rising Rivals",
+          "language": "EN",
+          "totalCards": 120,
+          "cardsWithImages": 119,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "sm10",
+          "name": "Unbroken Bonds",
+          "language": "FR",
+          "totalCards": 234,
+          "cardsWithImages": 196,
+          "cardsWithoutImages": 38,
+          "externalUrls": 0,
+          "nullUrls": 38
+        },
+        {
+          "code": "sm11",
+          "name": "Unified Minds",
+          "language": "FR",
+          "totalCards": 258,
+          "cardsWithImages": 189,
+          "cardsWithoutImages": 69,
+          "externalUrls": 0,
+          "nullUrls": 69
+        },
+        {
+          "code": "sm115",
+          "name": "Hidden Fates",
+          "language": "FR",
+          "totalCards": 69,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 69,
+          "externalUrls": 0,
+          "nullUrls": 69
+        },
+        {
+          "code": "sm2",
+          "name": "Guardians Rising",
+          "language": "EN",
+          "totalCards": 169,
+          "cardsWithImages": 168,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "sm3.5",
+          "name": "Shining Legends",
+          "language": "FR",
+          "totalCards": 78,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 78,
+          "externalUrls": 0,
+          "nullUrls": 78
+        },
+        {
+          "code": "sm3.5",
+          "name": "Shining Legends",
+          "language": "EN",
+          "totalCards": 78,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 78,
+          "externalUrls": 0,
+          "nullUrls": 78
+        },
+        {
+          "code": "sm6",
+          "name": "Forbidden Light",
+          "language": "EN",
+          "totalCards": 146,
+          "cardsWithImages": 140,
+          "cardsWithoutImages": 6,
+          "externalUrls": 0,
+          "nullUrls": 6
+        },
+        {
+          "code": "sm7.5",
+          "name": "Dragon Majesty",
+          "language": "FR",
+          "totalCards": 78,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 78,
+          "externalUrls": 0,
+          "nullUrls": 78
+        },
+        {
+          "code": "sm7.5",
+          "name": "Dragon Majesty",
+          "language": "EN",
+          "totalCards": 78,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 78,
+          "externalUrls": 0,
+          "nullUrls": 78
+        },
+        {
+          "code": "sm8",
+          "name": "Lost Thunder",
+          "language": "FR",
+          "totalCards": 236,
+          "cardsWithImages": 196,
+          "cardsWithoutImages": 40,
+          "externalUrls": 0,
+          "nullUrls": 40
+        },
+        {
+          "code": "sma",
+          "name": "Yellow A Alternate",
+          "language": "FR",
+          "totalCards": 94,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 94,
+          "externalUrls": 0,
+          "nullUrls": 94
+        },
+        {
+          "code": "smp",
+          "name": "SM Black Star Promos",
+          "language": "FR",
+          "totalCards": 243,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 243,
+          "externalUrls": 0,
+          "nullUrls": 243
+        },
+        {
+          "code": "smp",
+          "name": "SM Black Star Promos",
+          "language": "EN",
+          "totalCards": 244,
+          "cardsWithImages": 181,
+          "cardsWithoutImages": 63,
+          "externalUrls": 0,
+          "nullUrls": 63
+        },
+        {
+          "code": "svp",
+          "name": "SVP Black Star Promos",
+          "language": "FR",
+          "totalCards": 192,
+          "cardsWithImages": 188,
+          "cardsWithoutImages": 4,
+          "externalUrls": 0,
+          "nullUrls": 4
+        },
+        {
+          "code": "svp",
+          "name": "SVP Black Star Promos",
+          "language": "EN",
+          "totalCards": 219,
+          "cardsWithImages": 192,
+          "cardsWithoutImages": 27,
+          "externalUrls": 0,
+          "nullUrls": 27
+        },
+        {
+          "code": "swshp",
+          "name": "SWSH Black Star Promos",
+          "language": "EN",
+          "totalCards": 287,
+          "cardsWithImages": 285,
+          "cardsWithoutImages": 2,
+          "externalUrls": 0,
+          "nullUrls": 2
+        },
+        {
+          "code": "tk-bw-e",
+          "name": "BW trainer Kit (Excadrill)",
+          "language": "FR",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-bw-e",
+          "name": "BW trainer Kit (Excadrill)",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-bw-z",
+          "name": "BW trainer Kit (Zoroark)",
+          "language": "FR",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-bw-z",
+          "name": "BW trainer Kit (Zoroark)",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-dp-l",
+          "name": "DP trainer Kit (Lucario)",
+          "language": "EN",
+          "totalCards": 11,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 11,
+          "externalUrls": 0,
+          "nullUrls": 11
+        },
+        {
+          "code": "tk-dp-m",
+          "name": "DP trainer Kit (Manaphy)",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "tk-ex-latia",
+          "name": "EX trainer Kit (Latias)",
+          "language": "EN",
+          "totalCards": 10,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 10,
+          "externalUrls": 0,
+          "nullUrls": 10
+        },
+        {
+          "code": "tk-ex-latio",
+          "name": "EX trainer Kit (Latios)",
+          "language": "EN",
+          "totalCards": 10,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 10,
+          "externalUrls": 0,
+          "nullUrls": 10
+        },
+        {
+          "code": "tk-ex-m",
+          "name": "EX trainer Kit 2 (Minun)",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "tk-ex-p",
+          "name": "EX trainer Kit 2 (Plusle)",
+          "language": "EN",
+          "totalCards": 12,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 12,
+          "externalUrls": 0,
+          "nullUrls": 12
+        },
+        {
+          "code": "tk-hs-g",
+          "name": "HS trainer Kit (Gyarados)",
+          "language": "EN",
+          "totalCards": 1,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "tk-hs-r",
+          "name": "HS trainer Kit (Raichu)",
+          "language": "EN",
+          "totalCards": 1,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "tk-sm-l",
+          "name": "SM trainer Kit (Lycanroc)",
+          "language": "FR",
+          "totalCards": 18,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 18,
+          "externalUrls": 0,
+          "nullUrls": 18
+        },
+        {
+          "code": "tk-sm-l",
+          "name": "SM trainer Kit (Lycanroc)",
+          "language": "EN",
+          "totalCards": 18,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 18,
+          "externalUrls": 0,
+          "nullUrls": 18
+        },
+        {
+          "code": "tk-sm-r",
+          "name": "SM trainer Kit (Alolan Raichu)",
+          "language": "FR",
+          "totalCards": 19,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 19,
+          "externalUrls": 0,
+          "nullUrls": 19
+        },
+        {
+          "code": "tk-sm-r",
+          "name": "SM trainer Kit (Alolan Raichu)",
+          "language": "EN",
+          "totalCards": 19,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 19,
+          "externalUrls": 0,
+          "nullUrls": 19
+        },
+        {
+          "code": "tk-xy-b",
+          "name": "XY trainer Kit (Bisharp)",
+          "language": "FR",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-b",
+          "name": "XY trainer Kit (Bisharp)",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-latia",
+          "name": "XY trainer Kit (Latias)",
+          "language": "FR",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-latia",
+          "name": "XY trainer Kit (Latias)",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-latio",
+          "name": "XY trainer Kit (Latios)",
+          "language": "FR",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-latio",
+          "name": "XY trainer Kit (Latios)",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-n",
+          "name": "XY trainer Kit (Noivern)",
+          "language": "FR",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-n",
+          "name": "XY trainer Kit (Noivern)",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-p",
+          "name": "XY trainer Kit (Pikachu Libre)",
+          "language": "FR",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-p",
+          "name": "XY trainer Kit (Pikachu Libre)",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-su",
+          "name": "XY trainer Kit (Suicune)",
+          "language": "FR",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-su",
+          "name": "XY trainer Kit (Suicune)",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-sy",
+          "name": "XY trainer Kit (Sylveon)",
+          "language": "FR",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-sy",
+          "name": "XY trainer Kit (Sylveon)",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-w",
+          "name": "XY trainer Kit (Wigglytuff)",
+          "language": "FR",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "tk-xy-w",
+          "name": "XY trainer Kit (Wigglytuff)",
+          "language": "EN",
+          "totalCards": 30,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 30,
+          "externalUrls": 0,
+          "nullUrls": 30
+        },
+        {
+          "code": "xy8",
+          "name": "BREAKthrough",
+          "language": "EN",
+          "totalCards": 165,
+          "cardsWithImages": 164,
+          "cardsWithoutImages": 1,
+          "externalUrls": 0,
+          "nullUrls": 1
+        },
+        {
+          "code": "xya",
+          "name": "Yello A Alternate",
+          "language": "FR",
+          "totalCards": 6,
+          "cardsWithImages": 0,
+          "cardsWithoutImages": 6,
+          "externalUrls": 0,
+          "nullUrls": 6
+        }
+      ],
+      "externalUrlDetails": []
+    },
+    {
+      "slug": "riftbound",
+      "name": "Riftbound",
+      "totalCards": 585,
+      "totalSeries": 3,
+      "cardsWithImages": 585,
+      "cardsWithoutImages": 0,
+      "externalUrls": 0,
+      "nullUrls": 0,
+      "storageImages": 0,
+      "series": [],
+      "externalUrlDetails": []
+    },
+    {
+      "slug": "starwars",
+      "name": "Star Wars: Unlimited",
+      "totalCards": 3029,
+      "totalSeries": 12,
+      "cardsWithImages": 3029,
+      "cardsWithoutImages": 0,
+      "externalUrls": 0,
+      "nullUrls": 0,
+      "storageImages": 3029,
+      "series": [],
+      "externalUrlDetails": []
+    }
+  ]
+}
