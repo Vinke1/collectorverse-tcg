@@ -153,7 +153,10 @@
       "Bash(del \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\logs\\onepiece-download-progress.json\")",
       "WebFetch(domain:api.pokemontcg.io)",
       "Bash(if not exist \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\logs\" mkdir \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\logs\")",
-      "Bash(npm ls:*)"
+      "Bash(npm ls:*)",
+      "Bash(du -sh:*)",
+      "Bash(for dir in \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\scripts\\output\"/*)",
+      "Bash(do if [ -d \"$dir\" ])"
     ],
     "deny": [],
     "ask": []
