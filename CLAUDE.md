@@ -28,6 +28,11 @@ npm run seed:all-lorcana           # Scrape and seed all Lorcana series
 # Image Generation (Higgsfield AI)
 npx tsx scripts/generate-pokemon-images.ts    # Generate Pokemon series banners
 npx tsx scripts/generate-onepiece-images.ts   # Generate One Piece series banners
+
+# Image Management
+npx tsx scripts/copy-pokemon-images-from-en.ts --dry-run  # Preview Pokemon image copies from EN
+npx tsx scripts/copy-pokemon-images-from-en.ts            # Copy missing Pokemon images from EN to other langs
+npx tsx scripts/analyze-image-reuse.ts                    # Analyze which images can be reused
 ```
 
 ## Project Architecture
@@ -493,6 +498,87 @@ The download script saves progress to `scripts/logs/pokemon-download-progress.js
 1. **"Image non trouvée (404)"**: Card image doesn't exist in TCGdex, try checking tcgdex_id
 2. **Missing tcgdex_id**: Script attempts to construct ID as `{seriesCode}-{cardNumber}`
 3. **WebP fails**: Script automatically falls back to PNG format
+
+## Pokemon - Image Copy from EN to Other Languages
+
+### Overview
+
+Many Pokemon cards share the same artwork across languages. Instead of downloading the same image multiple times, this script copies existing EN images to other languages (DE, FR, IT, ES, PT) when they are missing.
+
+### Script
+
+`scripts/copy-pokemon-images-from-en.ts` - Copy missing Pokemon images from EN to other languages
+
+**Full documentation**: See `scripts/README-COPY-POKEMON-IMAGES.md`
+
+### Quick Start
+
+```bash
+# Preview what would be copied (dry-run)
+npx tsx scripts/copy-pokemon-images-from-en.ts --dry-run
+
+# Copy all missing images from EN
+npx tsx scripts/copy-pokemon-images-from-en.ts
+
+# Copy specific series
+npx tsx scripts/copy-pokemon-images-from-en.ts --series dp6
+
+# Copy specific language only
+npx tsx scripts/copy-pokemon-images-from-en.ts --lang fr
+
+# Limit number of copies (for testing)
+npx tsx scripts/copy-pokemon-images-from-en.ts --limit 50
+
+# Combine options
+npx tsx scripts/copy-pokemon-images-from-en.ts --series dp6 --lang fr --dry-run
+```
+
+### How It Works
+
+1. **Identify cards to process**:
+   - Cards without `image_url` in target language
+   - Same series + same card number has `image_url` in EN
+
+2. **Copy images in Supabase Storage**:
+   - Source: `pokemon-cards/{series}/en/{number}.webp`
+   - Destination: `pokemon-cards/{series}/{lang}/{number}.webp`
+   - Uses `supabase.storage.from('pokemon-cards').copy(source, dest)`
+
+3. **Update database**:
+   - Update `cards.image_url` with new public URL
+
+### Progress & Recovery
+
+Progress is saved to `scripts/logs/pokemon-copy-progress.json`:
+- Tracks processed card IDs (skips them on resume)
+- Saves every 10 copies
+- Auto-deleted when all tasks complete successfully
+- Simply rerun the script to resume after interruption
+
+### Statistics
+
+Based on `scripts/analyze-image-reuse.ts`:
+- **~6,600 images** can be copied from EN
+- Top series with reusable images:
+  - `smp`: 699 images
+  - `swshp`: 468 images
+  - `dp6`: 292 images
+  - `dp3`: 264 images
+  - `dp2`: 248 images
+
+### Configuration
+
+- **Target languages**: de, fr, it, es, pt (EN is source)
+- **Delay between copies**: 100ms (to avoid overloading Supabase)
+- **Batch size**: 1000 cards (pagination)
+- **Storage bucket**: `pokemon-cards`
+
+### Notes
+
+- Series codes must be **lowercase** (use `dp6`, not `DP6`)
+- Only copies if EN image exists AND target image doesn't
+- Uses Supabase Storage `.copy()` API (fast, no download/upload)
+- Requires `SUPABASE_SERVICE_ROLE_KEY` in `.env.local`
 
 ---
 
