@@ -51,10 +51,10 @@ export function Header({ user }: HeaderProps) {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="w-full max-w-7xl pointer-events-auto"
       >
-        <nav className="glass rounded-2xl px-6 h-16 flex items-center justify-between mx-auto shadow-lg shadow-purple-500/5 border border-white/10 dark:border-white/10 border-black/5">
+        <nav className="glass rounded-2xl px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between mx-auto shadow-lg shadow-purple-500/5 border border-white/10 dark:border-white/10 border-black/5">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="relative w-[60px] h-[60px] flex items-center justify-center rounded-lg overflow-hidden group-hover:scale-110 transition-transform">
+          <Link href="/" className="flex items-center space-x-2 group flex-shrink-0">
+            <div className="relative w-[44px] h-[44px] sm:w-[60px] sm:h-[60px] flex items-center justify-center rounded-lg overflow-hidden group-hover:scale-110 transition-transform">
               <Image
                 src="/images/logo1.png"
                 alt="CollectorVerse"
@@ -63,10 +63,10 @@ export function Header({ user }: HeaderProps) {
                 className="object-contain"
               />
             </div>
-            <span className="text-lg font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-gray-200 dark:to-gray-400 bg-clip-text text-transparent group-hover:text-neon transition-all duration-300">
+            <span className="hidden sm:inline text-lg font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-gray-200 dark:to-gray-400 bg-clip-text text-transparent group-hover:text-neon transition-all duration-300">
               CollectorVerse
             </span>
-            <span className="ml-1.5 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-primary/20 text-primary border border-primary/30 rounded-md">
+            <span className="px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-primary/20 text-primary border border-primary/30 rounded-md">
               Beta
             </span>
           </Link>
@@ -97,10 +97,10 @@ export function Header({ user }: HeaderProps) {
           </div>
 
           {/* Right side */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-1 sm:space-x-3">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-lg w-9 h-9 overflow-hidden p-0">
+                <Button variant="ghost" size="icon" className="rounded-lg w-8 h-8 sm:w-9 sm:h-9 overflow-hidden p-0">
                   <Image
                     src={currentFlag}
                     alt="Current Language"
@@ -162,7 +162,7 @@ export function Header({ user }: HeaderProps) {
               </DropdownMenu>
             ) : (
               <LoginModal>
-                <Button variant="default" size="sm" className="bg-primary hover:bg-primary/80 text-primary-foreground font-bold shadow-[0_0_15px_rgba(0,168,181,0.4)] dark:shadow-[0_0_15px_rgba(0,243,255,0.4)] hover:shadow-[0_0_25px_rgba(0,168,181,0.6)] dark:hover:shadow-[0_0_25px_rgba(0,243,255,0.6)] transition-all duration-300 rounded-full px-6">
+                <Button variant="default" size="sm" className="bg-primary hover:bg-primary/80 text-primary-foreground font-bold shadow-[0_0_15px_rgba(0,168,181,0.4)] dark:shadow-[0_0_15px_rgba(0,243,255,0.4)] hover:shadow-[0_0_25px_rgba(0,168,181,0.6)] dark:hover:shadow-[0_0_25px_rgba(0,243,255,0.6)] transition-all duration-300 rounded-full px-3 sm:px-6 text-xs sm:text-sm">
                   Connexion
                 </Button>
               </LoginModal>
