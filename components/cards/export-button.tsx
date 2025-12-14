@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
 import { FileSpreadsheet, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { createClient } from '@/lib/supabase/client'
@@ -108,20 +107,32 @@ export function ExportButton({
   }
 
   return (
-    <Button
-      variant="outline"
-      size="sm"
+    <button
       onClick={handleExport}
       disabled={isExporting}
-      className={className}
+      className={`
+        group relative inline-flex items-center gap-2 px-4 py-2 text-sm font-medium
+        rounded-lg overflow-hidden transition-all duration-300
+        bg-gradient-to-r from-emerald-500/10 via-cyan-500/10 to-emerald-500/10
+        hover:from-emerald-500/20 hover:via-cyan-500/20 hover:to-emerald-500/20
+        border border-emerald-500/30 hover:border-emerald-400/50
+        text-emerald-400 hover:text-emerald-300
+        shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)] hover:shadow-[0_0_25px_-3px_rgba(16,185,129,0.4)]
+        disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none
+        ${className}
+      `}
       title={t.export.button}
     >
+      {/* Glow effect on hover */}
+      <span className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/10 to-emerald-500/0 
+        translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+      
       {isExporting ? (
-        <Loader2 className="w-4 h-4 animate-spin" />
+        <Loader2 className="w-4 h-4 animate-spin relative z-10" />
       ) : (
-        <FileSpreadsheet className="w-4 h-4" />
+        <FileSpreadsheet className="w-4 h-4 relative z-10 transition-transform group-hover:scale-110" />
       )}
-      <span className="hidden sm:inline ml-2">{t.export.button}</span>
-    </Button>
+      <span className="hidden sm:inline relative z-10">{t.export.button}</span>
+    </button>
   )
 }
