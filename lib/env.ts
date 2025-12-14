@@ -5,14 +5,27 @@
  * For server-side code, they're read from process.env at runtime.
  */
 
+// Validate required environment variables
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl) {
+  console.error('❌ NEXT_PUBLIC_SUPABASE_URL is missing!');
+  console.error('Available env vars:', Object.keys(process.env).filter(k => k.includes('SUPABASE')));
+}
+
+if (!supabaseAnonKey) {
+  console.error('❌ NEXT_PUBLIC_SUPABASE_ANON_KEY is missing!');
+}
+
 /**
  * Environment variables for the application
  * NEXT_PUBLIC_* variables are available on both client and server
  */
 export const env = {
   // Supabase (required) - NEXT_PUBLIC vars are inlined at build time
-  supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  supabaseAnonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  supabaseUrl: supabaseUrl || '',
+  supabaseAnonKey: supabaseAnonKey || '',
 
   // Site URL (optional with default)
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',

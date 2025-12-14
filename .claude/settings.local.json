@@ -159,7 +159,9 @@
       "Bash(do if [ -d \"$dir\" ])",
       "Bash(ren middleware.ts proxy.ts)",
       "Bash(git checkout:*)",
-      "Bash(git stash pop:*)"
+      "Bash(git stash pop:*)",
+      "WebFetch(domain:supabase.com)",
+      "WebFetch(domain:vercel.com)"
     ],
     "deny": [],
     "ask": []
