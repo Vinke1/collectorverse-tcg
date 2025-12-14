@@ -233,11 +233,49 @@ export function ShareButton({
                       </button>
                     </motion.div>
 
-                    {/* Social share buttons with enhanced styling */}
+                    {/* Actions - Revoke & Copy */}
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.3 }}
+                      className="flex justify-center gap-3"
+                    >
+                      <button
+                        onClick={handleRevoke}
+                        disabled={isRevoking}
+                        className="flex items-center px-4 py-2 rounded-lg text-sm font-medium
+                          bg-red-500/10 border border-red-500/30 text-red-400
+                          hover:bg-red-500/20 hover:border-red-500/50 transition-all
+                          disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isRevoking ? (
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        ) : (
+                          <Trash2 className="w-4 h-4 mr-2" />
+                        )}
+                        {t.share?.revoke || "Révoquer"}
+                      </button>
+                      <button
+                        onClick={handleCopy}
+                        className="flex items-center px-4 py-2 rounded-lg text-sm font-medium
+                          bg-gradient-to-r from-cyan-500 to-teal-500 text-white
+                          hover:from-cyan-400 hover:to-teal-400 transition-all
+                          shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
+                      >
+                        {copied ? (
+                          <Check className="w-4 h-4 mr-2" />
+                        ) : (
+                          <Copy className="w-4 h-4 mr-2" />
+                        )}
+                        {t.share?.copyLink || "Copier le lien"}
+                      </button>
+                    </motion.div>
+
+                    {/* Social share buttons */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.4 }}
                       className="flex items-center justify-center gap-3"
                     >
                       <button
@@ -266,12 +304,12 @@ export function ShareButton({
                       </button>
                     </motion.div>
 
-                    {/* Expiration info with enhanced styling */}
+                    {/* Expiration info - at the bottom */}
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ delay: 0.4 }}
-                      className="flex items-center justify-center gap-4 text-sm"
+                      transition={{ delay: 0.5 }}
+                      className="flex items-center justify-center gap-4 text-sm pt-2 border-t border-slate-700/50"
                     >
                       <div className="flex items-center gap-1.5 text-slate-400">
                         <Calendar className="w-4 h-4" />
@@ -285,44 +323,6 @@ export function ShareButton({
                         <Eye className="w-3.5 h-3.5" />
                         <span>{getDaysRemaining(shareData.expiresAt)} {t.share?.daysRemaining || "jours"}</span>
                       </div>
-                    </motion.div>
-
-                    {/* Actions with enhanced styling */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.5 }}
-                      className="flex justify-between gap-3 pt-2"
-                    >
-                      <button
-                        onClick={handleRevoke}
-                        disabled={isRevoking}
-                        className="flex items-center px-4 py-2.5 rounded-lg text-sm font-medium
-                          bg-red-500/10 border border-red-500/30 text-red-400
-                          hover:bg-red-500/20 hover:border-red-500/50 transition-all
-                          disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        {isRevoking ? (
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        ) : (
-                          <Trash2 className="w-4 h-4 mr-2" />
-                        )}
-                        {t.share?.revoke || "Révoquer"}
-                      </button>
-                      <button
-                        onClick={handleCopy}
-                        className="flex-1 flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-medium
-                          bg-gradient-to-r from-cyan-500 to-teal-500 text-white
-                          hover:from-cyan-400 hover:to-teal-400 transition-all
-                          shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
-                      >
-                        {copied ? (
-                          <Check className="w-4 h-4 mr-2" />
-                        ) : (
-                          <Copy className="w-4 h-4 mr-2" />
-                        )}
-                        {t.share?.copyLink || "Copier le lien"}
-                      </button>
                     </motion.div>
                   </motion.div>
                 )}

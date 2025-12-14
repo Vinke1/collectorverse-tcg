@@ -190,24 +190,59 @@ async function scrapeSeriesImages(
 }
 
 /**
- * Extract card number from card URL or image URL
+ * Extract card info from image URL
  * Example URLs:
- * - https://www.opecards.fr/cards/en-op02-004-sr-prb01-edward-newgate
  * - https://static.opecards.fr/cards/en/prb01/image-...-en-op02-004-sr-prb01-edward-newgate.webp
+ * - https://static.opecards.fr/cards/en/prb01/image-...-en-op02-004-sr-prb01-alternative-art-edward-newgate.webp
+ * - https://static.opecards.fr/cards/en/prb01/image-...-en-op02-004-sr-prb01-full-art-edward-newgate.webp
+ * - https://static.opecards.fr/cards/en/prb01/image-...-en-op02-004-sr-prb01-jolly-roger-foil-edward-newgate.webp
  */
-function extractCardNumber(cardUrl: string, imageUrl: string): string | null {
-  // Try to extract from image URL first (more reliable)
-  // Pattern: ...-{series}-{number}-{rarity}-prb01-...
-  const imageMatch = imageUrl.match(/-(op\d+|st\d+|eb\d+)-(\d{3})-([a-z]+)-prb/i)
-  if (imageMatch) {
-    return imageMatch[2] // Return just the number like "004"
+function extractCardInfo(imageUrl: string): { number: string; variant: string } | null {
+  // Skip back images
+  if (imageUrl.includes('/back-')) {
+    return null
   }
 
-  // Try card URL
-  // Pattern: /cards/en-{series}-{number}-{rarity}-...
-  const urlMatch = cardUrl.match(/\/cards\/[a-z]{2}-(op\d+|st\d+|eb\d+)-(\d{3})-/i)
-  if (urlMatch) {
-    return urlMatch[2]
+  // Pattern: ...-{series}-{number}-{rarity}-prb0X-{variant}-{name}.webp
+  // Examples:
+  // - op02-004-sr-prb01-edward-newgate
+  // - op02-004-sr-prb01-alternative-art-edward-newgate
+  // - op02-004-sr-prb01-full-art-edward-newgate
+  // - op02-004-sr-prb01-jolly-roger-foil-edward-newgate
+
+  const imageMatch = imageUrl.match(/-(op\d+|st\d+|eb\d+|prb\d+)-(\d{3})-([a-z]+)-prb\d+-(.+)\.webp$/i)
+  if (imageMatch) {
+    const number = imageMatch[2]
+    const rest = imageMatch[4]
+
+    // Determine variant type
+    let variant = ''
+    if (rest.includes('alternative-art')) {
+      variant = '-ALT'
+    } else if (rest.includes('full-art')) {
+      variant = '-FA'
+    } else if (rest.includes('jolly-roger')) {
+      variant = '-JR'
+    } else if (rest.includes('foil-textured')) {
+      variant = '-FT'
+    } else if (rest.includes('gold')) {
+      variant = '-GOLD'
+    }
+
+    return { number, variant }
+  }
+
+  // DON!! cards pattern: prb01-don-{variant}-{name}.webp
+  const donMatch = imageUrl.match(/prb\d+-don-(.+)\.webp$/i)
+  if (donMatch) {
+    const rest = donMatch[1]
+    let variant = ''
+    if (rest.includes('foil-textured')) {
+      variant = '-FT'
+    } else if (rest.includes('gold')) {
+      variant = '-GOLD'
+    }
+    return { number: 'DON', variant }
   }
 
   return null
@@ -357,10 +392,17 @@ async function main() {
         let processed = 0
         let success = 0
         let errors = 0
+        let skipped = 0
 
         for (const cardImage of cardImages) {
           // Skip if already processed
           if (progress.processedUrls.includes(cardImage.imageUrl)) {
+            continue
+          }
+
+          // Skip back images
+          if (cardImage.imageUrl.includes('/back-') || cardImage.imageUrl.includes('/common/')) {
+            skipped++
             continue
           }
 
@@ -373,8 +415,16 @@ async function main() {
           processed++
 
           // Extract card info from URL
+          const cardInfo = extractCardInfo(cardImage.imageUrl)
           const cardName = cardImage.cardName
-          logger.info(`[${processed}/${cardImages.length}] ${cardName}`)
+
+          if (!cardInfo) {
+            logger.warn(`[${processed}] Could not parse URL: ${cardImage.imageUrl}`)
+            skipped++
+            continue
+          }
+
+          logger.info(`[${processed}/${cardImages.length}] ${cardName} -> #${cardInfo.number}${cardInfo.variant}`)
 
           if (dryRun) {
             logger.info(`  Image URL: ${cardImage.imageUrl}`)
@@ -393,19 +443,10 @@ async function main() {
               continue
             }
 
-            // Generate filename from the original URL
-            // Extract the filename part after the last /
-            const urlParts = cardImage.imageUrl.split('/')
-            const originalFilename = urlParts[urlParts.length - 1]
-            // Use a simplified name based on the card name
-            const safeName = cardName
-              .toLowerCase()
-              .replace(/[^a-z0-9]+/g, '-')
-              .replace(/-+/g, '-')
-              .replace(/^-|-$/g, '')
-              .substring(0, 50)
-
-            const storagePath = `${seriesCode}/${language.toLowerCase()}/${safeName}.webp`
+            // Generate filename based on card number and variant
+            // Format: 004.webp, 004-ALT.webp, 004-FA.webp, 004-JR.webp
+            const filename = `${cardInfo.number}${cardInfo.variant}.webp`
+            const storagePath = `${seriesCode}/${language.toLowerCase()}/${filename}`
 
             // Upload to Supabase Storage
             const { error: uploadError } = await supabase.storage
@@ -426,13 +467,30 @@ async function main() {
               .from('onepiece-cards')
               .getPublicUrl(storagePath)
 
-            // Try to find matching card in database by name similarity
-            const matchingCard = dbCards.find(c => {
-              const dbName = c.name.toLowerCase()
-              const scrapedName = cardName.toLowerCase()
-              return dbName.includes(scrapedName) || scrapedName.includes(dbName) ||
-                dbName.replace(/[^a-z0-9]/g, '') === scrapedName.replace(/[^a-z0-9]/g, '')
+            // Try to find matching card in database by number
+            // DB cards have numbers like: 003, 003-ALT, 004, 004-ALT, etc.
+            const fullNumber = `${cardInfo.number}${cardInfo.variant}`
+            const paddedNumber = `${cardInfo.number.padStart(3, '0')}${cardInfo.variant}`
+
+            let matchingCard = dbCards.find(c => {
+              const cardNum = c.number.toString()
+              // Exact match
+              if (cardNum === fullNumber || cardNum === paddedNumber) return true
+              // Match without leading zeros
+              if (cardNum.replace(/^0+/, '') === fullNumber.replace(/^0+/, '')) return true
+              // Match base number for non-variant images to base cards
+              if (!cardInfo.variant && cardNum === cardInfo.number) return true
+              if (!cardInfo.variant && cardNum === cardInfo.number.padStart(3, '0')) return true
+              return false
             })
+
+            // For Jolly Roger variants, try to match to base card if no -JR variant exists
+            if (!matchingCard && cardInfo.variant === '-JR') {
+              matchingCard = dbCards.find(c => {
+                const cardNum = c.number.toString()
+                return cardNum === cardInfo.number || cardNum === cardInfo.number.padStart(3, '0')
+              })
+            }
 
             if (matchingCard) {
               // Update card image_url
@@ -447,20 +505,22 @@ async function main() {
                 logger.success(`  Updated card ${matchingCard.number}: ${matchingCard.name}`)
               }
             } else {
-              logger.warn(`  No matching card found in DB for: ${cardName}`)
+              logger.info(`  Uploaded but no matching card in DB for: ${fullNumber}`)
             }
 
             success++
             progress.processedUrls.push(cardImage.imageUrl)
             saveProgress(progress)
 
-            await delay(500) // Rate limiting
+            await delay(300) // Rate limiting
 
           } catch (error: any) {
             logger.error(`  Error: ${error.message}`)
             errors++
           }
         }
+
+        logger.info(`Skipped ${skipped} back/common images`)
 
         logger.section(`Resume ${seriesCode} ${language}`)
         console.log(`  Traites: ${processed}`)
