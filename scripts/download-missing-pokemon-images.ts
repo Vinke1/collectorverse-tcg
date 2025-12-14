@@ -1,427 +1,437 @@
 /**
- * Script pour télécharger les images manquantes des cartes Pokémon depuis pokemontcg.io
+ * Download all missing Pokemon images
+ *
+ * This script:
+ * 1. Analyzes all Pokemon series in the database
+ * 2. Compares cards with images in Supabase storage
+ * 3. Downloads missing images from TCGdex API
+ * 4. Uploads them to Supabase storage
+ * 5. Updates the card's image_url in the database
  *
  * Usage:
- *   npx tsx scripts/download-missing-pokemon-images.ts              # Télécharger toutes les images manquantes
- *   npx tsx scripts/download-missing-pokemon-images.ts --dry-run    # Voir ce qui serait téléchargé
- *   npx tsx scripts/download-missing-pokemon-images.ts --limit=50   # Limiter à 50 cartes
- *   npx tsx scripts/download-missing-pokemon-images.ts --lang=de    # Uniquement les cartes allemandes
- *   npx tsx scripts/download-missing-pokemon-images.ts --resume     # Reprendre depuis la progression
+ *   npx tsx scripts/download-missing-pokemon-images.ts
+ *   npx tsx scripts/download-missing-pokemon-images.ts --series swsh3
+ *   npx tsx scripts/download-missing-pokemon-images.ts --dry-run
+ *   npx tsx scripts/download-missing-pokemon-images.ts --limit 50
+ *   npx tsx scripts/download-missing-pokemon-images.ts --continue-on-error
  */
 
 import { createAdminClient } from './lib/supabase'
 import { logger } from './lib/logger'
 import { delay } from './lib/utils'
+import { DELAYS } from '../lib/constants/app-config'
 import sharp from 'sharp'
 import * as fs from 'fs'
-import * as path from 'path'
 
-// ============================================
-// CONFIGURATION
-// ============================================
+// Parse command line arguments
+const args = process.argv.slice(2)
+const seriesFilter = args.find(a => a.startsWith('--series='))?.split('=')[1]
+  || (args.includes('--series') ? args[args.indexOf('--series') + 1] : null)
+const limitArg = args.find(a => a.startsWith('--limit='))?.split('=')[1]
+  || (args.includes('--limit') ? args[args.indexOf('--limit') + 1] : null)
+const dryRun = args.includes('--dry-run')
+const continueOnError = args.includes('--continue-on-error')
 
-const POKEMONTCG_BASE = 'https://images.pokemontcg.io'
+const LIMIT = limitArg ? parseInt(limitArg) : null
+const ASSETS_BASE = 'https://assets.tcgdex.net'
+const API_BASE = 'https://api.tcgdex.net/v2'
 
-const CONFIG = {
-  imageQuality: 85,
-  imageWidth: 480,
-  imageHeight: 672,
-  delayBetweenCards: 500,      // ms entre chaque carte (augmenté)
-  delayBetweenUploads: 300,    // ms entre chaque upload
-  retryAttempts: 5,            // Plus de tentatives
-  retryDelay: 3000,            // Délai plus long entre retries
-  progressFile: 'scripts/logs/pokemon-missing-images-progress.json',
-}
-
-// ============================================
-// TYPES
-// ============================================
-
-interface Card {
+interface MissingCard {
   id: string
-  name: string
   number: string
-  language: string
-  series_id: string
-}
-
-interface Series {
-  id: string
-  code: string
   name: string
+  language: string
+  seriesId: string
+  seriesCode: string
+  tcgdexId: string | null
 }
 
-interface Progress {
-  processedIds: string[]
-  successCount: number
-  errorCount: number
-  notFoundCount: number
+interface ProgressData {
+  startedAt: string
   lastUpdated: string
+  totalMissing: number
+  processed: number
+  success: number
+  errors: number
+  notFound: number
+  currentSeries: string
+  processedCards: string[]  // card IDs that have been processed
 }
 
-// ============================================
-// HELPERS
-// ============================================
+const PROGRESS_FILE = 'scripts/logs/pokemon-download-progress.json'
 
-const supabase = createAdminClient()
-
-function parseArgs() {
-  const args = process.argv.slice(2)
-  return {
-    dryRun: args.includes('--dry-run'),
-    resume: args.includes('--resume'),
-    limit: parseInt(args.find(a => a.startsWith('--limit='))?.split('=')[1] || '0') || 0,
-    lang: args.find(a => a.startsWith('--lang='))?.split('=')[1] || null,
-  }
-}
-
-function loadProgress(): Progress {
+function loadProgress(): ProgressData | null {
   try {
-    if (fs.existsSync(CONFIG.progressFile)) {
-      return JSON.parse(fs.readFileSync(CONFIG.progressFile, 'utf-8'))
+    if (fs.existsSync(PROGRESS_FILE)) {
+      const data = JSON.parse(fs.readFileSync(PROGRESS_FILE, 'utf-8'))
+      return data
     }
-  } catch {
+  } catch (e) {
     // Ignore
-  }
-  return {
-    processedIds: [],
-    successCount: 0,
-    errorCount: 0,
-    notFoundCount: 0,
-    lastUpdated: new Date().toISOString(),
-  }
-}
-
-function saveProgress(progress: Progress) {
-  const dir = path.dirname(CONFIG.progressFile)
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true })
-  }
-  progress.lastUpdated = new Date().toISOString()
-  fs.writeFileSync(CONFIG.progressFile, JSON.stringify(progress, null, 2))
-}
-
-/**
- * Construit l'URL de l'image sur pokemontcg.io
- * Format: https://images.pokemontcg.io/{setCode}/{number}.png
- */
-function buildImageUrl(seriesCode: string, cardNumber: string): string {
-  // Nettoyer le numéro de carte (enlever les suffixes comme /P1, /D100, etc.)
-  const cleanNumber = cardNumber.split('/')[0]
-  return `${POKEMONTCG_BASE}/${seriesCode.toLowerCase()}/${cleanNumber}.png`
-}
-
-/**
- * Télécharge une image depuis une URL
- */
-async function downloadImage(url: string): Promise<Buffer | null> {
-  for (let attempt = 1; attempt <= CONFIG.retryAttempts; attempt++) {
-    try {
-      const response = await fetch(url)
-
-      if (response.status === 404) {
-        return null // Image non trouvée
-      }
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`)
-      }
-
-      const arrayBuffer = await response.arrayBuffer()
-      return Buffer.from(arrayBuffer)
-    } catch (error) {
-      if (attempt < CONFIG.retryAttempts) {
-        await delay(CONFIG.retryDelay)
-      }
-    }
   }
   return null
 }
 
-/**
- * Optimise une image avec Sharp
- */
-async function optimizeImage(buffer: Buffer): Promise<Buffer> {
-  return sharp(buffer)
-    .resize(CONFIG.imageWidth, CONFIG.imageHeight, {
-      fit: 'cover',
-      position: 'center',
-    })
-    .webp({ quality: CONFIG.imageQuality })
-    .toBuffer()
-}
-
-/**
- * Upload une image dans Supabase Storage avec retry
- */
-async function uploadToStorage(
-  buffer: Buffer,
-  seriesCode: string,
-  cardNumber: string,
-  language: string
-): Promise<string | null> {
-  const cleanNumber = cardNumber.split('/')[0]
-  const filePath = `${seriesCode}/${language}/${cleanNumber}.webp`
-
-  for (let attempt = 1; attempt <= CONFIG.retryAttempts; attempt++) {
-    try {
-      const { error } = await supabase.storage
-        .from('pokemon-cards')
-        .upload(filePath, buffer, {
-          contentType: 'image/webp',
-          upsert: true,
-        })
-
-      if (error) {
-        // Si c'est une erreur de parsing HTML, c'est probablement un rate limit
-        if (error.message.includes('Unexpected token') || error.message.includes('<html>')) {
-          if (attempt < CONFIG.retryAttempts) {
-            await delay(CONFIG.retryDelay * attempt) // Délai exponentiel
-            continue
-          }
-        }
-        throw new Error(`Upload failed: ${error.message}`)
-      }
-
-      // Upload réussi
-      break
-    } catch (err) {
-      if (attempt < CONFIG.retryAttempts) {
-        await delay(CONFIG.retryDelay * attempt)
-        continue
-      }
-      throw err
-    }
+function saveProgress(progress: ProgressData) {
+  progress.lastUpdated = new Date().toISOString()
+  const dir = 'scripts/logs'
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true })
   }
-
-  const { data: urlData } = supabase.storage
-    .from('pokemon-cards')
-    .getPublicUrl(filePath)
-
-  return urlData.publicUrl
+  fs.writeFileSync(PROGRESS_FILE, JSON.stringify(progress, null, 2))
 }
-
-/**
- * Met à jour l'image_url d'une carte
- */
-async function updateCardImageUrl(cardId: string, imageUrl: string): Promise<void> {
-  const { error } = await supabase
-    .from('cards')
-    .update({ image_url: imageUrl })
-    .eq('id', cardId)
-
-  if (error) {
-    throw new Error(`Update failed: ${error.message}`)
-  }
-}
-
-// ============================================
-// MAIN
-// ============================================
 
 async function main() {
-  const args = parseArgs()
+  const supabase = createAdminClient()
 
-  logger.section('Téléchargement des images Pokémon manquantes')
-  console.log('Source: pokemontcg.io')
-  console.log('')
+  logger.section('Téléchargement des images Pokemon manquantes')
 
-  if (args.dryRun) {
-    console.log('🔍 Mode dry-run activé (aucune modification)')
-    console.log('')
+  if (dryRun) {
+    logger.warn('Mode DRY RUN - aucune modification ne sera effectuée')
   }
 
-  // 1. Récupérer le TCG Pokémon
-  const { data: pokemonTcg } = await supabase
+  if (seriesFilter) {
+    logger.info(`Filtre série: ${seriesFilter}`)
+  }
+
+  if (LIMIT) {
+    logger.info(`Limite: ${LIMIT} cartes`)
+  }
+
+  // 1. Get Pokemon TCG ID
+  const { data: tcg } = await supabase
     .from('tcg_games')
     .select('id')
     .eq('slug', 'pokemon')
     .single()
 
-  if (!pokemonTcg) {
-    logger.error('TCG Pokémon non trouvé')
-    return
+  if (!tcg) {
+    logger.error('TCG Pokemon non trouvé')
+    process.exit(1)
   }
 
-  // 2. Récupérer toutes les séries Pokémon
-  const { data: allSeries } = await supabase
+  // 2. Get all series
+  let seriesQuery = supabase
     .from('series')
     .select('id, code, name')
-    .eq('tcg_game_id', pokemonTcg.id)
+    .eq('tcg_game_id', tcg.id)
 
-  if (!allSeries) {
-    logger.error('Aucune série Pokémon trouvée')
-    return
+  if (seriesFilter) {
+    seriesQuery = seriesQuery.eq('code', seriesFilter.toLowerCase())
   }
 
-  const seriesMap = new Map<string, Series>()
-  for (const s of allSeries) {
-    seriesMap.set(s.id, s)
+  const { data: seriesList } = await seriesQuery
+
+  if (!seriesList || seriesList.length === 0) {
+    logger.error('Aucune série trouvée')
+    process.exit(1)
   }
 
-  // 3. Récupérer les cartes sans image
-  let query = supabase
-    .from('cards')
-    .select('id, name, number, language, series_id')
-    .in('series_id', Array.from(seriesMap.keys()))
-    .is('image_url', null)
-    .order('series_id')
+  logger.info(`${seriesList.length} série(s) à traiter`)
 
-  if (args.lang) {
-    query = query.eq('language', args.lang)
-  }
+  // 3. Find all missing cards across all series
+  logger.section('Analyse des images manquantes')
 
-  const { data: cards, error } = await query
+  const allMissingCards: MissingCard[] = []
 
-  if (error || !cards) {
-    logger.error(`Erreur: ${error?.message}`)
-    return
-  }
+  for (const series of seriesList) {
+    // Get cards for this series
+    const { data: cards } = await supabase
+      .from('cards')
+      .select('id, number, name, language, tcgdex_id')
+      .eq('series_id', series.id)
+      .order('number', { ascending: true })
 
-  console.log(`Cartes sans image trouvées: ${cards.length}`)
-
-  // 4. Charger la progression si resume
-  let progress = args.resume ? loadProgress() : {
-    processedIds: [],
-    successCount: 0,
-    errorCount: 0,
-    notFoundCount: 0,
-    lastUpdated: new Date().toISOString(),
-  }
-
-  if (args.resume && progress.processedIds.length > 0) {
-    console.log(`Reprise depuis la progression: ${progress.processedIds.length} déjà traités`)
-  }
-
-  // 5. Filtrer les cartes déjà traitées
-  let cardsToProcess = cards.filter(c => !progress.processedIds.includes(c.id))
-
-  if (args.limit > 0) {
-    cardsToProcess = cardsToProcess.slice(0, args.limit)
-  }
-
-  console.log(`Cartes à traiter: ${cardsToProcess.length}`)
-  console.log('')
-
-  if (args.dryRun) {
-    // Afficher un aperçu
-    const byLang: Record<string, number> = {}
-    const bySeries: Record<string, number> = {}
-
-    for (const card of cardsToProcess) {
-      byLang[card.language] = (byLang[card.language] || 0) + 1
-      const series = seriesMap.get(card.series_id)
-      if (series) {
-        bySeries[series.code] = (bySeries[series.code] || 0) + 1
-      }
+    if (!cards || cards.length === 0) {
+      logger.info(`${series.code}: 0 cartes en DB`)
+      continue
     }
 
-    console.log('Par langue:')
-    for (const [lang, count] of Object.entries(byLang).sort((a, b) => b[1] - a[1])) {
-      console.log(`  ${lang}: ${count}`)
-    }
+    // List images in storage for all languages
+    const languagesInDb = [...new Set(cards.map(c => c.language))]
+    const existingImagesByLang = new Map<string, Set<string>>()
 
-    console.log('')
-    console.log('Par série (top 10):')
-    const topSeries = Object.entries(bySeries).sort((a, b) => b[1] - a[1]).slice(0, 10)
-    for (const [code, count] of topSeries) {
-      console.log(`  ${code}: ${count}`)
-    }
+    for (const lang of languagesInDb) {
+      const storagePath = `${series.code}/${lang}`
+      const { data: storageFiles } = await supabase.storage
+        .from('pokemon-cards')
+        .list(storagePath)
 
-    console.log('')
-    console.log('Exemples d\'URLs qui seraient téléchargées:')
-    for (const card of cardsToProcess.slice(0, 5)) {
-      const series = seriesMap.get(card.series_id)
-      if (series) {
-        const url = buildImageUrl(series.code, card.number)
-        console.log(`  ${series.code}/${card.number} (${card.language}) -> ${url}`)
-      }
-    }
-
-    return
-  }
-
-  // 6. Traiter les cartes
-  let processed = 0
-
-  for (const card of cardsToProcess) {
-    const series = seriesMap.get(card.series_id)
-    if (!series) continue
-
-    processed++
-    const imageUrl = buildImageUrl(series.code, card.number)
-
-    process.stdout.write(`\r[${processed}/${cardsToProcess.length}] ${series.code}/${card.number} (${card.language})...`)
-
-    try {
-      // Télécharger l'image
-      const imageBuffer = await downloadImage(imageUrl)
-
-      if (!imageBuffer) {
-        progress.notFoundCount++
-        progress.processedIds.push(card.id)
-        if (processed % 50 === 0) saveProgress(progress)
-        await delay(CONFIG.delayBetweenCards)
-        continue
-      }
-
-      // Optimiser l'image
-      const optimizedBuffer = await optimizeImage(imageBuffer)
-
-      // Upload dans Storage
-      const storageUrl = await uploadToStorage(
-        optimizedBuffer,
-        series.code,
-        card.number,
-        card.language
+      const existingImages = new Set(
+        (storageFiles || [])
+          .filter(f => f.name.endsWith('.webp'))
+          .map(f => f.name.replace('.webp', ''))
       )
 
-      if (storageUrl) {
-        // Mettre à jour la carte
-        await updateCardImageUrl(card.id, storageUrl)
-        progress.successCount++
+      existingImagesByLang.set(lang, existingImages)
+    }
+
+    // Find missing cards
+    const missingCards = cards.filter(card => {
+      const langImages = existingImagesByLang.get(card.language)
+      if (!langImages) return true
+
+      const cardNumber = card.number.toString()
+      return !langImages.has(cardNumber)
+    })
+
+    if (missingCards.length > 0) {
+      logger.info(`${series.code}: ${missingCards.length}/${cards.length} cartes sans images`)
+
+      for (const card of missingCards) {
+        allMissingCards.push({
+          id: card.id,
+          number: card.number.toString(),
+          name: card.name,
+          language: card.language,
+          seriesId: series.id,
+          seriesCode: series.code,
+          tcgdexId: card.tcgdex_id
+        })
       }
-
-      progress.processedIds.push(card.id)
-
-      // Sauvegarder la progression régulièrement
-      if (processed % 50 === 0) {
-        saveProgress(progress)
-      }
-
-      await delay(CONFIG.delayBetweenCards)
-
-    } catch (error) {
-      progress.errorCount++
-      progress.processedIds.push(card.id)
-      console.log(`\n   ❌ Erreur: ${error instanceof Error ? error.message : 'Unknown'}`)
-
-      if (processed % 50 === 0) saveProgress(progress)
-      await delay(CONFIG.delayBetweenCards)
+    } else {
+      logger.success(`${series.code}: Toutes les ${cards.length} cartes ont des images ✓`)
     }
   }
 
-  // 7. Sauvegarder la progression finale
-  saveProgress(progress)
+  if (allMissingCards.length === 0) {
+    logger.success('\nToutes les cartes ont des images!')
+    process.exit(0)
+  }
 
-  // 8. Résumé
-  console.log('\n')
-  console.log('='.repeat(60))
-  console.log('RÉSUMÉ')
-  console.log('='.repeat(60))
-  console.log(`✅ Images téléchargées: ${progress.successCount}`)
-  console.log(`⚠️  Images non trouvées: ${progress.notFoundCount}`)
-  console.log(`❌ Erreurs: ${progress.errorCount}`)
-  console.log('')
-  console.log(`Progression sauvegardée dans: ${CONFIG.progressFile}`)
+  logger.section(`${allMissingCards.length} cartes à télécharger`)
 
-  // Nettoyer le fichier de progression si tout est terminé
-  if (progress.successCount + progress.notFoundCount + progress.errorCount === cards.length) {
-    console.log('')
-    console.log('✅ Toutes les cartes ont été traitées!')
-    // Optionnel: supprimer le fichier de progression
-    // fs.unlinkSync(CONFIG.progressFile)
+  // Check for existing progress
+  const existingProgress = loadProgress()
+  const processedCardIds = new Set(existingProgress?.processedCards || [])
+
+  // Filter out already processed cards
+  const cardsToProcess = allMissingCards.filter(c => !processedCardIds.has(c.id))
+
+  if (cardsToProcess.length < allMissingCards.length) {
+    logger.info(`${allMissingCards.length - cardsToProcess.length} cartes déjà traitées (reprise)`)
+  }
+
+  // Apply limit
+  const finalCardsToProcess = LIMIT ? cardsToProcess.slice(0, LIMIT) : cardsToProcess
+
+  logger.info(`${finalCardsToProcess.length} cartes à traiter`)
+
+  if (dryRun) {
+    // Group by series for display
+    const bySeries = new Map<string, MissingCard[]>()
+    for (const card of finalCardsToProcess) {
+      if (!bySeries.has(card.seriesCode)) {
+        bySeries.set(card.seriesCode, [])
+      }
+      bySeries.get(card.seriesCode)!.push(card)
+    }
+
+    for (const [seriesCode, cards] of bySeries) {
+      const byLang = new Map<string, number>()
+      for (const card of cards) {
+        byLang.set(card.language, (byLang.get(card.language) || 0) + 1)
+      }
+
+      console.log(`\n${seriesCode}: ${cards.length} cartes`)
+      for (const [lang, count] of byLang) {
+        console.log(`  ${lang}: ${count}`)
+      }
+    }
+
+    logger.info('\nMode DRY RUN - fin du script')
+    process.exit(0)
+  }
+
+  // Initialize progress
+  const progress: ProgressData = {
+    startedAt: existingProgress?.startedAt || new Date().toISOString(),
+    lastUpdated: new Date().toISOString(),
+    totalMissing: allMissingCards.length,
+    processed: existingProgress?.processed || 0,
+    success: existingProgress?.success || 0,
+    errors: existingProgress?.errors || 0,
+    notFound: existingProgress?.notFound || 0,
+    currentSeries: '',
+    processedCards: existingProgress?.processedCards || []
+  }
+
+  // 4. Process cards
+  logger.section('Téléchargement des images')
+
+  // Group cards by series for efficient processing
+  const cardsBySeries = new Map<string, MissingCard[]>()
+  for (const card of finalCardsToProcess) {
+    if (!cardsBySeries.has(card.seriesCode)) {
+      cardsBySeries.set(card.seriesCode, [])
+    }
+    cardsBySeries.get(card.seriesCode)!.push(card)
+  }
+
+  let totalProcessed = 0
+  let totalSuccess = 0
+  let totalErrors = 0
+  let totalNotFound = 0
+
+  try {
+    for (const [seriesCode, seriesCards] of cardsBySeries) {
+      logger.section(`Série ${seriesCode} - ${seriesCards.length} cartes`)
+      progress.currentSeries = seriesCode
+
+      // Process each card
+      for (const card of seriesCards) {
+        totalProcessed++
+
+        logger.processing(`[${totalProcessed}/${finalCardsToProcess.length}] ${seriesCode}/${card.number} (${card.language}): ${card.name}`)
+
+        try {
+          // If tcgdex_id is missing, try to fetch card info from API
+          let tcgdexId = card.tcgdexId
+          if (!tcgdexId) {
+            // Try to construct the ID: {setCode}-{cardNumber}
+            tcgdexId = `${seriesCode}-${card.number}`
+            logger.info(`  Tentative avec ID construit: ${tcgdexId}`)
+          }
+
+          // Download image from TCGdex
+          const imageBaseUrl = `${ASSETS_BASE}/${card.language}/` + tcgdexId.replace('-', '/')
+
+          // Try high quality WebP first
+          let imageBuffer: Buffer | null = null
+          let imageUrl = `${imageBaseUrl}/high.webp`
+
+          const webpResponse = await fetch(imageUrl)
+          if (webpResponse.ok) {
+            const arrayBuffer = await webpResponse.arrayBuffer()
+            imageBuffer = Buffer.from(arrayBuffer)
+          } else {
+            // Try PNG fallback
+            imageUrl = `${imageBaseUrl}/high.png`
+            const pngResponse = await fetch(imageUrl)
+            if (pngResponse.ok) {
+              const arrayBuffer = await pngResponse.arrayBuffer()
+              imageBuffer = Buffer.from(arrayBuffer)
+            } else {
+              logger.warn(`  Image non trouvée (404)`)
+              totalNotFound++
+              progress.notFound++
+              progress.processedCards.push(card.id)
+              saveProgress(progress)
+              await delay(DELAYS.betweenUploads)
+              continue
+            }
+          }
+
+          if (!imageBuffer) {
+            logger.warn(`  Échec téléchargement`)
+            totalErrors++
+            progress.errors++
+            progress.processedCards.push(card.id)
+            saveProgress(progress)
+            await delay(DELAYS.betweenUploads)
+            continue
+          }
+
+          // Optimize with Sharp
+          const optimizedImage = await sharp(imageBuffer)
+            .resize(480, 672, {
+              fit: 'contain',
+              background: { r: 0, g: 0, b: 0, alpha: 0 }
+            })
+            .webp({ quality: 85 })
+            .toBuffer()
+
+          // Upload to Supabase
+          const fileName = `${seriesCode}/${card.language}/${card.number}.webp`
+          const { error: uploadError } = await supabase.storage
+            .from('pokemon-cards')
+            .upload(fileName, optimizedImage, {
+              contentType: 'image/webp',
+              upsert: true
+            })
+
+          if (uploadError) {
+            logger.error(`  Échec upload: ${uploadError.message}`)
+            totalErrors++
+            progress.errors++
+            progress.processedCards.push(card.id)
+            saveProgress(progress)
+
+            if (!continueOnError) {
+              throw new Error('Upload failed')
+            }
+            await delay(DELAYS.betweenUploads)
+            continue
+          }
+
+          // Get public URL
+          const { data: publicUrlData } = supabase.storage
+            .from('pokemon-cards')
+            .getPublicUrl(fileName)
+
+          // Update database
+          const { error: updateError } = await supabase
+            .from('cards')
+            .update({ image_url: publicUrlData.publicUrl })
+            .eq('id', card.id)
+
+          if (updateError) {
+            logger.error(`  Échec mise à jour DB: ${updateError.message}`)
+            totalErrors++
+            progress.errors++
+          } else {
+            logger.success(`  ✓ OK`)
+            totalSuccess++
+            progress.success++
+          }
+
+          progress.processed++
+          progress.processedCards.push(card.id)
+          saveProgress(progress)
+
+          await delay(DELAYS.betweenUploads)
+
+        } catch (e: any) {
+          logger.error(`  Erreur: ${e.message}`)
+          totalErrors++
+          progress.errors++
+          progress.processedCards.push(card.id)
+          saveProgress(progress)
+
+          if (!continueOnError && e.message !== 'Upload failed') {
+            throw e
+          }
+        }
+      }
+    }
+
+  } catch (error: any) {
+    logger.error(`Erreur fatale: ${error.message}`)
+    console.error(error)
+    process.exit(1)
+  }
+
+  // Final summary
+  logger.section('Résumé final')
+  console.log(`Total traité: ${totalProcessed}`)
+  console.log(`Succès: ${totalSuccess}`)
+  console.log(`Non trouvées: ${totalNotFound}`)
+  console.log(`Erreurs: ${totalErrors}`)
+  console.log(`Taux de réussite: ${((totalSuccess / totalProcessed) * 100).toFixed(1)}%`)
+
+  if (totalSuccess > 0) {
+    logger.success(`\n${totalSuccess} images téléchargées avec succès!`)
+  }
+
+  // Clean up progress file if complete
+  if (totalProcessed === finalCardsToProcess.length && totalErrors === 0) {
+    fs.unlinkSync(PROGRESS_FILE)
+    logger.info('Fichier de progression supprimé')
   }
 }
 
-main().catch(console.error)
+main().catch(e => {
+  logger.error(`Erreur fatale: ${e.message}`)
+  console.error(e)
+  process.exit(1)
+})
