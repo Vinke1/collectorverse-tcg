@@ -291,18 +291,17 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     <div className="space-y-4">
       {/* Header + Filtres */}
       <div className="sticky top-20 z-40 bg-background/80 backdrop-blur-md py-3 -mx-3 px-3 sm:-mx-4 sm:px-4 lg:-mx-6 lg:px-6 border-b border-border/30">
-        {/* Conteneur centré aligné avec le header */}
-        <div className="max-w-7xl mx-auto">
-          {/* Header (breadcrumb avec nombre de cartes) */}
-          <div className="mb-3">
-            <SeriesDetailHeader
-              tcgSlug={tcgSlug}
-              seriesName={seriesName}
-              cardsCount={cardsCount}
-            />
-          </div>
+        {/* Header (breadcrumb avec nombre de cartes) */}
+        <div className="mb-3">
+          <SeriesDetailHeader
+            tcgSlug={tcgSlug}
+            seriesName={seriesName}
+            cardsCount={cardsCount}
+          />
+        </div>
 
-          {/* Filtres */}
+        {/* Filtres - pleine largeur */}
+        <div>
           <CardFiltersHorizontal
               tcgSlug={tcgSlug}
               searchName={searchName}

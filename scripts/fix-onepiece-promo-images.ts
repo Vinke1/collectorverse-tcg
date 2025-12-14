@@ -33,12 +33,12 @@ const LIMIT = limitArg ? parseInt(limitArg) : null
 
 const BASE_URL = 'https://www.opecards.fr'
 
-// Series IDs from opecards.fr (found via inspection)
+// Series IDs from opecards.fr (verified URLs)
 // Format: { seriesCode: { language: serieId } }
 const PROMO_SERIES_IDS: Record<string, Record<string, number>> = {
-  'PRB01': { 'FR': 434, 'EN': 435 },
-  'PRB02': { 'FR': 439, 'EN': 445 },
-  'STP': { 'FR': 99, 'EN': 283 },
+  'PRB01': { 'FR': 478, 'EN': 435 },
+  'PRB02': { 'FR': 745, 'EN': 744 },
+  'STP': { 'FR': 721, 'EN': 720 },
 }
 
 interface CardImageInfo {
