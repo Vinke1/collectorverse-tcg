@@ -10,6 +10,8 @@ import type { CollectionStatsByLanguage } from "@/app/series/[tcg]/page";
 import { LANGUAGE_FLAGS, LANGUAGE_ORDER } from "@/lib/constants/languages";
 
 // Composant pour gérer les erreurs d'image de série (format bannière)
+// Note: unoptimized=true car les images sont déjà optimisées (WebP) dans Supabase
+// et pour éviter les limites de quota Vercel Image Optimization
 function SeriesBannerImage({ src, alt, usecover, position }: { src: string; alt: string; usecover?: boolean; position?: 'center' | 'questDeep' | 'questPalace' | 'top40' }) {
   const [hasError, setHasError] = useState(false);
 
@@ -28,6 +30,7 @@ function SeriesBannerImage({ src, alt, usecover, position }: { src: string; alt:
       src={src}
       alt={alt}
       fill
+      unoptimized
       className={`${usecover ? 'object-cover' : 'object-contain'} ${positionClass} group-hover:scale-102 transition-transform duration-500`}
       sizes="(max-width: 768px) 100vw, 900px"
       onError={() => setHasError(true)}
