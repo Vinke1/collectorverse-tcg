@@ -74,9 +74,9 @@ export const ONEPIECE_SET_PROMPTS: OnePieceSetPrompt[] = [
   },
   {
     id: 'OP09',
-    name: 'The Four Emperors',
+    name: 'Emperors in the New World',
     type: 'booster',
-    prompt: createPrompt('The Four Emperors', 'Kaido in dragon form, Big Mom with homies, Shanks with Red Hair Pirates, Blackbeard with darkness powers, four corners of power converging, emperor red gold purple and black colors, ultimate power gathering atmosphere')
+    prompt: createPrompt('Emperors in the New World', 'Kaido in dragon form, Big Mom with homies, Shanks with Red Hair Pirates, Blackbeard with darkness powers, four corners of power converging, emperor red gold purple and black colors, ultimate power gathering atmosphere')
   },
   {
     id: 'OP10',

@@ -31,7 +31,7 @@ export const ONEPIECE_BOOSTERS: OnePieceSeriesConfig[] = [
   { code: 'OP06', name: 'Wings of the Captain', serieId: 195, type: 'booster', releaseDate: '2023-11-24', cardCount: 131 },
   { code: 'OP07', name: '500 Years in the Future', serieId: 235, type: 'booster', releaseDate: '2024-02-23', cardCount: 141 },
   { code: 'OP08', name: 'Two Legends', serieId: 271, type: 'booster', releaseDate: '2024-05-24', cardCount: 142 },
-  { code: 'OP09', name: 'The Four Emperors', serieId: 305, type: 'booster', releaseDate: '2024-08-30', cardCount: 146 },
+  { code: 'OP09', name: 'Emperors in the New World', serieId: 305, type: 'booster', releaseDate: '2024-08-30', cardCount: 146 },
   { code: 'OP10', name: 'Royal Blood', nameFr: 'Sang Royal', serieId: 330, type: 'booster', releaseDate: '2024-11-29', cardCount: 150 },
   { code: 'OP11', name: 'Endless Dream', nameFr: 'Reve Sans Fin', serieId: 349, type: 'booster', releaseDate: '2025-02-28', cardCount: 155 },
   { code: 'OP12', name: 'Master\'s Legacy', nameFr: 'L\'Heritage du Maitre', serieId: 377, type: 'booster', releaseDate: '2025-05-30', cardCount: 155 },
