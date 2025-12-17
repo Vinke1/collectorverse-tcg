@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import { SeriesGrid } from "@/components/series/series-grid";
+import { SeriesTimelineLayout } from "@/components/series/series-timeline-layout";
 import { SeriesPageHeader } from "@/components/series/series-page-header";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -268,7 +268,7 @@ export default async function TCGSeriesPage({ params }: PageProps) {
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <SeriesPageHeader tcgName={tcgName} />
 
-      <SeriesGrid
+      <SeriesTimelineLayout
         series={seriesWithCounts}
         tcgSlug={tcg}
         isLoggedIn={!!user}
