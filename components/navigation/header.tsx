@@ -3,12 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, LogOut, User as UserIcon } from "lucide-react";
+import { Menu, LogOut } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { type User } from "@supabase/supabase-js";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,13 +20,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { signOut } from "@/app/login/actions";
 import { LoginModal } from "@/components/auth/login-modal";
 import { useLanguage } from "@/components/providers/language-provider";
+import { useAuth } from "@/components/providers/auth-provider";
 import { SUPPORTED_LANGUAGES } from "@/lib/constants/app-config";
 
-interface HeaderProps {
-  user?: User | null;
-}
-
-export function Header({ user }: HeaderProps) {
+export function Header() {
+  const { user, loading } = useAuth();
   const pathname = usePathname();
   const { language, setLanguage, t } = useLanguage();
 

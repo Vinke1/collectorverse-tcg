@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LanguageProvider } from "@/components/providers/language-provider";
+import { AuthProvider } from "@/components/providers/auth-provider";
 import { Header } from "@/components/navigation/header";
 import { Footer } from "@/components/navigation/footer";
 import { createClient } from "@/lib/supabase/server";
@@ -75,14 +76,16 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <LanguageProvider>
-            <div className="flex flex-col min-h-screen">
-              <Header user={user} />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-            <Toaster position="bottom-right" theme="system" />
-          </LanguageProvider>
+          <AuthProvider initialUser={user}>
+            <LanguageProvider>
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </div>
+              <Toaster position="bottom-right" theme="system" />
+            </LanguageProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
