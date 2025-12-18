@@ -25,6 +25,11 @@ npm run lint                       # Run ESLint
 npm run seed:lorcana               # Scrape and seed single Lorcana series
 npm run seed:all-lorcana           # Scrape and seed all Lorcana series
 
+# Pokemon McDonald's Collections
+npx tsx scripts/seed-pokemon-mcdonalds.ts --dry-run    # Preview McDonald's collections
+npx tsx scripts/seed-pokemon-mcdonalds.ts              # Seed all McDonald's sets (~136 cards)
+npx tsx scripts/seed-pokemon-mcdonalds.ts --set=mcd19  # Seed specific McDonald's set
+
 # Image Generation (Higgsfield AI)
 npx tsx scripts/generate-pokemon-images.ts    # Generate Pokemon series banners
 npx tsx scripts/generate-onepiece-images.ts   # Generate One Piece series banners
@@ -388,6 +393,94 @@ The download script saves progress to `scripts/logs/starwars-download-progress.j
 1. **"URL non trouvée"**: Check if the URL pattern regex matches the series format
 2. **"4 URLs trouvées" when expecting more**: Pagination might not be working - verify click-based navigation
 3. **Image extraction fails**: Check JSON-LD script tag on card page, fallback to og:image meta tag
+
+---
+
+## Pokemon - McDonald's Collections
+
+### Overview
+
+Pokemon McDonald's promotional cards are seeded from the pokemontcg.io API (https://api.pokemontcg.io/v2). The API provides comprehensive data for 10 McDonald's sets (~136 cards total). The script implements exponential backoff retry logic to handle potential API slowness and rate limiting.
+
+### Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/seed-pokemon-mcdonalds.ts` | Seed all McDonald's collections from pokemontcg.io API |
+
+### Configuration
+
+- **API**: https://api.pokemontcg.io/v2
+- **Storage bucket**: `pokemon-cards`
+- **Language**: en (McDonald's cards are English only)
+- **Sets**: mcd11, mcd12, mcd14, mcd15, mcd16, mcd17, mcd18, mcd19, mcd21, mcd22 (10 sets)
+- **Retry logic**: 5 retries with exponential backoff (2s to 30s max delay)
+
+### Available Sets
+
+```
+mcd11 - McDonald's Collection 2011
+mcd12 - McDonald's Collection 2012
+mcd14 - McDonald's Collection 2014
+mcd15 - McDonald's Collection 2015
+mcd16 - McDonald's Collection 2016
+mcd17 - McDonald's Collection 2017
+mcd18 - McDonald's Collection 2018
+mcd19 - McDonald's Collection 2019
+mcd21 - McDonald's Collection 2021
+mcd22 - McDonald's Collection 2022
+```
+
+### Usage
+
+```bash
+# Preview all sets (dry-run)
+npx tsx scripts/seed-pokemon-mcdonalds.ts --dry-run
+
+# Seed all McDonald's sets (~136 cards)
+npx tsx scripts/seed-pokemon-mcdonalds.ts
+
+# Seed specific set only
+npx tsx scripts/seed-pokemon-mcdonalds.ts --set=mcd19
+
+# Test with limited cards
+npx tsx scripts/seed-pokemon-mcdonalds.ts --limit=10 --dry-run
+```
+
+### How It Works
+
+1. **Fetch sets**: Query API for all McDonald's sets using `q=name:mcdonald*`
+2. **Filter sets**: Only process known McDonald's set codes (mcd11-mcd22)
+3. **Create series**: Upsert each set into `series` table with metadata
+4. **Fetch cards**: For each set, query `GET /v2/cards?q=set.id:{setId}`
+5. **Download images**: Download card images (large or small) from API response
+6. **Optimize images**: Sharp optimization (480x672 WebP 85%)
+7. **Upload to storage**: Store in `pokemon-cards/{setCode}/en/{cardNumber}.webp`
+8. **Update database**: Insert/update card in `cards` table with all attributes
+
+### Retry & Rate Limiting
+
+The script implements exponential backoff for API requests:
+- **Initial delay**: 2 seconds
+- **Max delay**: 30 seconds
+- **Max retries**: 5 attempts
+- **Rate limit handling**: Detects HTTP 429 and automatically retries with backoff
+
+### Data Structure
+
+Each card includes:
+- Basic info: name, number, rarity, artist
+- Pokemon stats: HP, types, subtypes
+- Game mechanics: attacks, abilities, weaknesses, resistances, retreat cost
+- Metadata: regulation mark, Pokedex numbers, evolvesFrom
+- Images: Optimized WebP stored in Supabase Storage
+
+### Troubleshooting
+
+1. **"API timeout"**: Script will automatically retry with exponential backoff
+2. **"Rate limited (429)"**: Script detects this and waits before retrying
+3. **"Set not found"**: Verify set code exists in `MCDONALDS_SETS` array
+4. **"Failed to fetch cards"**: Check internet connection, API may be temporarily down
 
 ---
 

@@ -1,7 +1,7 @@
 /**
  * Script de seeding pour Pokémon TCG - Radiant Collection
  *
- * La Radiant Collection fait partie de la série Legendary Treasures (XY era)
+ * La Radiant Collection fait partie de la série BW (Black & White era)
  * 25 cartes réimprimées avec artwork holographique spécial
  * Numérotées RC1-RC25
  *
@@ -20,11 +20,11 @@ import sharp from 'sharp'
 // CONFIGURATION
 // ============================================
 
-const POKEMONTCG_API_BASE = 'https://api.pokemontcg.io/v2'
-const API_KEY = process.env.POKEMONTCG_API_KEY || '' // Optional but recommended
+const API_BASE = 'https://api.tcgdex.net/v2'
+const ASSETS_BASE = 'https://assets.tcgdex.net'
 
 // Set code for Radiant Collection
-const SET_CODE = 'rc1'
+const SET_CODE = 'rc'
 const SET_NAME = 'Radiant Collection'
 const EXPECTED_CARDS = 25
 
@@ -47,28 +47,49 @@ const IMAGE_CONFIG = {
 // TYPES
 // ============================================
 
-interface PokemonTCGCard {
+interface TCGdexSet {
   id: string
   name: string
-  supertype: string
-  subtypes?: string[]
-  level?: string
-  hp?: string
+  logo?: string
+  symbol?: string
+  releaseDate?: string
+  cardCount?: {
+    official: number
+    total: number
+  }
+  cards?: TCGdexCardBrief[]
+}
+
+interface TCGdexCardBrief {
+  id: string
+  localId: string
+  name: string
+  image?: string
+}
+
+interface TCGdexCard {
+  id: string
+  localId: string
+  name: string
+  category?: string
+  rarity?: string
+  illustrator?: string
+  image?: string
+  hp?: number
   types?: string[]
-  evolvesFrom?: string
-  evolvesTo?: string[]
-  rules?: string[]
+  stage?: string
+  evolveFrom?: string
+  dexId?: number[]
   attacks?: Array<{
+    cost?: string[]
     name: string
-    cost: string[]
-    convertedEnergyCost: number
-    damage: string
-    text: string
+    effect?: string
+    damage?: number | string
   }>
   abilities?: Array<{
-    name: string
-    text: string
     type: string
+    name: string
+    effect: string
   }>
   weaknesses?: Array<{
     type: string
@@ -78,58 +99,32 @@ interface PokemonTCGCard {
     type: string
     value: string
   }>
-  retreatCost?: string[]
-  convertedRetreatCost?: number
-  set: {
+  retreat?: number
+  regulationMark?: string
+  description?: string
+  effect?: string
+  trainerType?: string
+  energyType?: string
+  variants?: {
+    firstEdition?: boolean
+    holo?: boolean
+    normal?: boolean
+    reverse?: boolean
+  }
+  legal?: {
+    standard?: boolean
+    expanded?: boolean
+  }
+  set?: {
     id: string
     name: string
-    series: string
-    printedTotal: number
-    total: number
-    legalities?: {
-      unlimited?: string
-      expanded?: string
-    }
-    ptcgoCode?: string
-    releaseDate: string
-    updatedAt: string
-    images: {
-      symbol: string
-      logo: string
+    logo?: string
+    symbol?: string
+    cardCount?: {
+      official: number
+      total: number
     }
   }
-  number: string
-  artist?: string
-  rarity: string
-  flavorText?: string
-  nationalPokedexNumbers?: number[]
-  legalities?: {
-    unlimited?: string
-    expanded?: string
-  }
-  regulationMark?: string
-  images: {
-    small: string
-    large: string
-  }
-  tcgplayer?: {
-    url: string
-    updatedAt: string
-    prices?: any
-  }
-  cardmarket?: {
-    url: string
-    updatedAt: string
-    prices?: any
-  }
-}
-
-interface PokemonTCGResponse {
-  data: PokemonTCGCard[]
-  page: number
-  pageSize: number
-  count: number
-  totalCount: number
 }
 
 interface SeedOptions {

@@ -179,7 +179,8 @@
       "WebFetch(domain:www.pokewallet.io)",
       "WebFetch(domain:limitlesstcg.com)",
       "WebFetch(domain:bulbapedia.bulbagarden.net)",
-      "WebFetch(domain:www.pokellector.com)"
+      "WebFetch(domain:www.pokellector.com)",
+      "WebFetch(domain:pokemontcg.io)"
     ],
     "deny": [],
     "ask": []

@@ -283,6 +283,7 @@ async function upsertSet(
     tcg_game_id: tcgGameId,
     code: set.id,
     name: set.name,
+    pokemon_series_id: null, // McDonald's sets don't belong to a specific series
     release_date: set.releaseDate || null,
     image_url: set.images?.logo || null,
     symbol_url: set.images?.symbol || null,

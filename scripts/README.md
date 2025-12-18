@@ -27,6 +27,7 @@ scripts/
 | Script | Description | Usage |
 |--------|-------------|-------|
 | `seed-pokemon.ts` | Seed données depuis TCGdex API | `npx tsx scripts/seed-pokemon.ts --lang=en` |
+| `seed-pokemon-mcdonalds.ts` | Seed collections McDonald's depuis pokemontcg.io | `npx tsx scripts/seed-pokemon-mcdonalds.ts --dry-run` |
 | `analyze-pokemon-images.ts` | Analyser images manquantes | `npx tsx scripts/analyze-pokemon-images.ts` |
 | `download-missing-pokemon-images.ts` | Télécharger images manquantes | `npx tsx scripts/download-missing-pokemon-images.ts --limit=50` |
 | `generate-pokemon-images.ts` | Générer bannières avec IA | `npx tsx scripts/generate-pokemon-images.ts --dry-run` |
@@ -35,14 +36,19 @@ scripts/
 **Options communes :**
 - `--dry-run` : Prévisualiser sans modifications
 - `--series=CODE` : Filtrer une série spécifique
+- `--set=CODE` : Filtrer un set spécifique (McDonald's uniquement)
 - `--limit=N` : Limiter à N cartes
 - `--continue-on-error` : Continuer malgré les erreurs
 
 **Données :**
-- API : https://api.tcgdex.net/v2
+- API TCGdex : https://api.tcgdex.net/v2
+- API PokemonTCG.io : https://api.pokemontcg.io/v2
 - Assets : https://assets.tcgdex.net
 - Bucket : `pokemon-cards`
 - ID carte : `cards.tcgdex_id`
+
+**Collections McDonald's disponibles :**
+- mcd11, mcd12, mcd14, mcd15, mcd16, mcd17, mcd18, mcd19, mcd21, mcd22 (~136 cartes total)
 
 ### Star Wars Unlimited
 
