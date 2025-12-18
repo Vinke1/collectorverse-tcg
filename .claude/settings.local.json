@@ -168,7 +168,12 @@
       "WebFetch(domain:localhost)",
       "Bash(nslookup:*)",
       "WebFetch(domain:www.collectorverse.io)",
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Bash(while read hash msg)",
+      "Bash(do git show --stat $hash)",
+      "Bash(echo:*)",
+      "Bash(git log:*)",
+      "WebFetch(domain:collectorverse.io)"
     ],
     "deny": [],
     "ask": []
