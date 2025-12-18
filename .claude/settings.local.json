@@ -173,7 +173,8 @@
       "Bash(do git show --stat $hash)",
       "Bash(echo:*)",
       "Bash(git log:*)",
-      "WebFetch(domain:collectorverse.io)"
+      "WebFetch(domain:collectorverse.io)",
+      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\check-empty-pokemon-series.ts\")"
     ],
     "deny": [],
     "ask": []
