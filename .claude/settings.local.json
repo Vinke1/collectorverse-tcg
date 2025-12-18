@@ -166,7 +166,8 @@
       "WebFetch(domain:collectionverse.io)",
       "WebFetch(domain:collector-verse.vercel.app)",
       "WebFetch(domain:localhost)",
-      "Bash(nslookup:*)"
+      "Bash(nslookup:*)",
+      "WebFetch(domain:www.collectorverse.io)"
     ],
     "deny": [],
     "ask": []
