@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Désactiver l'optimisation Vercel pour éviter le quota (erreur 402)
+    // Les images Supabase sont déjà optimisées en WebP
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
