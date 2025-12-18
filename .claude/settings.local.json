@@ -162,7 +162,11 @@
       "Bash(git stash pop:*)",
       "WebFetch(domain:supabase.com)",
       "WebFetch(domain:vercel.com)",
-      "Bash(del \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\public\\favicon.ico\")"
+      "Bash(del \"C:\\Users\\vince\\Desktop\\Dev\\CollectorVerse TCG\\public\\favicon.ico\")",
+      "WebFetch(domain:collectionverse.io)",
+      "WebFetch(domain:collector-verse.vercel.app)",
+      "WebFetch(domain:localhost)",
+      "Bash(nslookup:*)"
     ],
     "deny": [],
     "ask": []
