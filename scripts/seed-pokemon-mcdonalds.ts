@@ -1,5 +1,5 @@
 /**
- * Script de seeding pour les collections McDonald's Pokemon via l'API pokemontcg.io
+ * Script de seeding pour les collections McDonald's Pokemon via l'API TCGdex
  *
  * Usage:
  *   npx tsx scripts/seed-pokemon-mcdonalds.ts                  # Seed toutes les collections McDonald's
@@ -17,13 +17,30 @@ import sharp from 'sharp'
 // CONFIGURATION
 // ============================================
 
-const API_BASE = 'https://api.pokemontcg.io/v2'
+const API_BASE = 'https://api.tcgdex.net/v2/en'
+// Les images McDonald's ne sont pas disponibles sur TCGdex, on utilise pokemontcg.io
+const IMAGES_BASE = 'https://images.pokemontcg.io'
 
-// Collections McDonald's disponibles (10 sets, ~136 cartes total)
-const MCDONALDS_SETS = [
-  'mcd11', 'mcd12', 'mcd14', 'mcd15', 'mcd16',
-  'mcd17', 'mcd18', 'mcd19', 'mcd21', 'mcd22'
-]
+// Mapping TCGdex set IDs vers nos codes (nomenclature existante)
+const TCGDEX_TO_MCD_MAP: Record<string, string> = {
+  '2011bw': 'mcd11',
+  '2012bw': 'mcd12',
+  '2014xy': 'mcd14',
+  '2015xy': 'mcd15',
+  '2016xy': 'mcd16',
+  '2017sm': 'mcd17',
+  '2018sm': 'mcd18',
+  '2019sm': 'mcd19',
+  '2021swsh': 'mcd21',
+}
+
+// Mapping inverse pour la recherche par code
+const MCD_TO_TCGDEX_MAP: Record<string, string> = Object.fromEntries(
+  Object.entries(TCGDEX_TO_MCD_MAP).map(([k, v]) => [v, k])
+)
+
+// Collections McDonald's disponibles (9 sets, ~121 cartes total)
+const MCDONALDS_SETS = Object.values(TCGDEX_TO_MCD_MAP)
 
 // Délais entre les requêtes (ms)
 const API_DELAYS = {
@@ -49,72 +66,73 @@ const RETRY_CONFIG = {
 }
 
 // ============================================
-// TYPES
+// TYPES (TCGdex)
 // ============================================
 
-interface PokemonTCGSet {
+interface TCGdexSet {
   id: string
   name: string
-  series: string
-  printedTotal: number
-  total: number
-  releaseDate: string
-  images: {
-    symbol: string
-    logo: string
+  logo?: string
+  symbol?: string
+  cardCount: {
+    total: number
+    official: number
+  }
+  releaseDate?: string
+  serie?: {
+    id: string
+    name: string
   }
 }
 
-interface PokemonTCGCard {
-  id: string
-  name: string
-  number: string
-  rarity?: string
-  images?: {
-    small?: string
-    large?: string
-  }
-  hp?: string
-  types?: string[]
-  subtypes?: string[]
-  supertype?: string
-  artist?: string
-  set: {
+interface TCGdexSetDetail extends TCGdexSet {
+  cards: Array<{
     id: string
+    localId: string
     name: string
-    total: number
-  }
+  }>
+}
+
+interface TCGdexCard {
+  id: string
+  localId: string
+  name: string
+  category?: string
+  illustrator?: string
+  rarity?: string
+  hp?: number
+  types?: string[]
+  stage?: string
+  description?: string
   attacks?: Array<{
     name: string
-    cost: string[]
-    damage: string
-    text: string
+    cost?: string[]
+    damage?: string
+    effect?: string
   }>
   abilities?: Array<{
     name: string
-    text: string
-    type: string
+    effect?: string
+    type?: string
   }>
   weaknesses?: Array<{
     type: string
-    value: string
+    value?: string
   }>
   resistances?: Array<{
     type: string
-    value: string
+    value?: string
   }>
-  retreatCost?: string[]
-  nationalPokedexNumbers?: number[]
-  evolvesFrom?: string
+  retreat?: number
   regulationMark?: string
-}
-
-interface SetsResponse {
-  data: PokemonTCGSet[]
-}
-
-interface CardsResponse {
-  data: PokemonTCGCard[]
+  set: {
+    id: string
+    name: string
+    cardCount?: {
+      total: number
+      official: number
+    }
+  }
 }
 
 interface SeedOptions {
@@ -179,45 +197,63 @@ async function fetchWithRetry<T>(
   return null
 }
 
-async function fetchMcDonaldsSets(): Promise<PokemonTCGSet[]> {
-  logger.processing('Fetching McDonald\'s sets from API...')
-  const url = `${API_BASE}/sets?q=name:mcdonald*`
-  const response = await fetchWithRetry<SetsResponse>(url)
+async function fetchMcDonaldsSets(): Promise<Array<TCGdexSet & { mcdCode: string }>> {
+  logger.processing('Fetching McDonald\'s sets from TCGdex API...')
+  const url = `${API_BASE}/sets`
+  const response = await fetchWithRetry<TCGdexSet[]>(url)
 
-  if (!response?.data) {
-    logger.error('Failed to fetch McDonald\'s sets')
+  if (!response) {
+    logger.error('Failed to fetch sets from TCGdex')
     return []
   }
 
-  // Filter to only include known McDonald's sets
-  const sets = response.data.filter(set => MCDONALDS_SETS.includes(set.id))
+  // Filter to only include McDonald's sets and add our mcdCode
+  const sets = response
+    .filter(set => TCGDEX_TO_MCD_MAP[set.id])
+    .map(set => ({
+      ...set,
+      mcdCode: TCGDEX_TO_MCD_MAP[set.id]
+    }))
+
   logger.success(`Found ${sets.length} McDonald's sets`)
   return sets
 }
 
-async function fetchSetCards(setId: string): Promise<PokemonTCGCard[]> {
-  logger.processing(`Fetching cards for set ${setId}...`)
-  const url = `${API_BASE}/cards?q=set.id:${setId}`
-  const response = await fetchWithRetry<CardsResponse>(url)
+async function fetchSetDetail(tcgdexSetId: string): Promise<TCGdexSetDetail | null> {
+  logger.processing(`Fetching set detail for ${tcgdexSetId}...`)
+  const url = `${API_BASE}/sets/${tcgdexSetId}`
+  return await fetchWithRetry<TCGdexSetDetail>(url)
+}
 
-  if (!response?.data) {
-    logger.error(`Failed to fetch cards for set ${setId}`)
-    return []
-  }
-
-  logger.info(`  Found ${response.data.length} cards`)
-  return response.data
+async function fetchCard(cardId: string): Promise<TCGdexCard | null> {
+  const url = `${API_BASE}/cards/${cardId}`
+  return await fetchWithRetry<TCGdexCard>(url)
 }
 
 // ============================================
 // IMAGE HELPERS
 // ============================================
 
+function getCardImageUrl(mcdCode: string, cardLocalId: string): string {
+  // pokemontcg.io image URL format: https://images.pokemontcg.io/{setId}/{cardNumber}_hires.png
+  // Les images McDonald's ne sont pas disponibles sur TCGdex, on utilise pokemontcg.io
+  return `${IMAGES_BASE}/${mcdCode}/${cardLocalId}_hires.png`
+}
+
 async function downloadAndOptimizeImage(imageUrl: string): Promise<Buffer | null> {
   try {
-    const response = await fetch(imageUrl)
-    if (!response.ok) {
-      logger.warn(`Failed to download image: ${imageUrl}`)
+    let response = await fetch(imageUrl)
+
+    // Fallback: essayer l'image normale si la haute résolution n'existe pas
+    if (!response.ok && imageUrl.includes('_hires.png')) {
+      const normalUrl = imageUrl.replace('_hires.png', '.png')
+      response = await fetch(normalUrl)
+      if (!response.ok) {
+        logger.warn(`Failed to download image (${response.status}): ${normalUrl}`)
+        return null
+      }
+    } else if (!response.ok) {
+      logger.warn(`Failed to download image (${response.status}): ${imageUrl}`)
       return null
     }
 
@@ -269,28 +305,31 @@ async function uploadCardImage(
 async function upsertSet(
   supabase: ReturnType<typeof createAdminClient>,
   tcgGameId: string,
-  set: PokemonTCGSet
+  set: TCGdexSet & { mcdCode: string }
 ): Promise<string | null> {
+  // Utiliser notre code mcd (nomenclature existante)
+  const seriesCode = set.mcdCode
+
   // Check if series already exists
   const { data: existing } = await supabase
     .from('series')
     .select('id')
     .eq('tcg_game_id', tcgGameId)
-    .eq('code', set.id)
+    .eq('code', seriesCode)
     .single()
 
   const seriesData = {
     tcg_game_id: tcgGameId,
-    code: set.id,
+    code: seriesCode,
     name: set.name,
     pokemon_series_id: null, // McDonald's sets don't belong to a specific series
     release_date: set.releaseDate || null,
-    image_url: set.images?.logo || null,
-    symbol_url: set.images?.symbol || null,
-    official_card_count: set.printedTotal || null,
-    total_card_count: set.total || null,
-    max_set_base: set.printedTotal || set.total || 0,
-    master_set: set.total || null,
+    image_url: set.logo || null,
+    symbol_url: set.symbol || null,
+    official_card_count: set.cardCount.official || null,
+    total_card_count: set.cardCount.total || null,
+    max_set_base: set.cardCount.official || set.cardCount.total || 0,
+    master_set: set.cardCount.total || null,
   }
 
   if (existing?.id) {
@@ -301,10 +340,10 @@ async function upsertSet(
       .eq('id', existing.id)
 
     if (error) {
-      logger.error(`Failed to update set ${set.id}: ${error.message}`)
+      logger.error(`Failed to update set ${seriesCode}: ${error.message}`)
       return null
     }
-    logger.info(`  Updated existing series: ${set.name}`)
+    logger.info(`  Updated existing series: ${set.name} (${seriesCode})`)
     return existing.id
   } else {
     // Insert new series
@@ -315,10 +354,10 @@ async function upsertSet(
       .single()
 
     if (error) {
-      logger.error(`Failed to insert set ${set.id}: ${error.message}`)
+      logger.error(`Failed to insert set ${seriesCode}: ${error.message}`)
       return null
     }
-    logger.success(`  Created new series: ${set.name}`)
+    logger.success(`  Created new series: ${set.name} (${seriesCode})`)
     return data?.id || null
   }
 }
@@ -326,38 +365,45 @@ async function upsertSet(
 async function upsertCard(
   supabase: ReturnType<typeof createAdminClient>,
   seriesId: string,
-  card: PokemonTCGCard,
+  card: TCGdexCard,
   imageUrl?: string
 ): Promise<string | null> {
   // Normaliser la rareté
   const rarityCode = normalizeRarity(card.rarity)
 
-  // Construire les attributs JSONB
+  // Construire les attributs JSONB (format TCGdex)
   const attributes = {
     hp: card.hp || null,
     types: card.types || [],
-    subtypes: card.subtypes || [],
-    supertype: card.supertype || null,
-    attacks: card.attacks || [],
-    abilities: card.abilities || [],
+    stage: card.stage || null,
+    description: card.description || null,
+    attacks: card.attacks?.map(a => ({
+      name: a.name,
+      cost: a.cost || [],
+      damage: a.damage || '',
+      text: a.effect || '',
+    })) || [],
+    abilities: card.abilities?.map(a => ({
+      name: a.name,
+      text: a.effect || '',
+      type: a.type || '',
+    })) || [],
     weaknesses: card.weaknesses || [],
     resistances: card.resistances || [],
-    retreatCost: card.retreatCost || [],
-    nationalPokedexNumbers: card.nationalPokedexNumbers || [],
-    evolvesFrom: card.evolvesFrom || null,
+    retreatCost: card.retreat ? Array(card.retreat).fill('Colorless') : [],
     regulationMark: card.regulationMark || null,
   }
 
   const cardData = {
     series_id: seriesId,
-    number: card.number,
+    number: card.localId,
     language: 'en', // McDonald's cards are English only
     name: card.name,
     rarity: rarityCode,
-    image_url: imageUrl || card.images?.large || card.images?.small || null,
-    category: normalizeCategory(card.supertype),
-    illustrator: card.artist || null,
-    hp: card.hp ? parseInt(card.hp) : null,
+    image_url: imageUrl || null,
+    category: normalizeCategory(card.category),
+    illustrator: card.illustrator || null,
+    hp: card.hp || null,
     regulation_mark: card.regulationMark || null,
     attributes,
   }
@@ -367,7 +413,7 @@ async function upsertCard(
     .from('cards')
     .select('id')
     .eq('series_id', seriesId)
-    .eq('number', card.number)
+    .eq('number', card.localId)
     .eq('language', 'en')
     .single()
 
@@ -444,10 +490,10 @@ function normalizeCategory(category?: string): string {
 async function seedSet(
   supabase: ReturnType<typeof createAdminClient>,
   tcgGameId: string,
-  set: PokemonTCGSet,
+  set: TCGdexSet & { mcdCode: string },
   options: SeedOptions
 ): Promise<boolean> {
-  logger.section(`Processing set: ${set.id} - ${set.name}`)
+  logger.section(`Processing set: ${set.mcdCode} - ${set.name}`)
 
   if (options.dryRun) {
     logger.info('DRY RUN - No changes will be made')
@@ -458,30 +504,30 @@ async function seedSet(
   if (!options.dryRun) {
     seriesId = await upsertSet(supabase, tcgGameId, set)
     if (!seriesId) {
-      logger.error(`Failed to create series for set ${set.id}`)
+      logger.error(`Failed to create series for set ${set.mcdCode}`)
       return false
     }
   } else {
-    logger.info(`Would create/update series: ${set.name}`)
+    logger.info(`Would create/update series: ${set.name} (${set.mcdCode})`)
     seriesId = 'dry-run-series-id' // Dummy ID for dry run
   }
 
-  // Récupérer les cartes du set
-  const cards = await fetchSetCards(set.id)
-  if (cards.length === 0) {
+  // Récupérer le détail du set avec la liste des cartes
+  const setDetail = await fetchSetDetail(set.id)
+  if (!setDetail?.cards || setDetail.cards.length === 0) {
     logger.warn(`No cards found for set ${set.id}`)
     return false
   }
 
   // Appliquer la limite si spécifiée
-  const cardsToProcess = options.limit ? cards.slice(0, options.limit) : cards
-  logger.info(`Processing ${cardsToProcess.length} cards (total: ${cards.length})`)
+  const cardsToProcess = options.limit ? setDetail.cards.slice(0, options.limit) : setDetail.cards
+  logger.info(`Processing ${cardsToProcess.length} cards (total: ${setDetail.cards.length})`)
 
   let successCount = 0
   let errorCount = 0
 
   for (let i = 0; i < cardsToProcess.length; i++) {
-    const card = cardsToProcess[i]
+    const cardRef = cardsToProcess[i]
 
     // Afficher la progression
     if (i % 5 === 0 || i === cardsToProcess.length - 1) {
@@ -489,26 +535,33 @@ async function seedSet(
     }
 
     if (options.dryRun) {
-      logger.info(`  Would process card: ${card.number} - ${card.name}`)
+      logger.info(`  Would process card: ${cardRef.localId} - ${cardRef.name}`)
       successCount++
       await delay(100)
       continue
     }
 
-    // Télécharger et optimiser l'image
+    // Récupérer les détails de la carte
+    const card = await fetchCard(cardRef.id)
+    if (!card) {
+      logger.warn(`  Failed to fetch card details: ${cardRef.id}`)
+      errorCount++
+      continue
+    }
+
+    // Télécharger et optimiser l'image (depuis pokemontcg.io car pas dispo sur TCGdex)
     let uploadedImageUrl: string | undefined
-    const imageSource = card.images?.large || card.images?.small
-    if (imageSource) {
-      const imageBuffer = await downloadAndOptimizeImage(imageSource)
-      if (imageBuffer) {
-        uploadedImageUrl = await uploadCardImage(
-          supabase,
-          imageBuffer,
-          set.id,
-          card.number
-        ) || undefined
-        await delay(API_DELAYS.betweenUploads)
-      }
+    const imageSource = getCardImageUrl(set.mcdCode, card.localId)
+    const imageBuffer = await downloadAndOptimizeImage(imageSource)
+    if (imageBuffer) {
+      // Utiliser mcdCode pour le storage (nomenclature existante)
+      uploadedImageUrl = await uploadCardImage(
+        supabase,
+        imageBuffer,
+        set.mcdCode,
+        card.localId
+      ) || undefined
+      await delay(API_DELAYS.betweenUploads)
     }
 
     // Insérer la carte
@@ -542,7 +595,7 @@ async function main() {
 
   console.log('')
   logger.section('═══════════════════════════════════════════════════════════')
-  logger.section('    POKEMON MCDONALD\'S SEEDING - pokemontcg.io API')
+  logger.section('    POKEMON MCDONALD\'S SEEDING - TCGdex API')
   logger.section('═══════════════════════════════════════════════════════════')
   console.log('')
 
@@ -578,23 +631,29 @@ async function main() {
     process.exit(1)
   }
 
-  // Filter sets if specific set requested
+  // Filter sets if specific set requested (accept both mcdXX and tcgdex format)
   let setsToProcess = sets
   if (options.specificSet) {
-    setsToProcess = sets.filter(s => s.id === options.specificSet)
+    // Convertir tcgdex ID en mcd code si nécessaire
+    const targetCode = options.specificSet
+    setsToProcess = sets.filter(s =>
+      s.mcdCode === targetCode ||
+      s.id === targetCode ||
+      s.id === MCD_TO_TCGDEX_MAP[targetCode]
+    )
     if (setsToProcess.length === 0) {
       logger.error(`Set ${options.specificSet} not found`)
       logger.info('Available sets:')
-      sets.forEach(s => logger.info(`  - ${s.id}: ${s.name}`))
+      sets.forEach(s => logger.info(`  - ${s.mcdCode}: ${s.name} (tcgdex: ${s.id})`))
       process.exit(1)
     }
   }
 
-  // Sort sets by ID
-  setsToProcess.sort((a, b) => a.id.localeCompare(b.id))
+  // Sort sets by mcdCode
+  setsToProcess.sort((a, b) => a.mcdCode.localeCompare(b.mcdCode))
 
   logger.info(`Sets to process: ${setsToProcess.length}`)
-  setsToProcess.forEach(s => logger.info(`  - ${s.id}: ${s.name} (${s.total} cards)`))
+  setsToProcess.forEach(s => logger.info(`  - ${s.mcdCode}: ${s.name} (${s.cardCount.total} cards)`))
   console.log('')
 
   // Process each set
@@ -604,7 +663,7 @@ async function main() {
   for (let i = 0; i < setsToProcess.length; i++) {
     const set = setsToProcess[i]
 
-    logger.info(`[${i + 1}/${setsToProcess.length}] Processing ${set.id}...`)
+    logger.info(`[${i + 1}/${setsToProcess.length}] Processing ${set.mcdCode}...`)
 
     const success = await seedSet(supabase, tcgGameId, set, options)
 
