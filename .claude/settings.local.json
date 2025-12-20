@@ -181,7 +181,8 @@
       "WebFetch(domain:bulbapedia.bulbagarden.net)",
       "WebFetch(domain:www.pokellector.com)",
       "WebFetch(domain:pokemontcg.io)",
-      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-op13-028.ts\")"
+      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-op13-028.ts\")",
+      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\check-promo-p.ts\")"
     ],
     "deny": [],
     "ask": []
