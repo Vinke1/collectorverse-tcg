@@ -165,11 +165,13 @@ export default async function TCGSeriesPage({ params }: PageProps) {
     .order("release_date", { ascending: true });
 
   // Batch fetch all cards for all series at once (fix N+1 query)
+  // Note: Using .range(0, 9999) to override Supabase default limit of 1000
   const seriesIds = (series || []).map(s => s.id);
   const { data: allCards } = await supabase
     .from("cards")
     .select("id, language, series_id")
-    .in("series_id", seriesIds);
+    .in("series_id", seriesIds)
+    .range(0, 9999);
 
   // Group cards by series and build maps
   const seriesCardIds: Record<string, string[]> = {};
