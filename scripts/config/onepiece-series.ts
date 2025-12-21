@@ -81,7 +81,7 @@ export const ONEPIECE_PREMIUM: OnePieceSeriesConfig[] = [
 // ============================================
 
 export const ONEPIECE_SPECIAL: OnePieceSeriesConfig[] = [
-  { code: 'EB01', name: 'Memorial Collection', serieId: 258, type: 'special', releaseDate: '2024-04-26', cardCount: 72 },
+  { code: 'EB01', name: 'Memorial Collection', serieId: 367, type: 'special', releaseDate: '2024-04-26', cardCount: 72 },
 ]
 
 // ============================================
