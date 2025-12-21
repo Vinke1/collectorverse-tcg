@@ -3,8 +3,18 @@
  */
 
 /**
+ * Checks if a card number has a version suffix (e.g., "-V2", "-V3")
+ * @param number - The card number to check
+ * @returns True if the card has a version suffix
+ */
+export function hasVersionSuffix(number: string): boolean {
+  return /-V\d+$/i.test(number)
+}
+
+/**
  * Formats a card number for display
  * If the number contains a slash (e.g., "1/P3"), returns it as-is
+ * If the number has a version suffix (e.g., "-V2"), returns just the base number with version
  * Otherwise, appends the maxSetBase if provided (e.g., "143" -> "143/204")
  *
  * @param number - The card number to format
@@ -14,6 +24,12 @@
 export function formatCardNumber(number: string, maxSetBase?: number): string {
   // If number already contains a slash (promo format), return as-is
   if (number.includes('/')) {
+    return number
+  }
+
+  // If number has a version suffix (e.g., OP02-001-V2), don't add maxSetBase
+  // These are variant cards and shouldn't show as "OP02-001-V2/121"
+  if (hasVersionSuffix(number)) {
     return number
   }
 

@@ -20,33 +20,66 @@ export function isPromoCard(card: CardWithNumber): boolean {
 }
 
 /**
+ * Checks if a card number has a version suffix (e.g., "-V2", "-V3")
+ * @param number - The card number string
+ * @returns True if the card has a version suffix
+ */
+function hasVersionSuffix(number: string): boolean {
+  return /-V\d+$/i.test(number)
+}
+
+/**
+ * Extracts the version number from a card number with version suffix
+ * @param number - The card number string (e.g., "OP02-001-V2")
+ * @returns The version number (e.g., 2) or 0 if no version suffix
+ */
+function extractVersionNumber(number: string): number {
+  const match = number.match(/-V(\d+)$/i)
+  return match ? parseInt(match[1], 10) : 0
+}
+
+/**
+ * Removes the version suffix from a card number
+ * @param number - The card number string (e.g., "OP02-001-V2")
+ * @returns The base card number (e.g., "OP02-001")
+ */
+function removeVersionSuffix(number: string): string {
+  return number.replace(/-V\d+$/i, '')
+}
+
+/**
  * Extracts the numeric value from a card number
  * For promo cards with slash notation (e.g., "1/P3"), returns the first number
  * For prefixed cards (e.g., "R-005", "SSR-084"), extracts the number after the prefix
  * For multi-prefix cards (e.g., "NRSS-AR-001", "SS-HR-001", "AR-SILVER-001"), extracts the last number
+ * For cards with version suffix (e.g., "OP02-001-V2"), extracts from the base number
  * For regular cards, returns the parsed number
  * @param number - The card number string
  * @returns The numeric value
  */
 function extractNumericValue(number: string): number {
-  if (number.includes('/')) {
-    return parseInt(number.split('/')[0], 10)
+  // First, remove version suffix if present (e.g., "OP02-001-V2" -> "OP02-001")
+  const baseNumber = removeVersionSuffix(number)
+
+  if (baseNumber.includes('/')) {
+    return parseInt(baseNumber.split('/')[0], 10)
   }
 
   // Handle multi-prefixed card numbers like "NRSS-AR-001", "SS-HR-001", "AR-SILVER-001", "SV-SILVER-001"
+  // Also handles TCG series card numbers like "OP02-001"
   // Extract the last numeric segment
-  const multiPrefixMatch = number.match(/-(\d+)$/)
+  const multiPrefixMatch = baseNumber.match(/-(\d+)$/)
   if (multiPrefixMatch) {
     return parseInt(multiPrefixMatch[1], 10)
   }
 
   // Handle simple prefixed card numbers like "R-005", "SSR-084", "HR-135"
-  const prefixMatch = number.match(/^[A-Z]+-(\d+)$/i)
+  const prefixMatch = baseNumber.match(/^[A-Z]+-(\d+)$/i)
   if (prefixMatch) {
     return parseInt(prefixMatch[1], 10)
   }
 
-  return parseInt(number, 10)
+  return parseInt(baseNumber, 10)
 }
 
 /**
@@ -154,6 +187,14 @@ export function sortCardsByNumber<T extends CardWithNumber>(cards: T[]): T[] {
     // If same rarity prefix or both regular, sort by card number
     const numA = extractNumericValue(a.number)
     const numB = extractNumericValue(b.number)
+
+    // If same card number, sort by version (base card first, then V2, V3, etc.)
+    if (numA === numB) {
+      const versionA = extractVersionNumber(a.number)
+      const versionB = extractVersionNumber(b.number)
+      return versionA - versionB
+    }
+
     return numA - numB
   })
 }

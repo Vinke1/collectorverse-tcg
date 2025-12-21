@@ -183,7 +183,8 @@
       "WebFetch(domain:pokemontcg.io)",
       "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-op13-028.ts\")",
       "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\check-promo-p.ts\")",
-      "Bash(timeout /t 30 /nobreak)"
+      "Bash(timeout /t 30 /nobreak)",
+      "Bash(npm run lint)"
     ],
     "deny": [],
     "ask": []
