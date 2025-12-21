@@ -196,54 +196,181 @@ function getVariantSuffix(variant: string): string {
 
 /**
  * Parse une URL de carte PRB01
- * Formats supportes:
+ *
+ * Formats EN (avec prefixe langue):
  * 1. Standard: /cards/{lang}-{setCode}{setNum}-{number}-{rarity}-prb01-{variant}-{name}
  *    Ex: en-op06-003-uc-prb01-full-art-emporio-ivankov
  * 2. Promo: /cards/{lang}-p-{number}-p-prb01-{variant}-{name}
  *    Ex: en-p-014-p-prb01-full-art-koby
  * 3. DON: /cards/{lang}-prb01-don-{variant}-{name}
  *    Ex: en-prb01-don-foil-textured-ace
+ *
+ * Formats FR (SANS prefixe langue):
+ * 1. PRB01 specific: /cards/prb01-{number}-{rarity}-{name}
+ *    Ex: prb01-001-l-sanji
+ * 2. Original set: /cards/{setCode}{setNum}-{number}-{rarity}-{name}
+ *    Ex: op06-003-uc-emporio-ivankov
+ * 3. Original set variant: /cards/{setCode}{setNum}-{number}-{rarity}-version-{n}-{name}
+ *    Ex: op06-003-uc-version-2-emporio-ivankov
  */
 function parsePRB01Url(url: string, lang: 'en' | 'fr'): PRB01Card | null {
   const slug = url.replace('/cards/', '')
+  const langUpper = lang.toUpperCase() as 'EN' | 'FR'
 
-  // Pattern 1: Standard cards from OP/ST sets
-  // Format: {lang}-{setCode}{setNum}-{number}-{rarity}-prb01-{variant}-{name}
-  const standardMatch = slug.match(new RegExp(
-    `^${lang}-([a-z]+)(\\d+)-(\\d{3})-([a-z]+)-prb01-(.+)$`, 'i'
-  ))
+  // ========================================
+  // FORMATS EN (avec prefixe langue)
+  // ========================================
+  if (lang === 'en') {
+    // Pattern EN 1: Standard cards from OP/ST sets
+    const standardMatch = slug.match(/^en-([a-z]+)(\d+)-(\d{3})-([a-z]+)-prb01-(.+)$/i)
+    if (standardMatch) {
+      const [, origSetLetters, origSetNum, number, rarity, restPart] = standardMatch
+      const originalCard = `${origSetLetters.toUpperCase()}${origSetNum}-${number}`
+      return parseRestOfCard(slug, lang, number, rarity, originalCard, restPart)
+    }
 
-  if (standardMatch) {
-    const [, origSetLetters, origSetNum, number, rarity, restPart] = standardMatch
-    const originalCard = `${origSetLetters.toUpperCase()}${origSetNum}-${number}`
-    return parseRestOfCard(slug, lang, number, rarity, originalCard, restPart)
+    // Pattern EN 2: Promo cards (P series)
+    const promoMatch = slug.match(/^en-p-(\d{3})-p-prb01-(.+)$/i)
+    if (promoMatch) {
+      const [, number, restPart] = promoMatch
+      const originalCard = `P-${number}`
+      return parseRestOfCard(slug, lang, number, 'P', originalCard, restPart)
+    }
+
+    // Pattern EN 3: DON cards
+    const donMatch = slug.match(/^en-prb01-don-(.+)$/i)
+    if (donMatch) {
+      const [, restPart] = donMatch
+      return parseDonCard(slug, lang, restPart)
+    }
   }
 
-  // Pattern 2: Promo cards (P series)
-  // Format: {lang}-p-{number}-p-prb01-{variant}-{name}
-  const promoMatch = slug.match(new RegExp(
-    `^${lang}-p-(\\d{3})-p-prb01-(.+)$`, 'i'
-  ))
+  // ========================================
+  // FORMATS FR (SANS prefixe langue)
+  // ========================================
+  if (lang === 'fr') {
+    // Pattern FR 1: PRB01 specific card (ex: prb01-001-l-sanji)
+    const prb01Match = slug.match(/^prb01-(\d{3})-([a-z]+)-(.+)$/i)
+    if (prb01Match) {
+      const [, number, rarity, namePart] = prb01Match
+      const cleanName = formatName(namePart)
+      return {
+        url: `/cards/${slug}`,
+        slug,
+        number,
+        displayNumber: `PRB01-${number}`,
+        originalCard: `PRB01-${number}`,
+        name: cleanName,
+        rarity: rarity.toUpperCase(),
+        variant: 'standard',
+        imageUrl: null,
+        language: langUpper
+      }
+    }
 
-  if (promoMatch) {
-    const [, number, restPart] = promoMatch
-    const originalCard = `P-${number}`
-    return parseRestOfCard(slug, lang, number, 'P', originalCard, restPart)
-  }
+    // Pattern FR 2: Promo cards with variant (ex: p-014-p-version-2-kobby)
+    const promoVariantMatch = slug.match(/^p-(\d{3})-p-version-(\d+)-(.+)$/i)
+    if (promoVariantMatch) {
+      const [, number, versionNum, namePart] = promoVariantMatch
+      const cleanName = formatName(namePart)
+      const variantSuffix = versionNum === '2' ? '-V2' : `-V${versionNum}`
+      return {
+        url: `/cards/${slug}`,
+        slug,
+        number: `${number}${variantSuffix}`,
+        displayNumber: `P-${number}`,
+        originalCard: `P-${number}`,
+        name: cleanName,
+        rarity: 'P',
+        variant: `version-${versionNum}`,
+        imageUrl: null,
+        language: langUpper
+      }
+    }
 
-  // Pattern 3: DON cards
-  // Format: {lang}-prb01-don-{variant}-{name}
-  const donMatch = slug.match(new RegExp(
-    `^${lang}-prb01-don-(.+)$`, 'i'
-  ))
+    // Pattern FR 3: Promo cards without variant (ex: p-014-p-kobby)
+    const promoMatch = slug.match(/^p-(\d{3})-p-(.+)$/i)
+    if (promoMatch) {
+      const [, number, namePart] = promoMatch
+      const cleanName = formatName(namePart)
+      return {
+        url: `/cards/${slug}`,
+        slug,
+        number,
+        displayNumber: `P-${number}`,
+        originalCard: `P-${number}`,
+        name: cleanName,
+        rarity: 'P',
+        variant: 'standard',
+        imageUrl: null,
+        language: langUpper
+      }
+    }
 
-  if (donMatch) {
-    const [, restPart] = donMatch
-    return parseDonCard(slug, lang, restPart)
+    // Pattern FR 4: DON cards (ex: prb01-don-ace, prb01-don-foil-textured-ace, prb01-don-gold-ace)
+    const donMatch = slug.match(/^prb01-don-(.+)$/i)
+    if (donMatch) {
+      const [, restPart] = donMatch
+      return parseDonCardFr(slug, restPart, langUpper)
+    }
+
+    // Pattern FR 5: Original set card with variant (ex: op06-003-uc-version-2-emporio-ivankov)
+    const variantMatch = slug.match(/^([a-z]+)(\d+)-(\d{3})-([a-z]+)-version-(\d+)-(.+)$/i)
+    if (variantMatch) {
+      const [, origSetLetters, origSetNum, number, rarity, versionNum, namePart] = variantMatch
+      const originalCard = `${origSetLetters.toUpperCase()}${origSetNum}-${number}`
+      const cleanName = formatName(namePart)
+      // version-2 = variant (full-art, jolly-roger-foil, etc.)
+      const variantSuffix = versionNum === '2' ? '-V2' : `-V${versionNum}`
+      return {
+        url: `/cards/${slug}`,
+        slug,
+        number: `${number}${variantSuffix}`,
+        displayNumber: `PRB01-${number}`,
+        originalCard,
+        name: cleanName,
+        rarity: rarity.toUpperCase(),
+        variant: `version-${versionNum}`,
+        imageUrl: null,
+        language: langUpper
+      }
+    }
+
+    // Pattern FR 6: Original set card without variant (ex: op06-003-uc-emporio-ivankov)
+    const standardFrMatch = slug.match(/^([a-z]+)(\d+)-(\d{3})-([a-z]+)-(.+)$/i)
+    if (standardFrMatch) {
+      const [, origSetLetters, origSetNum, number, rarity, namePart] = standardFrMatch
+      const originalCard = `${origSetLetters.toUpperCase()}${origSetNum}-${number}`
+      const cleanName = formatName(namePart)
+      return {
+        url: `/cards/${slug}`,
+        slug,
+        number,
+        displayNumber: `PRB01-${number}`,
+        originalCard,
+        name: cleanName,
+        rarity: rarity.toUpperCase(),
+        variant: 'standard',
+        imageUrl: null,
+        language: langUpper
+      }
+    }
   }
 
   logger.warn(`Pattern PRB01 non reconnu: ${slug}`)
   return null
+}
+
+/**
+ * Formate un nom depuis un slug (remplace tirets par espaces, capitalise)
+ */
+function formatName(namePart: string): string {
+  let cleanName = namePart
+    .split('-')
+    .filter(Boolean)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+  return correctName(cleanName)
 }
 
 /**
@@ -313,7 +440,7 @@ function parseRestOfCard(
 }
 
 /**
- * Parse une carte DON
+ * Parse une carte DON (format EN)
  */
 function parseDonCard(slug: string, lang: 'en' | 'fr', restPart: string): PRB01Card {
   // DON cards peuvent avoir des variantes: foil-textured, gold, ou standard
@@ -360,6 +487,51 @@ function parseDonCard(slug: string, lang: 'en' | 'fr', restPart: string): PRB01C
     variant,
     imageUrl: null,
     language: lang.toUpperCase() as 'EN' | 'FR'
+  }
+}
+
+/**
+ * Parse une carte DON (format FR - sans prefixe langue)
+ * Formats: prb01-don-ace, prb01-don-foil-textured-ace, prb01-don-gold-ace
+ */
+function parseDonCardFr(slug: string, restPart: string, langUpper: 'EN' | 'FR'): PRB01Card {
+  // DON cards peuvent avoir des variantes: foil-textured, gold, ou standard
+  let variant = 'standard'
+  let namePart = restPart
+
+  const donVariants = ['foil-textured', 'gold']
+
+  for (const v of donVariants) {
+    if (restPart.startsWith(v + '-')) {
+      variant = v
+      namePart = restPart.substring(v.length + 1)
+      break
+    }
+  }
+
+  // Le nom est le personnage sur le DON
+  let cleanName = formatName(namePart)
+  cleanName = `DON!! - ${cleanName}`
+
+  // Construire le numero pour les DON
+  let donSuffix = ''
+  if (variant === 'foil-textured') donSuffix = '-FT'
+  else if (variant === 'gold') donSuffix = '-G'
+
+  // Numero unique base sur le nom
+  const donNumber = `DON-${namePart.toUpperCase().replace(/-/g, '')}${donSuffix}`
+
+  return {
+    url: `/cards/${slug}`,
+    slug,
+    number: donNumber,
+    displayNumber: 'PRB01-DON',
+    originalCard: 'DON',
+    name: cleanName,
+    rarity: 'DON',
+    variant,
+    imageUrl: null,
+    language: langUpper
   }
 }
 
@@ -416,7 +588,9 @@ async function scrapePRB01CardUrls(browser: Browser, lang: 'en' | 'fr'): Promise
       await delay(1000)
 
       // Extraire les URLs de cartes PRB01
-      const cardUrls = await page.evaluate((prefix) => {
+      // Note: Les URLs FR n'ont PAS de prefixe langue et la plupart n'ont PAS -prb01-
+      // Car elles utilisent le code de la serie d'origine (op06, st04, etc.)
+      const cardUrls = await page.evaluate(() => {
         const links = Array.from(document.querySelectorAll('a[href*="/cards/"]'))
           .map(a => (a as HTMLAnchorElement).href)
           .filter(href => {
@@ -425,11 +599,12 @@ async function scrapePRB01CardUrls(browser: Browser, lang: 'en' | 'fr'): Promise
             if (path === '/cards' || path === '/cards/' || path.includes('/search') || path === '/cards/cartes-les-plus-cheres') {
               return false
             }
-            // Accepter uniquement les cartes avec prb01 dans l'URL et le bon prefixe langue
-            return path.includes('-prb01-') && path.startsWith(`/cards/${prefix}`)
+            // Accepter toutes les cartes de la page (la page est deja filtree par serie PRB01)
+            // Le path doit etre de la forme /cards/{quelque-chose}
+            return path.startsWith('/cards/') && path.split('/').length === 3
           })
         return [...new Set(links)]
-      }, langPrefix)
+      })
 
       logger.info(`  ${cardUrls.length} cartes trouvees sur la page ${pageNum}`)
       allCardUrls.push(...cardUrls)
