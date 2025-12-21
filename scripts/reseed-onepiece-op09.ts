@@ -28,17 +28,20 @@ import { uploadOnePieceCardImage, deleteOnePieceSeriesImages } from '../lib/supa
 const BASE_URL = 'https://www.opecards.fr'
 
 // Configuration pour chaque langue
+// Note: FR n'a pas de prefixe de langue dans les URLs (op09-xxx) contrairement a EN (en-op09-xxx)
 const LANG_CONFIG = {
   en: {
     searchUrl: `${BASE_URL}/cards/search?sortBy=releaseR&serie=462&language=EN`,
     totalPages: 6,
     urlPrefix: 'en-op09',
+    urlPattern: /^\/cards\/en-op09-(\d{3})-([a-z]+)-(.+)$/i,
     storageLang: 'en'
   },
   fr: {
     searchUrl: `${BASE_URL}/cards/search?sortBy=releaseR&serie=477&language=FR`,
-    totalPages: 6, // A ajuster si besoin
-    urlPrefix: 'fr-op09',
+    totalPages: 6,
+    urlPrefix: 'op09', // FR n'a pas de prefixe de langue
+    urlPattern: /^\/cards\/op09-(\d{3})-([a-z]+)-(.+)$/i,
     storageLang: 'fr'
   }
 }
@@ -174,14 +177,15 @@ function correctName(name: string): string {
 /**
  * Parse une URL de carte OP09
  * Format EN: /cards/en-op09-{number}-{rarity}-{name}
- * Format FR: /cards/fr-op09-{number}-{rarity}-{name}
- * Exemple: /cards/en-op09-001-l-monkey-d-dragon
+ * Format FR: /cards/op09-{number}-{rarity}-{name} (pas de prefixe fr-)
+ * Exemple: /cards/en-op09-001-l-shanks
  */
 function parseOP09Url(url: string, lang: 'en' | 'fr'): OP09Card | null {
+  const config = LANG_CONFIG[lang]
   const slug = url.replace('/cards/', '')
 
-  // Pattern: {lang}-op09-{number}-{rarity}-{name}
-  const match = slug.match(new RegExp(`^${lang}-op09-(\\d{3})-([a-z]+)-(.+)$`, 'i'))
+  // Utiliser le pattern specifique a la langue
+  const match = url.match(config.urlPattern)
 
   if (!match) {
     logger.warn(`Pattern non reconnu: ${slug}`)
@@ -243,7 +247,7 @@ async function scrapeOP09CardUrls(browser: Browser, lang: 'en' | 'fr'): Promise<
   await page.setViewport({ width: 1920, height: 1080 })
 
   const allCardUrls: string[] = []
-  const langPrefix = `${lang}-op09`
+  const urlPrefix = config.urlPrefix // 'en-op09' pour EN, 'op09' pour FR
 
   try {
     // D'abord determiner le nombre total de pages
@@ -292,12 +296,13 @@ async function scrapeOP09CardUrls(browser: Browser, lang: 'en' | 'fr'): Promise<
               return false
             }
             // Accepter uniquement les cartes OP09 avec le bon prefixe
-            // Pattern: /cards/{lang}-op09-{number}-{rarity}-...
+            // EN: /cards/en-op09-{number}-{rarity}-...
+            // FR: /cards/op09-{number}-{rarity}-... (pas de prefixe fr-)
             const pattern = new RegExp(`^/cards/${prefix}-\\d{3}-[a-z]+-`, 'i')
             return pattern.test(path)
           })
         return [...new Set(links)]
-      }, langPrefix)
+      }, urlPrefix)
 
       logger.info(`  ${cardUrls.length} cartes trouvees sur la page ${pageNum}`)
       allCardUrls.push(...cardUrls)
