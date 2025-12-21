@@ -87,15 +87,10 @@ export function SeriesGrid({ series, tcgSlug, isLoggedIn, collectionStats }: Ser
   // Helper function to get sorted languages for a series
   // Only return languages that have a flag defined (filter out unknown/null languages)
   const getSortedLanguages = (seriesId: string) => {
-    if (!collectionStats || !collectionStats[seriesId]) {
-      console.log(`[DEBUG] No stats for ${seriesId}, collectionStats keys:`, Object.keys(collectionStats || {}));
-      return [];
-    }
+    if (!collectionStats || !collectionStats[seriesId]) return [];
 
     const languages = Object.keys(collectionStats[seriesId])
       .filter(lang => LANGUAGE_FLAGS[lang]); // Only keep languages with flags
-
-    console.log(`[DEBUG] Series ${seriesId}: languages=${JSON.stringify(languages)}, stats=${JSON.stringify(collectionStats[seriesId])}`);
 
     return languages.sort((a, b) => {
       const indexA = LANGUAGE_ORDER.indexOf(a);

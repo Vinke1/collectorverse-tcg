@@ -188,7 +188,6 @@ export default async function TCGSeriesPage({ params }: PageProps) {
     }
   }
 
-  console.log(`[SERVER DEBUG] Fetched ${allCards.length} cards for ${seriesIds.length} series (paginated)`);
 
   // Group cards by series and build maps
   const seriesCardIds: Record<string, string[]> = {};
