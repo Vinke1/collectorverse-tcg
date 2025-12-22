@@ -95,6 +95,13 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     }
 
     const supabase = createClient();
+
+    // Debug: check if Supabase client is configured correctly
+    console.log('[FilteredCardView] Supabase config:', {
+      url: process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 30) + '...',
+      hasAnonKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    });
+
     const cardIds = cards.map(c => c.id);
 
     // Batch requests to avoid "Bad Request" errors (Supabase IN clause limit)
