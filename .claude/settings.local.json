@@ -193,7 +193,8 @@
       "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-eb01-missing.ts\")",
       "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\check-op12-images.ts\")",
       "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-op12-missing-images.ts\")",
-      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-op12-remaining.ts\")"
+      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-op12-remaining.ts\")",
+      "Bash(del:*)"
     ],
     "deny": [],
     "ask": []
