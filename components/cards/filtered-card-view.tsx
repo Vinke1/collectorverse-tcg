@@ -95,6 +95,15 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     }
 
     const supabase = createClient();
+
+    // Check if browser client has auth session
+    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+    console.log('[FilteredCardView] Browser auth session:', {
+      hasSession: !!session,
+      sessionUserId: session?.user?.id,
+      serverUserId: userId,
+      sessionError: sessionError?.message
+    });
     const cardIds = cards.map(c => c.id);
 
     // Batch requests to avoid "Bad Request" errors (Supabase IN clause limit)
