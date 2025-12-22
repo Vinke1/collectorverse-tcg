@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Minus, Plus } from "lucide-react";
@@ -49,7 +48,6 @@ export function CollectionControl({
     const userModifiedRef = useRef(false);
     // Track previous cardId to detect card changes
     const prevCardIdRef = useRef(cardId);
-    const supabase = createClient();
 
     // Keep refs in sync with state
     normalRef.current = normal;
@@ -79,46 +77,50 @@ export function CollectionControl({
         // If user HAS modified, ignore prop updates to preserve their changes
     }, [cardId, initialNormal, initialFoil]);
 
-    // Immediate save function - saves directly to database without debounce
-    // This ensures data is persisted even if user refreshes immediately after changing
+    // Immediate save function - uses direct fetch (Supabase client was blocking)
     const saveToDatabase = useCallback(async (newNormal: number, newFoil: number) => {
-        console.log('[CollectionControl] saveToDatabase called:', { cardId, userId, newNormal, newFoil });
-
         // Skip if values haven't changed from last saved values
         if (newNormal === lastSavedNormalRef.current && newFoil === lastSavedFoilRef.current) {
-            console.log('[CollectionControl] Skipping save - values unchanged');
             return;
         }
 
         setIsSaving(true);
         try {
-            console.log('[CollectionControl] Upserting to user_collections...');
-            const { error, data } = await supabase
-                .from("user_collections")
-                .upsert({
+            const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+            const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+            const response = await fetch(`${supabaseUrl}/rest/v1/user_collections`, {
+                method: 'POST',
+                headers: {
+                    'apikey': supabaseKey || '',
+                    'Authorization': `Bearer ${supabaseKey}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'resolution=merge-duplicates,return=minimal'
+                },
+                body: JSON.stringify({
                     user_id: userId,
                     card_id: cardId,
                     quantity: newNormal,
                     quantity_foil: newFoil,
                     owned: newNormal > 0 || newFoil > 0
-                }, { onConflict: 'user_id, card_id' })
-                .select();
+                })
+            });
 
-            console.log('[CollectionControl] Upsert result:', { error, data });
-
-            if (error) throw error;
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
+            }
 
             // Update last saved values on success
             lastSavedNormalRef.current = newNormal;
             lastSavedFoilRef.current = newFoil;
-            console.log('[CollectionControl] Save successful!');
         } catch (error) {
-            console.error("[CollectionControl] Error saving collection:", error);
+            console.error("[CollectionControl] Error saving:", error);
             toast.error("Erreur lors de la mise à jour");
         } finally {
             setIsSaving(false);
         }
-    }, [supabase, userId, cardId]);
+    }, [userId, cardId]);
 
     const handleNormalChange = (value: number) => {
         const newValue = Math.max(0, value);

@@ -94,64 +94,42 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
       return;
     }
 
-    const supabase = createClient();
-
-    // Debug: check if Supabase client is configured correctly
-    console.log('[FilteredCardView] Supabase config:', {
-      url: process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 30) + '...',
-      hasAnonKey: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    });
-
     const cardIds = cards.map(c => c.id);
-
-    // Batch requests to avoid "Bad Request" errors (Supabase IN clause limit)
     const BATCH_SIZE = 100;
     const colMap: Record<string, CollectionData> = {};
     const ownedIds = new Set<string>();
 
-    console.log('[FilteredCardView] Fetching collection for', cardIds.length, 'cards');
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    console.log('[FilteredCardView] Fetching collection for', cardIds.length, 'cards using direct fetch');
 
     for (let i = 0; i < cardIds.length; i += BATCH_SIZE) {
       const batchIds = cardIds.slice(i, i + BATCH_SIZE);
 
       try {
-        console.log('[FilteredCardView] Sending batch request', i / BATCH_SIZE);
+        // Use direct fetch instead of Supabase client (client was blocking)
+        const inFilter = batchIds.map(id => `"${id}"`).join(',');
+        const url = `${supabaseUrl}/rest/v1/user_collections?select=card_id,quantity,quantity_foil,owned&user_id=eq.${userId}&card_id=in.(${inFilter})`;
 
-        // TEST: Direct fetch to see if network works
-        if (i === 0) {
-          console.log('[FilteredCardView] Testing direct fetch...');
-          try {
-            const testUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/user_collections?select=card_id&limit=1`;
-            console.log('[FilteredCardView] Test URL:', testUrl);
-            const testResp = await fetch(testUrl, {
-              headers: {
-                'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
-                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
-              }
-            });
-            console.log('[FilteredCardView] Direct fetch result:', testResp.status, testResp.statusText);
-          } catch (fetchErr) {
-            console.error('[FilteredCardView] Direct fetch error:', fetchErr);
+        const response = await fetch(url, {
+          headers: {
+            'apikey': supabaseKey || '',
+            'Authorization': `Bearer ${supabaseKey}`,
+            'Content-Type': 'application/json',
           }
+        });
+
+        if (!response.ok) {
+          console.error('[FilteredCardView] Fetch error:', response.status, response.statusText);
+          continue;
         }
 
-        const { data, error } = await supabase
-          .from("user_collections")
-          .select("card_id, quantity, quantity_foil, owned")
-          .eq("user_id", userId)
-          .in("card_id", batchIds);
+        const data = await response.json();
+        console.log('[FilteredCardView] Batch', i / BATCH_SIZE, 'result:', data?.length || 0, 'items');
 
-        console.log('[FilteredCardView] Batch response:', { batchIndex: i / BATCH_SIZE, data, error });
-
-        if (error) {
-          console.error("[FilteredCardView] Error fetching batch:", error);
-          continue; // Continue with other batches
-        }
-
-        console.log('[FilteredCardView] Batch result:', { batchIndex: i / BATCH_SIZE, itemsFound: data?.length || 0 });
-
-        data?.forEach((item) => {
-          colMap[item.card_id] = item as CollectionData;
+        data?.forEach((item: CollectionData) => {
+          colMap[item.card_id] = item;
           if (item.owned) {
             ownedIds.add(item.card_id);
           }
