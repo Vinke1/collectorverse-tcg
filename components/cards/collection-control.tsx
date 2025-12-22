@@ -45,54 +45,101 @@ export function CollectionControl({
     // Track the last saved values to avoid duplicate saves
     const lastSavedNormalRef = useRef(initialNormal);
     const lastSavedFoilRef = useRef(initialFoil);
+    // Track if user has modified this card (to prevent prop-driven resets)
+    const userModifiedRef = useRef(false);
+    // Track previous cardId to detect card changes
+    const prevCardIdRef = useRef(cardId);
+    // Debounce timeout ref for batching rapid updates
+    const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const supabase = createClient();
 
     // Keep refs in sync with state
     normalRef.current = normal;
     foilRef.current = foil;
 
-    // Update local state when props change (fresh data from DB)
+    // Only reset state when cardId changes (new card) OR on initial mount
+    // Don't reset when props change due to parent re-render (stale data race condition)
     useEffect(() => {
-        setNormal(initialNormal);
-        setFoil(initialFoil);
-        lastSavedNormalRef.current = initialNormal;
-        lastSavedFoilRef.current = initialFoil;
-    }, [initialNormal, initialFoil]);
-
-    // Immediate save function (no debounce)
-    const saveToDatabase = useCallback(async (newNormal: number, newFoil: number) => {
-        // Skip if values haven't changed from last saved values
-        if (newNormal === lastSavedNormalRef.current && newFoil === lastSavedFoilRef.current) {
+        // If cardId changed, this is a new card - reset everything
+        if (prevCardIdRef.current !== cardId) {
+            setNormal(initialNormal);
+            setFoil(initialFoil);
+            lastSavedNormalRef.current = initialNormal;
+            lastSavedFoilRef.current = initialFoil;
+            userModifiedRef.current = false;
+            prevCardIdRef.current = cardId;
             return;
         }
 
-        setIsSaving(true);
-        try {
-            const { error } = await supabase
-                .from("user_collections")
-                .upsert({
-                    user_id: userId,
-                    card_id: cardId,
-                    quantity: newNormal,
-                    quantity_foil: newFoil,
-                    owned: newNormal > 0 || newFoil > 0
-                }, { onConflict: 'user_id, card_id' });
-
-            if (error) throw error;
-
-            // Update last saved values on success
-            lastSavedNormalRef.current = newNormal;
-            lastSavedFoilRef.current = newFoil;
-        } catch (error) {
-            toast.error("Erreur lors de la mise à jour");
-        } finally {
-            setIsSaving(false);
+        // If user hasn't modified yet, accept prop updates (initial data loading)
+        if (!userModifiedRef.current) {
+            setNormal(initialNormal);
+            setFoil(initialFoil);
+            lastSavedNormalRef.current = initialNormal;
+            lastSavedFoilRef.current = initialFoil;
         }
+        // If user HAS modified, ignore prop updates to preserve their changes
+    }, [cardId, initialNormal, initialFoil]);
+
+    // Cleanup timeout on unmount to prevent memory leaks
+    useEffect(() => {
+        return () => {
+            if (saveTimeoutRef.current) {
+                clearTimeout(saveTimeoutRef.current);
+            }
+        };
+    }, []);
+
+    // Debounced save function - waits 300ms after last change before saving
+    // This prevents multiple rapid requests when user clicks +/- quickly
+    const saveToDatabase = useCallback((newNormal: number, newFoil: number) => {
+        // Clear any pending save
+        if (saveTimeoutRef.current) {
+            clearTimeout(saveTimeoutRef.current);
+        }
+
+        // Schedule a save after 300ms of inactivity
+        saveTimeoutRef.current = setTimeout(async () => {
+            // Use refs to get the most current values (in case user clicked more times)
+            const currentNormal = normalRef.current;
+            const currentFoil = foilRef.current;
+
+            // Skip if values haven't changed from last saved values
+            if (currentNormal === lastSavedNormalRef.current && currentFoil === lastSavedFoilRef.current) {
+                return;
+            }
+
+            setIsSaving(true);
+            try {
+                const { error } = await supabase
+                    .from("user_collections")
+                    .upsert({
+                        user_id: userId,
+                        card_id: cardId,
+                        quantity: currentNormal,
+                        quantity_foil: currentFoil,
+                        owned: currentNormal > 0 || currentFoil > 0
+                    }, { onConflict: 'user_id, card_id' });
+
+                if (error) throw error;
+
+                // Update last saved values on success
+                lastSavedNormalRef.current = currentNormal;
+                lastSavedFoilRef.current = currentFoil;
+            } catch (error) {
+                console.error("Error saving collection:", error);
+                toast.error("Erreur lors de la mise à jour");
+            } finally {
+                setIsSaving(false);
+            }
+        }, 300);
     }, [supabase, userId, cardId]);
 
     const handleNormalChange = (value: number) => {
         const newValue = Math.max(0, value);
         setNormal(newValue);
+        // Mark as user-modified to prevent prop-driven resets
+        userModifiedRef.current = true;
         // Save immediately
         saveToDatabase(newValue, foilRef.current);
         // Notify parent to update local state
@@ -102,6 +149,8 @@ export function CollectionControl({
     const handleFoilChange = (value: number) => {
         const newValue = Math.max(0, value);
         setFoil(newValue);
+        // Mark as user-modified to prevent prop-driven resets
+        userModifiedRef.current = true;
         // Save immediately
         saveToDatabase(normalRef.current, newValue);
         // Notify parent to update local state

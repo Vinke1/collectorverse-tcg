@@ -134,34 +134,36 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
   }, [fetchCollection]);
 
   // Callback to update collection when user modifies a card
+  // Uses functional updates to avoid stale closure issues
   const updateCollectionItem = useCallback((cardId: string, data: Partial<CollectionData>) => {
-    setCollection(prev => ({
-      ...prev,
-      [cardId]: {
-        ...prev[cardId],
-        card_id: cardId,
-        quantity: data.quantity ?? prev[cardId]?.quantity ?? 0,
-        quantity_foil: data.quantity_foil ?? prev[cardId]?.quantity_foil ?? 0,
-        owned: (data.quantity ?? prev[cardId]?.quantity ?? 0) > 0 ||
-               (data.quantity_foil ?? prev[cardId]?.quantity_foil ?? 0) > 0,
-      }
-    }));
+    setCollection(prev => {
+      const prevItem = prev[cardId];
+      const newQuantity = data.quantity ?? prevItem?.quantity ?? 0;
+      const newQuantityFoil = data.quantity_foil ?? prevItem?.quantity_foil ?? 0;
+      const isNowOwned = newQuantity > 0 || newQuantityFoil > 0;
 
-    // Update ownedCardIds
-    const newQuantity = data.quantity ?? collection[cardId]?.quantity ?? 0;
-    const newQuantityFoil = data.quantity_foil ?? collection[cardId]?.quantity_foil ?? 0;
-    const isNowOwned = newQuantity > 0 || newQuantityFoil > 0;
+      // Also update ownedCardIds within the same render cycle
+      setOwnedCardIds(prevOwned => {
+        const newSet = new Set(prevOwned);
+        if (isNowOwned) {
+          newSet.add(cardId);
+        } else {
+          newSet.delete(cardId);
+        }
+        return newSet;
+      });
 
-    setOwnedCardIds(prev => {
-      const newSet = new Set(prev);
-      if (isNowOwned) {
-        newSet.add(cardId);
-      } else {
-        newSet.delete(cardId);
-      }
-      return newSet;
+      return {
+        ...prev,
+        [cardId]: {
+          card_id: cardId,
+          quantity: newQuantity,
+          quantity_foil: newQuantityFoil,
+          owned: isNowOwned,
+        }
+      };
     });
-  }, [collection]);
+  }, []); // No dependencies - uses functional updates only
 
   // Calculate available rarities based on cards in the selected language
   // For TCGs with custom rarities (Pokemon, Riftbound), extract the raw rarity values
