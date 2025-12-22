@@ -116,6 +116,25 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
 
       try {
         console.log('[FilteredCardView] Sending batch request', i / BATCH_SIZE);
+
+        // TEST: Direct fetch to see if network works
+        if (i === 0) {
+          console.log('[FilteredCardView] Testing direct fetch...');
+          try {
+            const testUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/user_collections?select=card_id&limit=1`;
+            console.log('[FilteredCardView] Test URL:', testUrl);
+            const testResp = await fetch(testUrl, {
+              headers: {
+                'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+              }
+            });
+            console.log('[FilteredCardView] Direct fetch result:', testResp.status, testResp.statusText);
+          } catch (fetchErr) {
+            console.error('[FilteredCardView] Direct fetch error:', fetchErr);
+          }
+        }
+
         const { data, error } = await supabase
           .from("user_collections")
           .select("card_id, quantity, quantity_foil, owned")
