@@ -85,7 +85,10 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
   // Fetch collection data for ALL cards once (persists across filter changes)
   // Uses batching to avoid Supabase "Bad Request" errors for large card sets
   const fetchCollection = useCallback(async () => {
+    console.log('[FilteredCardView] fetchCollection called:', { userId, cardsCount: cards.length });
+
     if (!userId || cards.length === 0) {
+      console.log('[FilteredCardView] No userId or no cards, clearing collection');
       setCollection({});
       setOwnedCardIds(new Set());
       return;
@@ -99,6 +102,8 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     const colMap: Record<string, CollectionData> = {};
     const ownedIds = new Set<string>();
 
+    console.log('[FilteredCardView] Fetching collection for', cardIds.length, 'cards');
+
     for (let i = 0; i < cardIds.length; i += BATCH_SIZE) {
       const batchIds = cardIds.slice(i, i + BATCH_SIZE);
 
@@ -109,11 +114,11 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
         .in("card_id", batchIds);
 
       if (error) {
-        if (error.message) {
-          console.error("Error fetching collection:", error.message);
-        }
+        console.error("[FilteredCardView] Error fetching batch:", error.message);
         continue; // Continue with other batches
       }
+
+      console.log('[FilteredCardView] Batch result:', { batchIndex: i / BATCH_SIZE, itemsFound: data?.length || 0 });
 
       data?.forEach((item) => {
         colMap[item.card_id] = item as CollectionData;
@@ -123,6 +128,7 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
       });
     }
 
+    console.log('[FilteredCardView] Collection loaded:', { totalItems: Object.keys(colMap).length, ownedCount: ownedIds.size });
     setCollection(colMap);
     setOwnedCardIds(ownedIds);
     collectionFetchedRef.current = true;

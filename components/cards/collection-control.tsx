@@ -82,14 +82,18 @@ export function CollectionControl({
     // Immediate save function - saves directly to database without debounce
     // This ensures data is persisted even if user refreshes immediately after changing
     const saveToDatabase = useCallback(async (newNormal: number, newFoil: number) => {
+        console.log('[CollectionControl] saveToDatabase called:', { cardId, userId, newNormal, newFoil });
+
         // Skip if values haven't changed from last saved values
         if (newNormal === lastSavedNormalRef.current && newFoil === lastSavedFoilRef.current) {
+            console.log('[CollectionControl] Skipping save - values unchanged');
             return;
         }
 
         setIsSaving(true);
         try {
-            const { error } = await supabase
+            console.log('[CollectionControl] Upserting to user_collections...');
+            const { error, data } = await supabase
                 .from("user_collections")
                 .upsert({
                     user_id: userId,
@@ -97,15 +101,19 @@ export function CollectionControl({
                     quantity: newNormal,
                     quantity_foil: newFoil,
                     owned: newNormal > 0 || newFoil > 0
-                }, { onConflict: 'user_id, card_id' });
+                }, { onConflict: 'user_id, card_id' })
+                .select();
+
+            console.log('[CollectionControl] Upsert result:', { error, data });
 
             if (error) throw error;
 
             // Update last saved values on success
             lastSavedNormalRef.current = newNormal;
             lastSavedFoilRef.current = newFoil;
+            console.log('[CollectionControl] Save successful!');
         } catch (error) {
-            console.error("Error saving collection:", error);
+            console.error("[CollectionControl] Error saving collection:", error);
             toast.error("Erreur lors de la mise à jour");
         } finally {
             setIsSaving(false);
