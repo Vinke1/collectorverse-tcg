@@ -190,7 +190,10 @@
       "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-op06-020.ts\")",
       "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\check-op07.ts\")",
       "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\rebuild-eb01.ts\")",
-      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-eb01-missing.ts\")"
+      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-eb01-missing.ts\")",
+      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\check-op12-images.ts\")",
+      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-op12-missing-images.ts\")",
+      "Bash(del \"C:\\\\Users\\\\vince\\\\Desktop\\\\Dev\\\\CollectorVerse TCG\\\\scripts\\\\fix-op12-remaining.ts\")"
     ],
     "deny": [],
     "ask": []
