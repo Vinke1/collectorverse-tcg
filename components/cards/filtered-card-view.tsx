@@ -102,7 +102,38 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-    console.log('[FilteredCardView] Fetching collection for', cardIds.length, 'cards using direct fetch');
+    // Get the session token from Supabase auth cookie
+    const getSessionToken = (): string | null => {
+      const projectRef = supabaseUrl?.match(/https:\/\/([^.]+)\./)?.[1];
+      if (!projectRef) return null;
+
+      const cookieName = `sb-${projectRef}-auth-token`;
+      const cookies = document.cookie.split(';');
+      for (const cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === cookieName) {
+          try {
+            const parsed = JSON.parse(decodeURIComponent(value));
+            return parsed?.access_token || null;
+          } catch {
+            return null;
+          }
+        }
+      }
+      return null;
+    };
+
+    const accessToken = getSessionToken();
+    console.log('[FilteredCardView] Session token found:', !!accessToken);
+
+    if (!accessToken) {
+      console.warn('[FilteredCardView] No session token, cannot fetch collection');
+      setCollection({});
+      setOwnedCardIds(new Set());
+      return;
+    }
+
+    console.log('[FilteredCardView] Fetching collection for', cardIds.length, 'cards');
 
     for (let i = 0; i < cardIds.length; i += BATCH_SIZE) {
       const batchIds = cardIds.slice(i, i + BATCH_SIZE);
@@ -115,7 +146,7 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
         const response = await fetch(url, {
           headers: {
             'apikey': supabaseKey || '',
-            'Authorization': `Bearer ${supabaseKey}`,
+            'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
           }
         });

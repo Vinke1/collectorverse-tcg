@@ -77,10 +77,39 @@ export function CollectionControl({
         // If user HAS modified, ignore prop updates to preserve their changes
     }, [cardId, initialNormal, initialFoil]);
 
-    // Immediate save function - uses direct fetch (Supabase client was blocking)
+    // Get the session token from Supabase auth cookie
+    const getSessionToken = useCallback((): string | null => {
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const projectRef = supabaseUrl?.match(/https:\/\/([^.]+)\./)?.[1];
+        if (!projectRef) return null;
+
+        const cookieName = `sb-${projectRef}-auth-token`;
+        const cookies = document.cookie.split(';');
+        for (const cookie of cookies) {
+            const [name, value] = cookie.trim().split('=');
+            if (name === cookieName) {
+                try {
+                    const parsed = JSON.parse(decodeURIComponent(value));
+                    return parsed?.access_token || null;
+                } catch {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }, []);
+
+    // Immediate save function - uses direct fetch with session token
     const saveToDatabase = useCallback(async (newNormal: number, newFoil: number) => {
         // Skip if values haven't changed from last saved values
         if (newNormal === lastSavedNormalRef.current && newFoil === lastSavedFoilRef.current) {
+            return;
+        }
+
+        const accessToken = getSessionToken();
+        if (!accessToken) {
+            console.error("[CollectionControl] No session token, cannot save");
+            toast.error("Session expirée, veuillez vous reconnecter");
             return;
         }
 
@@ -93,7 +122,7 @@ export function CollectionControl({
                 method: 'POST',
                 headers: {
                     'apikey': supabaseKey || '',
-                    'Authorization': `Bearer ${supabaseKey}`,
+                    'Authorization': `Bearer ${accessToken}`,
                     'Content-Type': 'application/json',
                     'Prefer': 'resolution=merge-duplicates,return=minimal'
                 },
@@ -120,7 +149,7 @@ export function CollectionControl({
         } finally {
             setIsSaving(false);
         }
-    }, [userId, cardId]);
+    }, [userId, cardId, getSessionToken]);
 
     const handleNormalChange = (value: number) => {
         const newValue = Math.max(0, value);
