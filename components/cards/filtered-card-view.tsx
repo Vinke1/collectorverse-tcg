@@ -95,15 +95,6 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     }
 
     const supabase = createClient();
-
-    // Check if browser client has auth session
-    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-    console.log('[FilteredCardView] Browser auth session:', {
-      hasSession: !!session,
-      sessionUserId: session?.user?.id,
-      serverUserId: userId,
-      sessionError: sessionError?.message
-    });
     const cardIds = cards.map(c => c.id);
 
     // Batch requests to avoid "Bad Request" errors (Supabase IN clause limit)
@@ -116,25 +107,32 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     for (let i = 0; i < cardIds.length; i += BATCH_SIZE) {
       const batchIds = cardIds.slice(i, i + BATCH_SIZE);
 
-      const { data, error } = await supabase
-        .from("user_collections")
-        .select("card_id, quantity, quantity_foil, owned")
-        .eq("user_id", userId)
-        .in("card_id", batchIds);
+      try {
+        console.log('[FilteredCardView] Sending batch request', i / BATCH_SIZE);
+        const { data, error } = await supabase
+          .from("user_collections")
+          .select("card_id, quantity, quantity_foil, owned")
+          .eq("user_id", userId)
+          .in("card_id", batchIds);
 
-      if (error) {
-        console.error("[FilteredCardView] Error fetching batch:", error.message);
-        continue; // Continue with other batches
-      }
+        console.log('[FilteredCardView] Batch response:', { batchIndex: i / BATCH_SIZE, data, error });
 
-      console.log('[FilteredCardView] Batch result:', { batchIndex: i / BATCH_SIZE, itemsFound: data?.length || 0 });
-
-      data?.forEach((item) => {
-        colMap[item.card_id] = item as CollectionData;
-        if (item.owned) {
-          ownedIds.add(item.card_id);
+        if (error) {
+          console.error("[FilteredCardView] Error fetching batch:", error);
+          continue; // Continue with other batches
         }
-      });
+
+        console.log('[FilteredCardView] Batch result:', { batchIndex: i / BATCH_SIZE, itemsFound: data?.length || 0 });
+
+        data?.forEach((item) => {
+          colMap[item.card_id] = item as CollectionData;
+          if (item.owned) {
+            ownedIds.add(item.card_id);
+          }
+        });
+      } catch (e) {
+        console.error('[FilteredCardView] Exception in batch:', e);
+      }
     }
 
     console.log('[FilteredCardView] Collection loaded:', { totalItems: Object.keys(colMap).length, ownedCount: ownedIds.size });
