@@ -249,20 +249,34 @@ function parsePRB01Url(url: string, lang: 'en' | 'fr'): PRB01Card | null {
   // FORMATS FR (SANS prefixe langue)
   // ========================================
   if (lang === 'fr') {
-    // Pattern FR 1: PRB01 specific card (ex: prb01-001-l-sanji)
+    // Pattern FR 1: PRB01 specific card (ex: prb01-001-l-sanji, prb01-001-l-version-2-sanji)
     const prb01Match = slug.match(/^prb01-(\d{3})-([a-z]+)-(.+)$/i)
     if (prb01Match) {
       const [, number, rarity, namePart] = prb01Match
-      const cleanName = formatName(namePart)
+
+      // Detecter version-X dans le nom
+      let variant = 'standard'
+      let variantSuffix = ''
+      let actualNamePart = namePart
+
+      const versionMatch = namePart.match(/^version-(\d+)-(.+)$/i)
+      if (versionMatch) {
+        const [, versionNum, restName] = versionMatch
+        variant = `version-${versionNum}`
+        variantSuffix = versionNum === '2' ? '-V2' : `-V${versionNum}`
+        actualNamePart = restName
+      }
+
+      const cleanName = formatName(actualNamePart)
       return {
         url: `/cards/${slug}`,
         slug,
-        number,
+        number: `PRB01-${number}${variantSuffix}`,
         displayNumber: `PRB01-${number}`,
         originalCard: `PRB01-${number}`,
         name: cleanName,
         rarity: rarity.toUpperCase(),
-        variant: 'standard',
+        variant,
         imageUrl: null,
         language: langUpper
       }
@@ -274,10 +288,11 @@ function parsePRB01Url(url: string, lang: 'en' | 'fr'): PRB01Card | null {
       const [, number, versionNum, namePart] = promoVariantMatch
       const cleanName = formatName(namePart)
       const variantSuffix = versionNum === '2' ? '-V2' : `-V${versionNum}`
+      // Utiliser P-{number} comme numero unique pour eviter les collisions
       return {
         url: `/cards/${slug}`,
         slug,
-        number: `${number}${variantSuffix}`,
+        number: `P-${number}${variantSuffix}`,
         displayNumber: `P-${number}`,
         originalCard: `P-${number}`,
         name: cleanName,
@@ -288,20 +303,44 @@ function parsePRB01Url(url: string, lang: 'en' | 'fr'): PRB01Card | null {
       }
     }
 
-    // Pattern FR 3: Promo cards without variant (ex: p-014-p-kobby)
+    // Pattern FR 3: Promo cards without version-X variant (ex: p-014-p-kobby, p-014-p-prb01-full-art-kobby)
     const promoMatch = slug.match(/^p-(\d{3})-p-(.+)$/i)
     if (promoMatch) {
       const [, number, namePart] = promoMatch
-      const cleanName = formatName(namePart)
+
+      // Detecter les variantes dans le nom (prb01-full-art, etc.)
+      let variant = 'standard'
+      let variantSuffix = ''
+      let actualNamePart = namePart
+
+      const variantPatterns: Array<{ pattern: RegExp; variant: string; suffix: string }> = [
+        { pattern: /^prb01-full-art-(.+)$/i, variant: 'full-art', suffix: '-FA' },
+        { pattern: /^prb01-alternative-art-(.+)$/i, variant: 'alternative-art', suffix: '-ALT' },
+        { pattern: /^prb01-alt-art-(.+)$/i, variant: 'alternative-art', suffix: '-ALT' },
+        { pattern: /^prb01-foil-(.+)$/i, variant: 'foil', suffix: '-FO' },
+      ]
+
+      for (const vp of variantPatterns) {
+        const match = namePart.match(vp.pattern)
+        if (match) {
+          variant = vp.variant
+          variantSuffix = vp.suffix
+          actualNamePart = match[1]
+          break
+        }
+      }
+
+      const cleanName = formatName(actualNamePart)
+      // Utiliser P-{number} comme numero unique pour eviter les collisions
       return {
         url: `/cards/${slug}`,
         slug,
-        number,
+        number: `P-${number}${variantSuffix}`,
         displayNumber: `P-${number}`,
         originalCard: `P-${number}`,
         name: cleanName,
         rarity: 'P',
-        variant: 'standard',
+        variant,
         imageUrl: null,
         language: langUpper
       }
@@ -320,13 +359,13 @@ function parsePRB01Url(url: string, lang: 'en' | 'fr'): PRB01Card | null {
       const [, origSetLetters, origSetNum, number, rarity, versionNum, namePart] = variantMatch
       const originalCard = `${origSetLetters.toUpperCase()}${origSetNum}-${number}`
       const cleanName = formatName(namePart)
-      // version-2 = variant (full-art, jolly-roger-foil, etc.)
+      // Utiliser originalCard comme numero pour eviter les collisions (ex: OP06-003 vs OP03-003)
       const variantSuffix = versionNum === '2' ? '-V2' : `-V${versionNum}`
       return {
         url: `/cards/${slug}`,
         slug,
-        number: `${number}${variantSuffix}`,
-        displayNumber: `PRB01-${number}`,
+        number: `${originalCard}${variantSuffix}`,
+        displayNumber: originalCard,
         originalCard,
         name: cleanName,
         rarity: rarity.toUpperCase(),
@@ -336,21 +375,49 @@ function parsePRB01Url(url: string, lang: 'en' | 'fr'): PRB01Card | null {
       }
     }
 
-    // Pattern FR 6: Original set card without variant (ex: op06-003-uc-emporio-ivankov)
+    // Pattern FR 6: Original set card without version-X variant (ex: op06-003-uc-emporio-ivankov)
+    // Mais peut contenir des variantes dans le nom (prb01-full-art-xxx, prb01-alternative-art-xxx, etc.)
     const standardFrMatch = slug.match(/^([a-z]+)(\d+)-(\d{3})-([a-z]+)-(.+)$/i)
     if (standardFrMatch) {
       const [, origSetLetters, origSetNum, number, rarity, namePart] = standardFrMatch
       const originalCard = `${origSetLetters.toUpperCase()}${origSetNum}-${number}`
-      const cleanName = formatName(namePart)
+
+      // Detecter les variantes dans le nom (prb01-full-art, prb01-alternative-art, prb01-foil, etc.)
+      let variant = 'standard'
+      let variantSuffix = ''
+      let actualNamePart = namePart
+
+      // Patterns de variantes dans le nom
+      const variantPatterns: Array<{ pattern: RegExp; variant: string; suffix: string }> = [
+        { pattern: /^prb01-full-art-(.+)$/i, variant: 'full-art', suffix: '-FA' },
+        { pattern: /^prb01-alternative-art-(.+)$/i, variant: 'alternative-art', suffix: '-ALT' },
+        { pattern: /^prb01-alt-art-(.+)$/i, variant: 'alternative-art', suffix: '-ALT' },
+        { pattern: /^prb01-foil-(.+)$/i, variant: 'foil', suffix: '-FO' },
+        { pattern: /^prb01-jolly-roger-foil-(.+)$/i, variant: 'jolly-roger-foil', suffix: '-JRF' },
+        { pattern: /^prb01-manga-(.+)$/i, variant: 'manga', suffix: '-MG' },
+      ]
+
+      for (const vp of variantPatterns) {
+        const match = namePart.match(vp.pattern)
+        if (match) {
+          variant = vp.variant
+          variantSuffix = vp.suffix
+          actualNamePart = match[1]
+          break
+        }
+      }
+
+      const cleanName = formatName(actualNamePart)
+
       return {
         url: `/cards/${slug}`,
         slug,
-        number,
-        displayNumber: `PRB01-${number}`,
+        number: `${originalCard}${variantSuffix}`,
+        displayNumber: originalCard,
         originalCard,
         name: cleanName,
         rarity: rarity.toUpperCase(),
-        variant: 'standard',
+        variant,
         imageUrl: null,
         language: langUpper
       }
