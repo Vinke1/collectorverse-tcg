@@ -49,8 +49,6 @@ export function CollectionControl({
     const userModifiedRef = useRef(false);
     // Track previous cardId to detect card changes
     const prevCardIdRef = useRef(cardId);
-    // Debounce timeout ref for batching rapid updates
-    const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const supabase = createClient();
 
     // Keep refs in sync with state
@@ -81,58 +79,37 @@ export function CollectionControl({
         // If user HAS modified, ignore prop updates to preserve their changes
     }, [cardId, initialNormal, initialFoil]);
 
-    // Cleanup timeout on unmount to prevent memory leaks
-    useEffect(() => {
-        return () => {
-            if (saveTimeoutRef.current) {
-                clearTimeout(saveTimeoutRef.current);
-            }
-        };
-    }, []);
-
-    // Debounced save function - waits 300ms after last change before saving
-    // This prevents multiple rapid requests when user clicks +/- quickly
-    const saveToDatabase = useCallback((newNormal: number, newFoil: number) => {
-        // Clear any pending save
-        if (saveTimeoutRef.current) {
-            clearTimeout(saveTimeoutRef.current);
+    // Immediate save function - saves directly to database without debounce
+    // This ensures data is persisted even if user refreshes immediately after changing
+    const saveToDatabase = useCallback(async (newNormal: number, newFoil: number) => {
+        // Skip if values haven't changed from last saved values
+        if (newNormal === lastSavedNormalRef.current && newFoil === lastSavedFoilRef.current) {
+            return;
         }
 
-        // Schedule a save after 300ms of inactivity
-        saveTimeoutRef.current = setTimeout(async () => {
-            // Use refs to get the most current values (in case user clicked more times)
-            const currentNormal = normalRef.current;
-            const currentFoil = foilRef.current;
+        setIsSaving(true);
+        try {
+            const { error } = await supabase
+                .from("user_collections")
+                .upsert({
+                    user_id: userId,
+                    card_id: cardId,
+                    quantity: newNormal,
+                    quantity_foil: newFoil,
+                    owned: newNormal > 0 || newFoil > 0
+                }, { onConflict: 'user_id, card_id' });
 
-            // Skip if values haven't changed from last saved values
-            if (currentNormal === lastSavedNormalRef.current && currentFoil === lastSavedFoilRef.current) {
-                return;
-            }
+            if (error) throw error;
 
-            setIsSaving(true);
-            try {
-                const { error } = await supabase
-                    .from("user_collections")
-                    .upsert({
-                        user_id: userId,
-                        card_id: cardId,
-                        quantity: currentNormal,
-                        quantity_foil: currentFoil,
-                        owned: currentNormal > 0 || currentFoil > 0
-                    }, { onConflict: 'user_id, card_id' });
-
-                if (error) throw error;
-
-                // Update last saved values on success
-                lastSavedNormalRef.current = currentNormal;
-                lastSavedFoilRef.current = currentFoil;
-            } catch (error) {
-                console.error("Error saving collection:", error);
-                toast.error("Erreur lors de la mise à jour");
-            } finally {
-                setIsSaving(false);
-            }
-        }, 300);
+            // Update last saved values on success
+            lastSavedNormalRef.current = newNormal;
+            lastSavedFoilRef.current = newFoil;
+        } catch (error) {
+            console.error("Error saving collection:", error);
+            toast.error("Erreur lors de la mise à jour");
+        } finally {
+            setIsSaving(false);
+        }
     }, [supabase, userId, cardId]);
 
     const handleNormalChange = (value: number) => {
