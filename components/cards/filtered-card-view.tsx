@@ -195,6 +195,32 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     });
   }, []); // No dependencies - uses functional updates only
 
+  // Calculate dynamic collection stats by language (updates when collection changes)
+  const dynamicCollectionStats = useMemo((): LanguageCollectionStats => {
+    const stats: LanguageCollectionStats = {};
+
+    // Group cards by language
+    const cardsByLanguage: Record<string, string[]> = {};
+    cards.forEach(card => {
+      const lang = (card.language || 'fr').toLowerCase();
+      if (!cardsByLanguage[lang]) cardsByLanguage[lang] = [];
+      cardsByLanguage[lang].push(card.id);
+    });
+
+    // Calculate stats for each language
+    for (const [lang, langCardIds] of Object.entries(cardsByLanguage)) {
+      const total = langCardIds.length;
+      const owned = langCardIds.filter(id => ownedCardIds.has(id)).length;
+      stats[lang] = {
+        owned,
+        total,
+        percentage: total > 0 ? Math.round((owned / total) * 100) : 0
+      };
+    }
+
+    return stats;
+  }, [cards, ownedCardIds]);
+
   // Calculate available rarities based on cards in the selected language
   // For TCGs with custom rarities (Pokemon, Riftbound), extract the raw rarity values
   // For Lorcana, use the normalized rarity IDs
@@ -360,7 +386,7 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
               viewMode={viewMode}
               setViewMode={setViewMode}
               isLoggedIn={isLoggedIn}
-              collectionStats={collectionStats}
+              collectionStats={isLoggedIn ? dynamicCollectionStats : collectionStats}
               tcgDomains={tcgDomains}
               tcgRarities={tcgRarities}
               cards={cards}
