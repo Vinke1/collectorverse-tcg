@@ -8,6 +8,7 @@ import { SeriesDetailHeader } from "@/components/series/series-detail-header";
 import { extractAvailableRarities, matchesRarity } from "@/lib/constants/rarities";
 import { sortCards, type SortOption } from "@/lib/utils/card-sorting";
 import { createClient } from "@/lib/supabase/client";
+import { useAuth } from "@/components/providers/auth-provider";
 import type { CardItem } from "@/lib/types/cards";
 import type { LanguageCollectionStats, TcgAttribute } from "@/app/series/[tcg]/[code]/page";
 
@@ -55,6 +56,9 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
   // Collection state - persists across filter changes (fixes reset on language change)
   const [collection, setCollection] = useState<Record<string, CollectionData>>({});
   const collectionFetchedRef = useRef(false);
+
+  // Use auth context to wait for session to be ready
+  const { user: authUser, loading: authLoading } = useAuth();
 
   // Use deferred values for search inputs to avoid blocking the UI during typing
   const deferredSearchName = useDeferredValue(searchName);
@@ -136,10 +140,28 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     collectionFetchedRef.current = true;
   }, [userId, cards]);
 
-  // Fetch collection once on mount or when cards/userId change
+  // Fetch collection once when auth is ready and we have a user
+  // Wait for authLoading to be false to ensure session is established
   useEffect(() => {
+    // Don't fetch while auth is loading - wait for session to be ready
+    if (authLoading) {
+      console.log('[FilteredCardView] Auth still loading, waiting...');
+      return;
+    }
+
+    // Use authUser.id if available (client-side session), fallback to server-provided userId
+    const effectiveUserId = authUser?.id || userId;
+
+    if (!effectiveUserId) {
+      console.log('[FilteredCardView] No user, clearing collection');
+      setCollection({});
+      setOwnedCardIds(new Set());
+      return;
+    }
+
+    console.log('[FilteredCardView] Auth ready, fetching collection for user:', effectiveUserId);
     fetchCollection();
-  }, [fetchCollection]);
+  }, [authLoading, authUser?.id, userId, fetchCollection]);
 
   // Callback to update collection when user modifies a card
   // Uses functional updates to avoid stale closure issues
