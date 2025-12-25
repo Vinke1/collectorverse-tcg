@@ -7,9 +7,11 @@ export const LANGUAGE_FLAGS: Record<string, string> = {
   fr: '/images/flags/fr.svg',
   en: '/images/flags/us.svg',
   jp: '/images/flags/jp.svg',
+  zh: '/images/flags/zh.svg',
   FR: '/images/flags/fr.svg',
   EN: '/images/flags/us.svg',
   JP: '/images/flags/jp.svg',
+  ZH: '/images/flags/zh.svg',
 };
 
 // Labels courts pour les langues
@@ -17,13 +19,15 @@ export const LANGUAGE_LABELS: Record<string, string> = {
   fr: 'FR',
   en: 'EN',
   jp: 'JP',
+  zh: 'ZH',
   FR: 'FR',
   EN: 'EN',
   JP: 'JP',
+  ZH: 'ZH',
 };
 
 // Ordre de priorité des langues pour l'affichage
-export const LANGUAGE_ORDER = ['FR', 'fr', 'EN', 'en', 'JP', 'jp'];
+export const LANGUAGE_ORDER = ['FR', 'fr', 'EN', 'en', 'JP', 'jp', 'ZH', 'zh'];
 
 /**
  * Get sorted languages from an object with language keys
