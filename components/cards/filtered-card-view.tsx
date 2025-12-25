@@ -99,64 +99,24 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     const colMap: Record<string, CollectionData> = {};
     const ownedIds = new Set<string>();
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-    // Get the session token from Supabase auth cookie
-    const getSessionToken = (): string | null => {
-      const projectRef = supabaseUrl?.match(/https:\/\/([^.]+)\./)?.[1];
-      if (!projectRef) return null;
-
-      const cookieName = `sb-${projectRef}-auth-token`;
-      const cookies = document.cookie.split(';');
-      for (const cookie of cookies) {
-        const [name, value] = cookie.trim().split('=');
-        if (name === cookieName) {
-          try {
-            const parsed = JSON.parse(decodeURIComponent(value));
-            return parsed?.access_token || null;
-          } catch {
-            return null;
-          }
-        }
-      }
-      return null;
-    };
-
-    const accessToken = getSessionToken();
-    console.log('[FilteredCardView] Session token found:', !!accessToken);
-
-    if (!accessToken) {
-      console.warn('[FilteredCardView] No session token, cannot fetch collection');
-      setCollection({});
-      setOwnedCardIds(new Set());
-      return;
-    }
-
+    const supabase = createClient();
     console.log('[FilteredCardView] Fetching collection for', cardIds.length, 'cards');
 
     for (let i = 0; i < cardIds.length; i += BATCH_SIZE) {
       const batchIds = cardIds.slice(i, i + BATCH_SIZE);
 
       try {
-        // Use direct fetch instead of Supabase client (client was blocking)
-        const inFilter = batchIds.map(id => `"${id}"`).join(',');
-        const url = `${supabaseUrl}/rest/v1/user_collections?select=card_id,quantity,quantity_foil,owned&user_id=eq.${userId}&card_id=in.(${inFilter})`;
+        const { data, error } = await supabase
+          .from('user_collections')
+          .select('card_id, quantity, quantity_foil, owned')
+          .eq('user_id', userId)
+          .in('card_id', batchIds);
 
-        const response = await fetch(url, {
-          headers: {
-            'apikey': supabaseKey || '',
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          }
-        });
-
-        if (!response.ok) {
-          console.error('[FilteredCardView] Fetch error:', response.status, response.statusText);
+        if (error) {
+          console.error('[FilteredCardView] Supabase error:', error);
           continue;
         }
 
-        const data = await response.json();
         console.log('[FilteredCardView] Batch', i / BATCH_SIZE, 'result:', data?.length || 0, 'items');
 
         data?.forEach((item: CollectionData) => {
