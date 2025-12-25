@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState, useCallback } fr
 import { Language, translations } from "@/lib/translations";
 import { createClient } from "@/lib/supabase/client";
 import { SUPPORTED_LANGUAGES } from "@/lib/constants/app-config";
+import type { AuthChangeEvent, Session } from "@supabase/supabase-js";
 
 interface LanguageContextType {
   language: Language;
@@ -68,7 +69,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     loadLanguagePreference();
 
     // Écouter les changements d'authentification
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event: AuthChangeEvent, session: Session | null) => {
       if (event === "SIGNED_IN" && session?.user) {
         setUserId(session.user.id);
         // Charger la préférence de l'utilisateur depuis la BDD

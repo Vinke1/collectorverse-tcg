@@ -70,7 +70,7 @@ export function ExportButton({
 
       // 3. Build collection map
       const collection: Record<string, CollectionItem> = {}
-      collectionData?.forEach(item => {
+      collectionData?.forEach((item: { card_id: string; quantity: number | null; quantity_foil: number | null }) => {
         collection[item.card_id] = {
           quantity: item.quantity || 0,
           quantity_foil: item.quantity_foil || 0
