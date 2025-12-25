@@ -142,13 +142,14 @@ export function SeriesGrid({ series, tcgSlug, isLoggedIn, collectionStats }: Ser
                 const isQuestSeries = serie.code === 'QuestDeep' || serie.code === 'QuestPalace';
                 const isPromoSeries = serie.code === 'Promo';
                 const isRiftboundSeries = tcgSlug === 'riftbound';
+                const isNarutoSeries = tcgSlug === 'naruto';
                 const isOnePieceSeries = tcgSlug === 'onepiece';
                 const isStarWarsSeries = tcgSlug === 'starwars';
                 const isLorcanaSeries = tcgSlug === 'lorcana';
                 const isSpecialSeries = isQuestSeries || isPromoSeries;
-                const shouldUseCover = isSpecialSeries || isRiftboundSeries || isOnePieceSeries || isStarWarsSeries || isLorcanaSeries;
+                const shouldUseCover = isSpecialSeries || isRiftboundSeries || isNarutoSeries || isOnePieceSeries || isStarWarsSeries || isLorcanaSeries;
                 const imagePosition = serie.code === 'QuestDeep' ? 'questDeep' : serie.code === 'QuestPalace' ? 'questPalace' : serie.code === 'Lueur' ? 'top40' : 'center';
-                const aspectRatio = isOnePieceSeries || isStarWarsSeries ? 'aspect-[16/9]' : isRiftboundSeries ? 'aspect-[2.36/1]' : isPromoSeries ? 'aspect-[3.0/1]' : isQuestSeries ? 'aspect-[3.2/1]' : 'aspect-[4/1]';
+                const aspectRatio = isOnePieceSeries || isStarWarsSeries ? 'aspect-[16/9]' : isRiftboundSeries || isNarutoSeries ? 'aspect-[2.36/1]' : isPromoSeries ? 'aspect-[3.0/1]' : isQuestSeries ? 'aspect-[3.2/1]' : 'aspect-[4/1]';
                 return (
               <div className={`relative ${aspectRatio} bg-amber-50 dark:bg-slate-900`}>
                 {serie.image_url ? (
