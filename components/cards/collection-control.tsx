@@ -79,6 +79,7 @@ export function CollectionControl({
     }, [cardId, initialNormal, initialFoil]);
 
     // Immediate save function - uses Supabase client directly
+    // Verifies session before saving to ensure user is authenticated
     const saveToDatabase = useCallback(async (newNormal: number, newFoil: number) => {
         // Skip if values haven't changed from last saved values
         if (newNormal === lastSavedNormalRef.current && newFoil === lastSavedFoilRef.current) {
@@ -89,10 +90,25 @@ export function CollectionControl({
         try {
             const supabase = createClient();
 
+            // Verify user is still authenticated before saving
+            const { data: { user }, error: authError } = await supabase.auth.getUser();
+            if (authError || !user) {
+                console.error("[CollectionControl] Auth error or no user:", authError);
+                toast.error("Session expirée. Veuillez vous reconnecter.");
+                return;
+            }
+
+            // Use authenticated user ID (not prop) to ensure RLS works correctly
+            const authenticatedUserId = user.id;
+            if (authenticatedUserId !== userId) {
+                console.warn("[CollectionControl] User ID mismatch:", { prop: userId, auth: authenticatedUserId });
+                // Use the authenticated user ID for the save
+            }
+
             const { error } = await supabase
                 .from('user_collections')
                 .upsert({
-                    user_id: userId,
+                    user_id: authenticatedUserId,
                     card_id: cardId,
                     quantity: newNormal,
                     quantity_foil: newFoil,
@@ -102,6 +118,7 @@ export function CollectionControl({
                 });
 
             if (error) {
+                console.error("[CollectionControl] Upsert error:", error);
                 throw error;
             }
 

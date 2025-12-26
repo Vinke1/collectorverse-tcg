@@ -1,6 +1,6 @@
 {
   "startedAt": "2025-12-26T13:03:34.389Z",
-  "lastUpdated": "2025-12-26T14:03:38.981Z",
+  "lastUpdated": "2025-12-26T14:21:05.486Z",
   "status": "in_progress",
   "processedFiles": [
     "blb/en",
@@ -27,10 +27,18 @@
     "kld/fr",
     "kld/ja",
     "kld/zhs",
-    "ody/en"
+    "ody/en",
+    "ody/fr",
+    "ody/ja",
+    "ody/zhs",
+    "pdft/en",
+    "brr/en",
+    "brr/fr",
+    "brr/ja",
+    "brr/zhs"
   ],
-  "currentFile": "ody/fr",
-  "totalSuccess": 7433,
+  "currentFile": "who/en",
+  "totalSuccess": 9212,
   "totalErrors": 0,
   "totalSkipped": 0
 }

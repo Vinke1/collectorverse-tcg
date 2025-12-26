@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useDeferredValue, useEffect, useCallback, useRef } from "react";
+import { useState, useMemo, useDeferredValue, useEffect, useCallback } from "react";
 import { CardFiltersHorizontal } from "./card-filters-horizontal";
 import { CardGrid } from "./card-grid";
 import { CardList } from "./card-list";
@@ -34,13 +34,14 @@ interface FilteredCardViewProps {
   isLoggedIn?: boolean;
   userId?: string;
   collectionStats?: LanguageCollectionStats;
+  initialCollection?: Record<string, CollectionData>;
   tcgDomains?: TcgAttribute[];
   tcgRarities?: TcgAttribute[];
 }
 
 export type OwnershipFilter = "all" | "owned" | "missing";
 
-export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesName, cardsCount, maxSetBase, masterSet, isLoggedIn, userId, collectionStats, tcgDomains = [], tcgRarities = [] }: FilteredCardViewProps) {
+export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesName, cardsCount, maxSetBase, masterSet, isLoggedIn, userId, collectionStats, initialCollection = {}, tcgDomains = [], tcgRarities = [] }: FilteredCardViewProps) {
   const [searchName, setSearchName] = useState("");
   const [searchNumber, setSearchNumber] = useState("");
   const [sortBy, setSortBy] = useState("number");
@@ -51,11 +52,18 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
   const [selectedVersion, setSelectedVersion] = useState("all");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [ownershipFilter, setOwnershipFilter] = useState<OwnershipFilter>("all");
-  const [ownedCardIds, setOwnedCardIds] = useState<Set<string>>(new Set());
 
-  // Collection state - persists across filter changes (fixes reset on language change)
-  const [collection, setCollection] = useState<Record<string, CollectionData>>({});
-  const collectionFetchedRef = useRef(false);
+  // Initialize ownedCardIds from initialCollection
+  const [ownedCardIds, setOwnedCardIds] = useState<Set<string>>(() => {
+    const owned = new Set<string>();
+    Object.entries(initialCollection).forEach(([cardId, data]) => {
+      if (data.owned) owned.add(cardId);
+    });
+    return owned;
+  });
+
+  // Collection state - initialized with server data, persists across filter changes
+  const [collection, setCollection] = useState<Record<string, CollectionData>>(initialCollection);
 
   // Use auth context to wait for session to be ready
   const { user: authUser, loading: authLoading } = useAuth();
@@ -86,15 +94,13 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     }
   }, [availableLanguages, selectedLanguage, setSelectedLanguage]);
 
-  // Fetch collection data for ALL cards once (persists across filter changes)
-  // Uses batching to avoid Supabase "Bad Request" errors for large card sets
-  const fetchCollection = useCallback(async () => {
-    console.log('[FilteredCardView] fetchCollection called:', { userId, cardsCount: cards.length });
+  // Get effective user ID - prefer auth context, fallback to server-provided
+  const effectiveUserId = authUser?.id || userId;
 
-    if (!userId || cards.length === 0) {
-      console.log('[FilteredCardView] No userId or no cards, clearing collection');
-      setCollection({});
-      setOwnedCardIds(new Set());
+  // Refresh collection from database (used after initial load or when needed)
+  // Uses batching to avoid Supabase "Bad Request" errors for large card sets
+  const refreshCollection = useCallback(async (targetUserId: string) => {
+    if (!targetUserId || cards.length === 0) {
       return;
     }
 
@@ -104,7 +110,6 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
     const ownedIds = new Set<string>();
 
     const supabase = createClient();
-    console.log('[FilteredCardView] Fetching collection for', cardIds.length, 'cards');
 
     for (let i = 0; i < cardIds.length; i += BATCH_SIZE) {
       const batchIds = cardIds.slice(i, i + BATCH_SIZE);
@@ -113,15 +118,13 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
         const { data, error } = await supabase
           .from('user_collections')
           .select('card_id, quantity, quantity_foil, owned')
-          .eq('user_id', userId)
+          .eq('user_id', targetUserId)
           .in('card_id', batchIds);
 
         if (error) {
           console.error('[FilteredCardView] Supabase error:', error);
           continue;
         }
-
-        console.log('[FilteredCardView] Batch', i / BATCH_SIZE, 'result:', data?.length || 0, 'items');
 
         data?.forEach((item: CollectionData) => {
           colMap[item.card_id] = item;
@@ -134,34 +137,41 @@ export function FilteredCardView({ cards, tcgSlug, seriesId, seriesCode, seriesN
       }
     }
 
-    console.log('[FilteredCardView] Collection loaded:', { totalItems: Object.keys(colMap).length, ownedCount: ownedIds.size });
     setCollection(colMap);
     setOwnedCardIds(ownedIds);
-    collectionFetchedRef.current = true;
-  }, [userId, cards]);
+  }, [cards]);
 
-  // Fetch collection once when auth is ready and we have a user
-  // Wait for authLoading to be false to ensure session is established
+  // Only refresh collection if user changes (login/logout) or if auth user differs from server user
+  // We already have initialCollection from server, so no need to fetch on mount
   useEffect(() => {
-    // Don't fetch while auth is loading - wait for session to be ready
+    // Wait for auth to be ready
     if (authLoading) {
-      console.log('[FilteredCardView] Auth still loading, waiting...');
       return;
     }
 
-    // Use authUser.id if available (client-side session), fallback to server-provided userId
-    const effectiveUserId = authUser?.id || userId;
-
+    // If user logs out, clear collection
     if (!effectiveUserId) {
-      console.log('[FilteredCardView] No user, clearing collection');
       setCollection({});
       setOwnedCardIds(new Set());
       return;
     }
 
-    console.log('[FilteredCardView] Auth ready, fetching collection for user:', effectiveUserId);
-    fetchCollection();
-  }, [authLoading, authUser?.id, userId, fetchCollection]);
+    // If we have initial collection data from server and the user matches, don't refetch
+    // Only refetch if auth user ID differs from server-provided userId (edge case)
+    const hasInitialData = Object.keys(initialCollection).length > 0;
+    const serverUserMatchesAuth = userId === authUser?.id;
+
+    if (hasInitialData && (serverUserMatchesAuth || !authUser?.id)) {
+      // Already have data from server, no need to fetch
+      return;
+    }
+
+    // User changed or we need fresh data - refetch
+    if (authUser?.id && authUser.id !== userId) {
+      console.log('[FilteredCardView] Auth user differs from server user, refreshing collection');
+      refreshCollection(authUser.id);
+    }
+  }, [authLoading, authUser?.id, userId, effectiveUserId, initialCollection, refreshCollection]);
 
   // Callback to update collection when user modifies a card
   // Uses functional updates to avoid stale closure issues

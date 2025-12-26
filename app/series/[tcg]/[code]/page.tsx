@@ -107,8 +107,10 @@ export default async function SeriesDetailPage({ params }: SeriesDetailPageProps
   const cards = sortCardsByNumber(cardsData || []);
   const cardsCount = new Set(cards.map(c => c.number)).size;
 
-  // Calculer les stats de collection par langue si l'utilisateur est connecté
+  // Calculer les stats de collection par langue et récupérer la collection complète
   const collectionStats: LanguageCollectionStats = {};
+  // Collection data map pour passer au client (avec quantity et quantity_foil)
+  let initialCollection: Record<string, { card_id: string; quantity: number; quantity_foil: number; owned: boolean }> = {};
 
   if (user && cards.length > 0) {
     // Compter les cartes par langue
@@ -119,17 +121,39 @@ export default async function SeriesDetailPage({ params }: SeriesDetailPageProps
       cardsByLanguage[lang].push(card.id);
     });
 
-    // Récupérer les cartes possédées par l'utilisateur
+    // Récupérer la collection complète de l'utilisateur (avec quantity et quantity_foil)
     const cardIds = cards.map(c => c.id);
-    const { data: userCollection } = await supabase
-      .from("user_collections")
-      .select("card_id, owned")
-      .eq("user_id", user.id)
-      .in("card_id", cardIds);
+
+    // Fetch par batch de 100 pour éviter les erreurs "Bad Request"
+    const BATCH_SIZE = 100;
+    const allUserCollection: { card_id: string; quantity: number; quantity_foil: number; owned: boolean }[] = [];
+
+    for (let i = 0; i < cardIds.length; i += BATCH_SIZE) {
+      const batchIds = cardIds.slice(i, i + BATCH_SIZE);
+      const { data: batchData } = await supabase
+        .from("user_collections")
+        .select("card_id, quantity, quantity_foil, owned")
+        .eq("user_id", user.id)
+        .in("card_id", batchIds);
+
+      if (batchData) {
+        allUserCollection.push(...batchData);
+      }
+    }
+
+    // Créer un map de la collection pour passer au client
+    allUserCollection.forEach(item => {
+      initialCollection[item.card_id] = {
+        card_id: item.card_id,
+        quantity: item.quantity || 0,
+        quantity_foil: item.quantity_foil || 0,
+        owned: item.owned
+      };
+    });
 
     // Créer un set des cartes possédées
     const ownedCardIds = new Set(
-      userCollection?.filter(c => c.owned).map(c => c.card_id) || []
+      allUserCollection.filter(c => c.owned).map(c => c.card_id)
     );
 
     // Calculer les stats par langue
@@ -159,6 +183,7 @@ export default async function SeriesDetailPage({ params }: SeriesDetailPageProps
         isLoggedIn={!!user}
         userId={user?.id}
         collectionStats={collectionStats}
+        initialCollection={initialCollection}
         tcgDomains={tcgDomains}
         tcgRarities={tcgRarities}
       />
