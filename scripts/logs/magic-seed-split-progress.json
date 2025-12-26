@@ -1,6 +1,6 @@
 {
   "startedAt": "2025-12-26T13:03:34.389Z",
-  "lastUpdated": "2025-12-26T18:43:36.986Z",
+  "lastUpdated": "2025-12-26T18:45:49.625Z",
   "status": "in_progress",
   "processedFiles": [
     "blb/en",
@@ -115,10 +115,11 @@
     "dsk/ja",
     "isd/en",
     "isd/fr",
-    "isd/ja"
+    "isd/ja",
+    "isd/zhs"
   ],
-  "currentFile": "isd/zhs",
-  "totalSuccess": 41951,
+  "currentFile": "c15/en",
+  "totalSuccess": 42215,
   "totalErrors": 115,
   "totalSkipped": 0
 }
