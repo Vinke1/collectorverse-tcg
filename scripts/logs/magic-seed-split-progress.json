@@ -1,6 +1,6 @@
 {
   "startedAt": "2025-12-26T13:03:34.389Z",
-  "lastUpdated": "2025-12-26T19:05:29.661Z",
+  "lastUpdated": "2025-12-26T19:13:31.554Z",
   "status": "in_progress",
   "processedFiles": [
     "blb/en",
@@ -127,10 +127,12 @@
     "znc/en",
     "znc/fr",
     "znc/ja",
-    "znc/zhs"
+    "znc/zhs",
+    "pip/en",
+    "pip/fr"
   ],
-  "currentFile": "pip/en",
-  "totalSuccess": 45061,
+  "currentFile": "pip/ja",
+  "totalSuccess": 46456,
   "totalErrors": 115,
   "totalSkipped": 0
 }
