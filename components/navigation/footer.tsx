@@ -100,7 +100,7 @@ export function Footer() {
               <Instagram className="w-5 h-5" />
             </a>
             <a
-              href="https://tiktok.com"
+              href="https://www.tiktok.com/@collectorverse.io"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
