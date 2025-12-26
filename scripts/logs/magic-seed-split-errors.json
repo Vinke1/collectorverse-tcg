@@ -196,5 +196,23 @@
     "language": "en",
     "scryfallId": "5c53bf06-f681-4d5c-b303-cc7c050f5b01",
     "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:10:44.707Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "2180",
+    "language": "en",
+    "scryfallId": "6b563165-b97f-42c6-82a8-65d8ee69e381",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:11:13.454Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "2094",
+    "language": "en",
+    "scryfallId": "73f94f72-a689-41ca-b1af-6004e2a57e9c",
+    "message": "Parse failed"
   }
 ]
