@@ -565,5 +565,167 @@
     "language": "en",
     "scryfallId": "28427ccd-d106-4388-835b-aee29288fc40",
     "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:30:55.543Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TORI-13",
+    "language": "en",
+    "scryfallId": "2aee1ed1-a435-4a9a-aad0-d0a90468f040",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:31:01.058Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TLCC-1",
+    "language": "en",
+    "scryfallId": "2b670d1d-2016-4df3-a3ad-52d018b9bcf1",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:31:04.129Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TORI-7",
+    "language": "en",
+    "scryfallId": "2c3775c8-2d3d-47b0-b262-8b86d649c087",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:31:25.017Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TGRN-1",
+    "language": "en",
+    "scryfallId": "2e974146-736c-430c-860a-2230f52c8a4e",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:33:15.601Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TNPH-1",
+    "language": "en",
+    "scryfallId": "38785165-d996-48bc-bafa-b25af6401a98",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:33:37.679Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TKHM-21",
+    "language": "en",
+    "scryfallId": "3ab2afd6-db73-4d8e-9ab6-7e035f679d59",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:34:02.429Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TISD-6",
+    "language": "en",
+    "scryfallId": "3d01a596-0a1a-4913-9bb1-bcf6af60d14f",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:34:15.071Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TMID-13",
+    "language": "en",
+    "scryfallId": "3e79f075-f663-4a23-8a56-2aa6164d23f6",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:35:37.328Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TZNR-8",
+    "language": "en",
+    "scryfallId": "48215cc8-e20a-4f70-9787-a20adbcc1661",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:37:07.676Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TC17-3",
+    "language": "en",
+    "scryfallId": "50af7e54-3a6c-4dd0-be1b-83b82734621a",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:37:25.895Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TCMR-14",
+    "language": "en",
+    "scryfallId": "523cbb5c-4166-4cdb-845c-9213609c921d",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:37:36.546Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TSNC-10",
+    "language": "en",
+    "scryfallId": "53f30e6b-602d-4e7d-b217-8c8d6b9ecc27",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:38:12.872Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TSNC-12",
+    "language": "en",
+    "scryfallId": "56d196ad-4acf-4241-bc7a-dc8ec3a38498",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:39:51.780Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TC21-26",
+    "language": "en",
+    "scryfallId": "609cb9a8-9598-4b3d-a56e-f477871d3ff7",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:40:53.384Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TAFR-1",
+    "language": "en",
+    "scryfallId": "651d5db8-9f34-4b5c-bc9b-f5935eb41cc6",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:41:12.559Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TM20-1",
+    "language": "en",
+    "scryfallId": "6740f7cb-e21b-41ca-acf0-93d63f1f8c54",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:41:17.719Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TSNC-9",
+    "language": "en",
+    "scryfallId": "687bbd21-ae87-43b9-9d32-e981e7a78d76",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:42:30.783Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TORI-12",
+    "language": "en",
+    "scryfallId": "6f5ae536-3ef6-41cb-b33b-0ac458d77a56",
+    "message": "Parse failed"
   }
 ]

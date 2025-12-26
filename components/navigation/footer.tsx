@@ -82,7 +82,7 @@ export function Footer() {
 
           <div className="flex items-center gap-4">
             <a
-              href="https://x.com/Vinshy_1337"
+              href="https://x.com/CollectorVerse_"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
