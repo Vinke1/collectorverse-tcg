@@ -38,7 +38,21 @@ npx tsx scripts/generate-onepiece-images.ts   # Generate One Piece series banner
 npx tsx scripts/copy-pokemon-images-from-en.ts --dry-run  # Preview Pokemon image copies from EN
 npx tsx scripts/copy-pokemon-images-from-en.ts            # Copy missing Pokemon images from EN to other langs
 npx tsx scripts/analyze-image-reuse.ts                    # Analyze which images can be reused
+
+# Backup Supabase (DB + Storage)
+npm run backup                     # Backup complet (DB + tous les buckets)
+npm run backup:db                  # Backup base de données uniquement
+npm run backup:storage             # Backup images uniquement
+npm run backup:dry                 # Prévisualisation (dry-run)
 ```
+
+## Documentation
+
+Documentation détaillée disponible dans le dossier `docs/` :
+
+| Fichier | Description |
+|---------|-------------|
+| `docs/BACKUP.md` | Guide complet de backup et restauration |
 
 ## Project Architecture
 

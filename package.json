@@ -40,7 +40,11 @@
     "setup:starwars-storage": "tsx scripts/setup-starwars-storage.ts",
     "seed:starwars": "tsx scripts/seed-starwars.ts",
     "seed:all-starwars": "tsx scripts/seed-all-starwars.ts",
-    "seed:naruto-kayou": "tsx scripts/seed-naruto-kayou.ts"
+    "seed:naruto-kayou": "tsx scripts/seed-naruto-kayou.ts",
+    "backup": "tsx scripts/backup-supabase.ts",
+    "backup:db": "tsx scripts/backup-supabase.ts --db-only",
+    "backup:storage": "tsx scripts/backup-supabase.ts --storage-only",
+    "backup:dry": "tsx scripts/backup-supabase.ts --dry-run"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
