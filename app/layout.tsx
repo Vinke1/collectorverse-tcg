@@ -47,6 +47,9 @@ export const metadata: Metadata = {
     description: "Gérez vos collections de cartes TCG avec la meilleure plateforme",
     images: ["/icon-512x512.png"],
   },
+  verification: {
+    google: "A9Dc4LMXkTHid6vli_UYIBvImZnznRSSb3bUiYbP9SE",
+  },
 };
 
 export const viewport = {
