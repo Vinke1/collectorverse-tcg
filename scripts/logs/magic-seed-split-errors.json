@@ -430,5 +430,23 @@
     "language": "en",
     "scryfallId": "f69d028b-5d25-432d-a2b2-d11479320af1",
     "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:18:30.747Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1938",
+    "language": "en",
+    "scryfallId": "fe954ed4-af64-4997-ae5d-089eaa439d1f",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:18:31.896Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "2201",
+    "language": "en",
+    "scryfallId": "ff00d5aa-2fea-47cd-82f4-f7e388d1ecb6",
+    "message": "Parse failed"
   }
 ]
