@@ -448,5 +448,41 @@
     "language": "en",
     "scryfallId": "ff00d5aa-2fea-47cd-82f4-f7e388d1ecb6",
     "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:23:55.408Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "LCI-1",
+    "language": "en",
+    "scryfallId": "00560d67-5299-4681-952b-d153d82bedaf",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:23:58.208Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TM21-11",
+    "language": "en",
+    "scryfallId": "010cd940-0c4f-4295-85f8-8562fc033d79",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:24:12.889Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TIKO-10",
+    "language": "en",
+    "scryfallId": "025af6f3-1c8b-4126-a60d-d716fe12d014",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:25:26.444Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TWOC-11",
+    "language": "en",
+    "scryfallId": "096cbccf-cd00-49d6-9885-54ba68667c27",
+    "message": "Parse failed"
   }
 ]
