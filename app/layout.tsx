@@ -8,6 +8,7 @@ import { Header } from "@/components/navigation/header";
 import { Footer } from "@/components/navigation/footer";
 import { createClient } from "@/lib/supabase/server";
 import { Toaster } from "sonner";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -70,6 +71,7 @@ export default async function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
+        <GoogleAnalytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
