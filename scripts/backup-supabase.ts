@@ -17,6 +17,7 @@ import * as path from 'path'
 // Configuration
 const CONFIG = {
   backupDir: 'backups',
+  logsDir: 'scripts/logs',
   tables: [
     'tcg_games',
     'rarities',
@@ -39,7 +40,17 @@ const CONFIG = {
     'starwars-cards',
     'riftbound-cards'
   ],
-  batchSize: 1000 // Pour la pagination des grandes tables
+  batchSize: 1000, // Pour la pagination des grandes tables
+  progressInterval: 100 // Afficher la progression tous les N fichiers
+}
+
+interface BackupError {
+  type: 'database' | 'storage'
+  bucket?: string
+  table?: string
+  file?: string
+  message: string
+  timestamp: string
 }
 
 interface BackupManifest {
@@ -49,9 +60,40 @@ interface BackupManifest {
   storage: {
     buckets: string[]
     total_files: number
+    downloaded_files: number
+    failed_files: number
     total_size_bytes: number
   }
+  errors: {
+    count: number
+    summary: Record<string, number>
+  }
   duration_seconds: number
+}
+
+// Collecter toutes les erreurs
+const allErrors: BackupError[] = []
+
+function addError(error: BackupError) {
+  allErrors.push(error)
+}
+
+function formatError(error: unknown): string {
+  if (error instanceof Error) {
+    return error.message
+  }
+  if (typeof error === 'object' && error !== null) {
+    // Supabase storage error structure
+    const err = error as Record<string, unknown>
+    if (err.message) return String(err.message)
+    if (err.error) return String(err.error)
+    if (err.statusCode) return `HTTP ${err.statusCode}`
+    // Fallback to JSON stringify if object has properties
+    const json = JSON.stringify(error)
+    if (json !== '{}') return json
+    return 'Erreur inconnue (objet vide)'
+  }
+  return String(error)
 }
 
 // Parse arguments
@@ -84,6 +126,7 @@ async function main() {
   if (!dryRun) {
     fs.mkdirSync(dbPath, { recursive: true })
     fs.mkdirSync(storagePath, { recursive: true })
+    fs.mkdirSync(CONFIG.logsDir, { recursive: true })
   }
 
   logger.info(`Dossier de backup: ${backupPath}`)
@@ -95,7 +138,13 @@ async function main() {
     storage: {
       buckets: [],
       total_files: 0,
+      downloaded_files: 0,
+      failed_files: 0,
       total_size_bytes: 0
+    },
+    errors: {
+      count: 0,
+      summary: {}
     },
     duration_seconds: 0
   }
@@ -122,7 +171,14 @@ async function main() {
             .range(offset, offset + CONFIG.batchSize - 1)
 
           if (error) {
-            logger.error(`  Erreur: ${error.message}`)
+            const errorMsg = formatError(error)
+            logger.error(`  Erreur: ${errorMsg}`)
+            addError({
+              type: 'database',
+              table,
+              message: errorMsg,
+              timestamp: new Date().toISOString()
+            })
             break
           }
 
@@ -152,7 +208,14 @@ async function main() {
         }
 
       } catch (err) {
-        logger.error(`  Exception: ${err}`)
+        const errorMsg = formatError(err)
+        logger.error(`  Exception: ${errorMsg}`)
+        addError({
+          type: 'database',
+          table,
+          message: errorMsg,
+          timestamp: new Date().toISOString()
+        })
       }
     }
 
@@ -192,6 +255,7 @@ async function main() {
         if (!dryRun) {
           // Créer la structure de dossiers et télécharger
           let downloaded = 0
+          let failed = 0
           let totalSize = 0
 
           for (const file of files) {
@@ -205,7 +269,16 @@ async function main() {
               .download(file.name)
 
             if (error) {
-              logger.error(`  Erreur téléchargement ${file.name}: ${error.message}`)
+              const errorMsg = formatError(error)
+              logger.error(`  Erreur téléchargement ${file.name}: ${errorMsg}`)
+              addError({
+                type: 'storage',
+                bucket,
+                file: file.name,
+                message: errorMsg,
+                timestamp: new Date().toISOString()
+              })
+              failed++
               continue
             }
 
@@ -215,14 +288,21 @@ async function main() {
               totalSize += buffer.length
               downloaded++
 
-              if (downloaded % 100 === 0) {
-                logger.info(`  Progression: ${downloaded}/${files.length}`)
+              if (downloaded % CONFIG.progressInterval === 0) {
+                logger.info(`  Progression: ${downloaded}/${files.length} (${failed} erreurs)`)
               }
             }
           }
 
+          manifest.storage.downloaded_files += downloaded
+          manifest.storage.failed_files += failed
           manifest.storage.total_size_bytes += totalSize
-          logger.success(`  ${downloaded} fichiers téléchargés (${formatBytes(totalSize)})`)
+
+          if (failed > 0) {
+            logger.warn(`  ${downloaded} téléchargés, ${failed} erreurs (${formatBytes(totalSize)})`)
+          } else {
+            logger.success(`  ${downloaded} fichiers téléchargés (${formatBytes(totalSize)})`)
+          }
         } else {
           // En dry-run, estimer la taille
           const estimatedSize = files.reduce((sum, f) => sum + (f.metadata?.size || 50000), 0)
@@ -231,22 +311,73 @@ async function main() {
         }
 
       } catch (err) {
-        logger.error(`  Exception bucket ${bucket}: ${err}`)
+        const errorMsg = formatError(err)
+        logger.error(`  Exception bucket ${bucket}: ${errorMsg}`)
+        addError({
+          type: 'storage',
+          bucket,
+          message: errorMsg,
+          timestamp: new Date().toISOString()
+        })
       }
     }
   }
 
-  // ========== FINALISATION ==========
+  // ========== GÉNÉRATION DU RAPPORT D'ERREURS ==========
   const duration = Math.round((Date.now() - startTime) / 1000)
   manifest.duration_seconds = duration
+  manifest.errors.count = allErrors.length
+
+  // Créer un résumé des erreurs par bucket/table
+  for (const error of allErrors) {
+    const key = error.bucket || error.table || 'unknown'
+    manifest.errors.summary[key] = (manifest.errors.summary[key] || 0) + 1
+  }
 
   if (!dryRun) {
+    // Sauvegarder le manifest
     fs.writeFileSync(
       path.join(backupPath, 'manifest.json'),
       JSON.stringify(manifest, null, 2)
     )
+
+    // Sauvegarder le rapport d'erreurs détaillé
+    if (allErrors.length > 0) {
+      const errorReport = {
+        backup_date: manifest.created_at,
+        backup_path: backupPath,
+        total_errors: allErrors.length,
+        summary: manifest.errors.summary,
+        errors_by_bucket: groupErrorsByBucket(allErrors),
+        all_errors: allErrors
+      }
+
+      // Dans le dossier de backup
+      fs.writeFileSync(
+        path.join(backupPath, 'errors.json'),
+        JSON.stringify(errorReport, null, 2)
+      )
+
+      // Dans le dossier logs (pour faciliter l'accès)
+      fs.writeFileSync(
+        path.join(CONFIG.logsDir, 'backup-errors.json'),
+        JSON.stringify(errorReport, null, 2)
+      )
+
+      // Créer aussi un fichier texte lisible
+      const errorTxt = generateErrorTextReport(errorReport)
+      fs.writeFileSync(
+        path.join(backupPath, 'errors.txt'),
+        errorTxt
+      )
+      fs.writeFileSync(
+        path.join(CONFIG.logsDir, 'backup-errors.txt'),
+        errorTxt
+      )
+    }
   }
 
+  // ========== RÉSUMÉ CONSOLE ==========
   logger.section('Résumé')
   logger.success(`Backup ${dryRun ? '(dry-run) ' : ''}terminé en ${formatDuration(duration)}`)
 
@@ -256,12 +387,116 @@ async function main() {
   }
 
   if (!dbOnly) {
-    logger.info(`Storage: ${manifest.storage.total_files} fichiers (${formatBytes(manifest.storage.total_size_bytes)})`)
+    const { total_files, downloaded_files, failed_files, total_size_bytes } = manifest.storage
+    if (dryRun) {
+      logger.info(`Storage: ${total_files} fichiers (${formatBytes(total_size_bytes)})`)
+    } else {
+      logger.info(`Storage: ${downloaded_files}/${total_files} téléchargés (${formatBytes(total_size_bytes)})`)
+      if (failed_files > 0) {
+        logger.warn(`  ${failed_files} fichiers en erreur`)
+      }
+    }
+  }
+
+  // Afficher le résumé des erreurs
+  if (allErrors.length > 0) {
+    logger.section('Erreurs détectées')
+    logger.error(`Total: ${allErrors.length} erreurs`)
+
+    // Grouper par bucket/table
+    for (const [key, count] of Object.entries(manifest.errors.summary)) {
+      logger.warn(`  ${key}: ${count} erreur(s)`)
+    }
+
+    // Lister les fichiers en erreur (max 20)
+    const storageErrors = allErrors.filter(e => e.type === 'storage' && e.file)
+    if (storageErrors.length > 0) {
+      logger.info('')
+      logger.info(`Fichiers en erreur (${Math.min(storageErrors.length, 20)} premiers):`)
+      for (const error of storageErrors.slice(0, 20)) {
+        logger.error(`  - ${error.bucket}/${error.file}`)
+      }
+      if (storageErrors.length > 20) {
+        logger.info(`  ... et ${storageErrors.length - 20} autres`)
+      }
+    }
+
+    if (!dryRun) {
+      logger.info('')
+      logger.info(`Rapport complet: ${path.join(backupPath, 'errors.txt')}`)
+      logger.info(`Rapport JSON: ${path.join(CONFIG.logsDir, 'backup-errors.json')}`)
+    }
+  } else {
+    logger.success('Aucune erreur détectée!')
   }
 
   if (!dryRun) {
-    logger.info(`Emplacement: ${backupPath}`)
+    logger.info('')
+    logger.info(`Emplacement du backup: ${backupPath}`)
   }
+}
+
+// Grouper les erreurs par bucket
+function groupErrorsByBucket(errors: BackupError[]): Record<string, string[]> {
+  const grouped: Record<string, string[]> = {}
+
+  for (const error of errors) {
+    const key = error.bucket || error.table || 'other'
+    if (!grouped[key]) {
+      grouped[key] = []
+    }
+    if (error.file) {
+      grouped[key].push(error.file)
+    } else {
+      grouped[key].push(error.message)
+    }
+  }
+
+  return grouped
+}
+
+// Générer un rapport texte lisible
+function generateErrorTextReport(report: {
+  backup_date: string
+  backup_path: string
+  total_errors: number
+  summary: Record<string, number>
+  errors_by_bucket: Record<string, string[]>
+}): string {
+  const lines: string[] = []
+
+  lines.push('=' .repeat(80))
+  lines.push('RAPPORT D\'ERREURS DE BACKUP')
+  lines.push('=' .repeat(80))
+  lines.push('')
+  lines.push(`Date: ${report.backup_date}`)
+  lines.push(`Backup: ${report.backup_path}`)
+  lines.push(`Total erreurs: ${report.total_errors}`)
+  lines.push('')
+
+  lines.push('-'.repeat(80))
+  lines.push('RÉSUMÉ PAR BUCKET/TABLE')
+  lines.push('-'.repeat(80))
+  for (const [key, count] of Object.entries(report.summary)) {
+    lines.push(`  ${key}: ${count} erreur(s)`)
+  }
+  lines.push('')
+
+  lines.push('-'.repeat(80))
+  lines.push('FICHIERS EN ERREUR PAR BUCKET')
+  lines.push('-'.repeat(80))
+  for (const [bucket, files] of Object.entries(report.errors_by_bucket)) {
+    lines.push('')
+    lines.push(`[${bucket}] - ${files.length} fichier(s)`)
+    for (const file of files) {
+      lines.push(`  - ${file}`)
+    }
+  }
+
+  lines.push('')
+  lines.push('=' .repeat(80))
+
+  return lines.join('\n')
 }
 
 // Lister récursivement tous les fichiers d'un bucket
