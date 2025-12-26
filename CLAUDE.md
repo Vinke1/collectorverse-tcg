@@ -687,3 +687,197 @@ Based on `scripts/analyze-image-reuse.ts`:
 - Uses Supabase Storage `.copy()` API (fast, no download/upload)
 - Requires `SUPABASE_SERVICE_ROLE_KEY` in `.env.local`
 
+---
+
+## Magic: The Gathering
+
+### Overview
+
+Magic: The Gathering cards are seeded from Scryfall's bulk data export (2+ GB JSON file with 100k+ unique cards). Due to the file size, the process is split into two steps:
+
+1. **Download & Split**: Download bulk data and split into individual set files
+2. **Seed**: Process each set file individually (faster, memory-efficient)
+
+### Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/download-magic-bulk.ts` | Download Scryfall bulk data (~2.3 GB) |
+| `scripts/split-magic-bulk.ts` | Split bulk data into individual set files |
+| `scripts/seed-magic-from-split.ts` | Seed cards from split files (recommended) |
+| `scripts/seed-magic.ts` | Seed directly from bulk file (slower, more memory) |
+
+### Configuration
+
+- **API**: https://api.scryfall.com
+- **Storage bucket**: `mtg-cards`
+- **Languages**: en, fr, ja, zhs
+- **Config file**: `scripts/config/magic-config.ts`
+- **Types**: `lib/types/magic.ts`
+
+### Quick Start
+
+```bash
+# Step 1: Download bulk data (~2.3 GB, takes a few minutes)
+npx tsx scripts/download-magic-bulk.ts
+
+# Step 2: Split by set + language (reads once, writes ~1200 files for 4 langs)
+npx tsx scripts/split-magic-bulk.ts
+
+# Step 3a: Seed a specific set + language (recommended for testing)
+npx tsx scripts/seed-magic-from-split.ts --set vow --lang en --skip-images
+
+# Step 3b: Seed all sets, all languages
+npx tsx scripts/seed-magic-from-split.ts --skip-images --continue-on-error
+
+# Step 3c: Seed all sets, English only
+npx tsx scripts/seed-magic-from-split.ts --lang en --skip-images --continue-on-error
+```
+
+### Step 1: Download Bulk Data
+
+```bash
+# Download all cards from Scryfall
+npx tsx scripts/download-magic-bulk.ts
+
+# Output: scripts/data/scryfall-all-cards.json (~2.3 GB)
+```
+
+### Step 2: Split Bulk Data
+
+Splits by **set AND language** for optimal file sizes and flexibility.
+
+```bash
+# Split all sets, all 4 languages (en, fr, ja, zhs)
+npx tsx scripts/split-magic-bulk.ts
+
+# Preview without writing files
+npx tsx scripts/split-magic-bulk.ts --dry-run
+
+# Filter by language (reduces file sizes and count)
+npx tsx scripts/split-magic-bulk.ts --lang en
+
+# Multiple languages
+npx tsx scripts/split-magic-bulk.ts --lang en,fr,ja,zhs
+
+# Skip small sets (< 10 cards)
+npx tsx scripts/split-magic-bulk.ts --min-cards 10
+```
+
+**Output structure:**
+```
+scripts/data/magic-sets/
+├── index.json                    # Index with all set/language metadata
+├── vow/
+│   ├── en.json                   # Crimson Vow - English
+│   ├── fr.json                   # Crimson Vow - French
+│   ├── ja.json                   # Crimson Vow - Japanese
+│   └── zhs.json                  # Crimson Vow - Simplified Chinese
+├── neo/
+│   ├── en.json
+│   └── ...
+└── ...
+```
+
+### Step 3: Seed from Split Files
+
+```bash
+# List available sets and languages
+npx tsx scripts/seed-magic-from-split.ts --list
+
+# Seed specific set (all languages)
+npx tsx scripts/seed-magic-from-split.ts --set vow
+
+# Seed specific set + language
+npx tsx scripts/seed-magic-from-split.ts --set vow --lang en
+
+# Seed all sets, specific language only
+npx tsx scripts/seed-magic-from-split.ts --lang en
+
+# Skip image downloads (faster testing)
+npx tsx scripts/seed-magic-from-split.ts --skip-images
+
+# Seed with images (slower, downloads from Scryfall)
+npx tsx scripts/seed-magic-from-split.ts --set vow --lang en
+
+# Limit cards per file (for testing)
+npx tsx scripts/seed-magic-from-split.ts --set vow --lang en --limit 50
+
+# Continue on errors
+npx tsx scripts/seed-magic-from-split.ts --continue-on-error
+
+# Resume from last progress
+npx tsx scripts/seed-magic-from-split.ts --resume
+```
+
+### Alternative: Seed Directly from Bulk File
+
+The original `seed-magic.ts` script reads the bulk file directly (slower, re-reads file for each set):
+
+```bash
+# Seed specific set
+npx tsx scripts/seed-magic.ts --set vow --skip-images
+
+# Seed with language filter
+npx tsx scripts/seed-magic.ts --lang en --skip-images
+
+# Seed all sets (slow, re-reads 2.3 GB file per set)
+npx tsx scripts/seed-magic.ts --skip-images --continue-on-error
+```
+
+### Storage Structure
+
+```
+mtg-cards/
+├── vow/
+│   ├── en/
+│   │   ├── 1.webp
+│   │   ├── 2.webp
+│   │   └── ...
+│   ├── fr/
+│   │   └── ...
+│   └── ja/
+│       └── ...
+├── neo/
+│   └── ...
+└── series/
+    ├── vow.webp
+    └── ...
+```
+
+### Progress & Recovery
+
+Progress files for resuming after interruption:
+- `scripts/logs/magic-seed-split-progress.json` - For split-based seeding
+- `scripts/logs/magic-seed-progress.json` - For direct bulk seeding
+- `scripts/logs/magic-seed-errors.json` - Error log
+
+### Set Types
+
+Included set types:
+- `core`, `expansion`, `masters`, `commander`
+- `draft_innovation`, `masterpiece`, `arsenal`
+- `duel_deck`, `from_the_vault`, `spellbook`
+- `promo`, `starter`, `box`, `funny`
+
+Excluded set types:
+- `token`, `memorabilia`
+
+### Prerequisites
+
+Before seeding Magic cards:
+
+1. **Create bucket**: Create `mtg-cards` bucket in Supabase Storage
+2. **Add TCG**: Insert Magic into `tcg_games` table:
+   ```sql
+   INSERT INTO tcg_games (name, slug, icon, gradient)
+   VALUES ('Magic: The Gathering', 'mtg', '🔮', 'from-indigo-500 via-purple-600 to-pink-500');
+   ```
+
+### Troubleshooting
+
+1. **"Bulk data file not found"**: Run `download-magic-bulk.ts` first
+2. **"Split files not found"**: Run `split-magic-bulk.ts` first
+3. **"TCG 'mtg' not found"**: Add Magic to `tcg_games` table (see Prerequisites)
+4. **Out of memory**: Use `--skip-images` or process one set at a time with `--set`
+5. **Slow seeding**: Use split files approach instead of direct bulk file

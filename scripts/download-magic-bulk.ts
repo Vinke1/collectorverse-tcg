@@ -151,22 +151,33 @@ async function verifyFile(filePath: string): Promise<boolean> {
 
     logger.info(`File size: ${formatBytes(stats.size)}`)
 
-    // Read first few bytes to check it's JSON array
     const fd = fs.openSync(filePath, 'r')
-    const buffer = Buffer.alloc(100)
-    fs.readSync(fd, buffer, 0, 100, 0)
-    fs.closeSync(fd)
 
-    const start = buffer.toString('utf8').trim()
+    // Read first 100 bytes to check it starts with JSON array
+    const startBuffer = Buffer.alloc(100)
+    fs.readSync(fd, startBuffer, 0, 100, 0)
+    const start = startBuffer.toString('utf8').trim()
+
     if (!start.startsWith('[')) {
+      fs.closeSync(fd)
       throw new Error('File does not appear to be a JSON array')
     }
 
-    // Count approximate card entries by counting '"id":' occurrences
-    // This is a rough estimate without parsing the entire file
-    const content = fs.readFileSync(filePath, 'utf8')
-    const idCount = (content.match(/"id":/g) || []).length
-    logger.info(`Approximate card count: ${idCount.toLocaleString()}`)
+    // Read last 100 bytes to check it ends with JSON array
+    const endBuffer = Buffer.alloc(100)
+    const endPosition = Math.max(0, stats.size - 100)
+    fs.readSync(fd, endBuffer, 0, 100, endPosition)
+    const end = endBuffer.toString('utf8').trim()
+
+    fs.closeSync(fd)
+
+    if (!end.endsWith(']')) {
+      throw new Error('File does not end properly (incomplete download?)')
+    }
+
+    // Estimate card count based on file size (~27KB per card average)
+    const estimatedCards = Math.round(stats.size / 27000)
+    logger.info(`Estimated card count: ~${estimatedCards.toLocaleString()}`)
 
     logger.success('File verification passed')
     return true

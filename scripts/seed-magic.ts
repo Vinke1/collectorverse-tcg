@@ -16,23 +16,22 @@
  *   1. Run: npx tsx scripts/download-magic-bulk.ts
  *   2. Create bucket 'mtg-cards' in Supabase Storage
  *   3. Add Magic TCG to tcg_games table
+ *
+ * Memory-efficient: Processes cards in batches per set to avoid OOM errors
  */
 
 import * as fs from 'fs'
 import * as path from 'path'
+import { createReadStream } from 'fs'
 import sharp from 'sharp'
+import { parser } from 'stream-json'
+import { streamArray } from 'stream-json/streamers/StreamArray'
 import { createAdminClient } from './lib/supabase'
 import { logger } from './lib/logger'
 import { delay } from './lib/utils'
-import { MAGIC_CONFIG, type SupportedLanguage } from './config/magic-config'
+import { MAGIC_CONFIG, EXCLUDED_SET_TYPES, type SupportedLanguage } from './config/magic-config'
 import {
   parseScryfallCard,
-  groupCardsBySet,
-  filterCardsByLanguages,
-  filterExcludedSets,
-  getSetInfo,
-  sortCardsByNumber,
-  deduplicateCards,
   isValidCard,
   shouldSplitCard,
   getCardImagePath,
@@ -66,6 +65,18 @@ const limitArg = parseInt(
 const targetLanguages: SupportedLanguage[] = langArg
   ? [langArg]
   : [...MAGIC_CONFIG.languages]
+
+// Batch size for processing cards per set
+const BATCH_SIZE = 100
+
+interface SetMetadata {
+  code: string
+  name: string
+  releaseDate: string | null
+  setType: string
+  cardCount: number
+  seriesId?: string
+}
 
 /**
  * Initialize or load progress
@@ -137,7 +148,6 @@ async function downloadAndOptimizeImage(imageUrl: string): Promise<Buffer | null
     const arrayBuffer = await response.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
-    // Optimize with Sharp
     return await sharp(buffer)
       .resize(MAGIC_CONFIG.imageConfig.width, MAGIC_CONFIG.imageConfig.height, {
         fit: 'contain',
@@ -181,7 +191,7 @@ async function uploadImage(
 }
 
 /**
- * Get or create TCG ID
+ * Get TCG ID
  */
 async function getTcgId(
   supabase: ReturnType<typeof createAdminClient>
@@ -204,59 +214,60 @@ async function getTcgId(
 }
 
 /**
- * Upsert a series/set
+ * Get or create series
  */
-async function upsertSeries(
+async function getOrCreateSeries(
   supabase: ReturnType<typeof createAdminClient>,
   tcgGameId: string,
-  setCode: string,
-  setName: string,
-  releaseDate: string | null,
-  cardCount: number
+  metadata: SetMetadata
 ): Promise<string | null> {
-  // Check if exists
   const { data: existing } = await supabase
     .from('series')
     .select('id')
     .eq('tcg_game_id', tcgGameId)
-    .eq('code', setCode)
+    .eq('code', metadata.code)
     .single()
 
-  const seriesData = {
-    tcg_game_id: tcgGameId,
-    code: setCode,
-    name: setName,
-    release_date: releaseDate,
-    max_set_base: cardCount,
-    master_set: cardCount,
-  }
-
   if (existing?.id) {
-    const { error } = await supabase
-      .from('series')
-      .update(seriesData)
-      .eq('id', existing.id)
-
-    if (error) {
-      logger.error(`Failed to update series ${setCode}: ${error.message}`)
-      return null
-    }
-
     return existing.id
-  } else {
-    const { data, error } = await supabase
-      .from('series')
-      .insert(seriesData)
-      .select('id')
-      .single()
-
-    if (error) {
-      logger.error(`Failed to insert series ${setCode}: ${error.message}`)
-      return null
-    }
-
-    return data?.id || null
   }
+
+  const { data, error } = await supabase
+    .from('series')
+    .insert({
+      tcg_game_id: tcgGameId,
+      code: metadata.code,
+      name: metadata.name,
+      release_date: metadata.releaseDate,
+      max_set_base: metadata.cardCount,
+      master_set: metadata.cardCount,
+    })
+    .select('id')
+    .single()
+
+  if (error) {
+    logger.error(`Failed to create series ${metadata.code}: ${error.message}`)
+    return null
+  }
+
+  return data?.id || null
+}
+
+/**
+ * Update series card count
+ */
+async function updateSeriesCardCount(
+  supabase: ReturnType<typeof createAdminClient>,
+  seriesId: string,
+  cardCount: number
+): Promise<void> {
+  await supabase
+    .from('series')
+    .update({
+      max_set_base: cardCount,
+      master_set: cardCount,
+    })
+    .eq('id', seriesId)
 }
 
 /**
@@ -268,7 +279,6 @@ async function upsertCard(
   card: ParsedMagicCard,
   imageUrl: string | null
 ): Promise<boolean> {
-  // Check if exists
   const { data: existing } = await supabase
     .from('cards')
     .select('id')
@@ -292,153 +302,235 @@ async function upsertCard(
       .from('cards')
       .update(cardData)
       .eq('id', existing.id)
-
-    if (error) {
-      return false
-    }
+    return !error
   } else {
     const { error } = await supabase
       .from('cards')
       .insert(cardData)
-
-    if (error) {
-      return false
-    }
+    return !error
   }
-
-  return true
 }
 
 /**
- * Process a single set
+ * Process a single card
  */
-async function processSet(
+async function processCard(
   supabase: ReturnType<typeof createAdminClient>,
-  tcgGameId: string,
-  setCode: string,
-  cards: ScryfallCard[],
-  progress: MagicSeedProgress
-): Promise<{ success: number; errors: number; skipped: number }> {
-  const result = { success: 0, errors: 0, skipped: 0 }
+  seriesId: string,
+  card: ScryfallCard,
+  setCode: string
+): Promise<{ success: boolean; error?: string }> {
+  const parsed = parseScryfallCard(card)
+  if (!parsed) {
+    return { success: false, error: 'Parse failed' }
+  }
 
-  // Get set info
-  const setInfo = getSetInfo(setCode, cards)
-  logger.processing(`Processing set: ${setCode.toUpperCase()} (${setInfo.name})`)
-  logger.info(`  Cards: ${cards.length} | Languages: ${targetLanguages.join(', ')}`)
-
-  // Upsert series
-  if (!dryRun) {
-    const englishCards = cards.filter(c => c.lang === 'en')
-    const seriesId = await upsertSeries(
-      supabase,
-      tcgGameId,
-      setCode,
-      setInfo.name,
-      setInfo.releaseDate,
-      englishCards.length
-    )
-
-    if (!seriesId) {
-      logger.error(`Failed to create series ${setCode}`)
-      return result
+  // Download and upload image
+  let imageUrl: string | null = null
+  if (!skipImages && parsed.imageUrl) {
+    const imageBuffer = await downloadAndOptimizeImage(parsed.imageUrl)
+    if (imageBuffer) {
+      const imagePath = getCardImagePath(setCode, card.lang, card.collector_number)
+      imageUrl = await uploadImage(supabase, imageBuffer, imagePath)
     }
+    await delay(MAGIC_CONFIG.delays.betweenImageDownloads)
+  }
 
-    // Filter cards by target languages
-    const filteredCards = filterCardsByLanguages(cards, targetLanguages)
-    const sortedCards = sortCardsByNumber(filteredCards)
+  // Upsert card
+  const success = await upsertCard(supabase, seriesId, parsed, imageUrl)
 
-    // Apply limit if specified
-    const cardsToProcess = limitArg > 0
-      ? sortedCards.slice(0, limitArg)
-      : sortedCards
+  if (!success) {
+    return { success: false, error: 'Database upsert failed' }
+  }
 
-    // Process each card
-    for (let i = 0; i < cardsToProcess.length; i++) {
-      const card = cardsToProcess[i]
-
-      // Validate card
-      if (!isValidCard(card)) {
-        result.skipped++
-        continue
-      }
-
-      // Parse card
-      const parsed = parseScryfallCard(card)
-      if (!parsed) {
-        result.skipped++
-        continue
-      }
-
-      // Download and upload image
-      let imageUrl: string | null = null
-      if (!skipImages && parsed.imageUrl) {
-        const imageBuffer = await downloadAndOptimizeImage(parsed.imageUrl)
+  // Handle back face for multi-face cards
+  if (shouldSplitCard(card)) {
+    const backFace = parseScryfallCard(card, 1)
+    if (backFace && backFace.imageUrl) {
+      let backImageUrl: string | null = null
+      if (!skipImages) {
+        const imageBuffer = await downloadAndOptimizeImage(backFace.imageUrl)
         if (imageBuffer) {
-          const imagePath = getCardImagePath(setCode, card.lang, card.collector_number)
-          imageUrl = await uploadImage(supabase, imageBuffer, imagePath)
-        }
-        await delay(MAGIC_CONFIG.delays.betweenImageDownloads)
-      }
-
-      // Upsert card
-      const success = await upsertCard(supabase, seriesId, parsed, imageUrl)
-
-      if (success) {
-        result.success++
-      } else {
-        result.errors++
-        logError({
-          timestamp: new Date().toISOString(),
-          type: 'database',
-          setCode,
-          cardNumber: card.collector_number,
-          language: card.lang,
-          scryfallId: card.id,
-          message: 'Failed to upsert card',
-        })
-      }
-
-      // Progress update every 50 cards
-      if ((i + 1) % 50 === 0) {
-        logger.progress(`  [${card.lang.toUpperCase()}] ${i + 1}/${cardsToProcess.length} cards`)
-        progress.processedCards += 50
-        saveProgress(progress)
-      }
-    }
-
-    // Handle multi-face cards (store back faces)
-    for (const card of cardsToProcess) {
-      if (shouldSplitCard(card)) {
-        const backFace = parseScryfallCard(card, 1)
-        if (backFace && backFace.imageUrl) {
-          let backImageUrl: string | null = null
-          if (!skipImages) {
-            const imageBuffer = await downloadAndOptimizeImage(backFace.imageUrl)
-            if (imageBuffer) {
-              const imagePath = getCardImagePath(setCode, card.lang, backFace.number)
-              backImageUrl = await uploadImage(supabase, imageBuffer, imagePath)
-            }
-          }
-          await upsertCard(supabase, seriesId, backFace, backImageUrl)
+          const imagePath = getCardImagePath(setCode, card.lang, backFace.number)
+          backImageUrl = await uploadImage(supabase, imageBuffer, imagePath)
         }
       }
-    }
-  } else {
-    // Dry run - just log stats
-    for (const lang of targetLanguages) {
-      const langCards = cards.filter(c => c.lang === lang)
-      logger.info(`  [${lang.toUpperCase()}] ${langCards.length} cards`)
-      result.success += langCards.length
+      await upsertCard(supabase, seriesId, backFace, backImageUrl)
     }
   }
 
-  // Mark set as processed
-  progress.processedSetCodes.push(setCode)
-  progress.processedSets++
-  saveProgress(progress)
+  return { success: true }
+}
 
-  logger.success(`Set ${setCode.toUpperCase()} completed`)
-  return result
+/**
+ * First pass: collect set metadata only (minimal memory)
+ */
+async function collectSetMetadata(
+  bulkDataPath: string,
+  targetLanguages: SupportedLanguage[],
+  targetSet: string | null,
+  processedSetCodes: string[]
+): Promise<Map<string, SetMetadata>> {
+  return new Promise((resolve, reject) => {
+    const setMetadata = new Map<string, SetMetadata>()
+    let cardCount = 0
+
+    const readStream = createReadStream(bulkDataPath)
+    const jsonParser = parser()
+    const arrayStream = streamArray()
+
+    readStream
+      .pipe(jsonParser)
+      .pipe(arrayStream)
+      .on('data', ({ value }: { value: ScryfallCard }) => {
+        cardCount++
+
+        if (cardCount % 500000 === 0) {
+          logger.progress(`Pass 1: ${(cardCount / 1000000).toFixed(1)}M cards scanned...`)
+        }
+
+        const setCode = value.set?.toLowerCase()
+        if (!setCode) return
+
+        // Skip excluded
+        if (processedSetCodes.includes(setCode)) return
+        if (targetSet && setCode !== targetSet) return
+        if (EXCLUDED_SET_TYPES.includes(value.set_type)) return
+        if (!targetLanguages.includes(value.lang as SupportedLanguage)) return
+
+        // Only count English cards for set metadata
+        if (value.lang === 'en') {
+          if (!setMetadata.has(setCode)) {
+            setMetadata.set(setCode, {
+              code: setCode,
+              name: value.set_name,
+              releaseDate: value.released_at || null,
+              setType: value.set_type,
+              cardCount: 0,
+            })
+          }
+          setMetadata.get(setCode)!.cardCount++
+        }
+      })
+      .on('end', () => {
+        logger.success(`Pass 1 complete: ${setMetadata.size} sets found`)
+        resolve(setMetadata)
+      })
+      .on('error', reject)
+  })
+}
+
+/**
+ * Second pass: process cards for a specific set
+ */
+async function processSetCards(
+  bulkDataPath: string,
+  supabase: ReturnType<typeof createAdminClient>,
+  targetSet: string,
+  seriesId: string,
+  targetLanguages: SupportedLanguage[],
+  limit: number,
+  progress: MagicSeedProgress
+): Promise<{ success: number; errors: number; skipped: number }> {
+  return new Promise((resolve, reject) => {
+    const result = { success: 0, errors: 0, skipped: 0 }
+    let processedCount = 0
+    let cardQueue: ScryfallCard[] = []
+    let isProcessing = false
+
+    const processQueue = async () => {
+      if (isProcessing || cardQueue.length === 0) return
+      isProcessing = true
+
+      while (cardQueue.length > 0) {
+        const card = cardQueue.shift()!
+
+        if (limit > 0 && processedCount >= limit) {
+          result.skipped++
+          continue
+        }
+
+        if (!isValidCard(card)) {
+          result.skipped++
+          continue
+        }
+
+        try {
+          const { success, error } = await processCard(supabase, seriesId, card, targetSet)
+
+          if (success) {
+            result.success++
+          } else {
+            result.errors++
+            logError({
+              timestamp: new Date().toISOString(),
+              type: 'database',
+              setCode: targetSet,
+              cardNumber: card.collector_number,
+              language: card.lang,
+              scryfallId: card.id,
+              message: error || 'Unknown error',
+            })
+          }
+        } catch (err) {
+          result.errors++
+          logError({
+            timestamp: new Date().toISOString(),
+            type: 'database',
+            setCode: targetSet,
+            cardNumber: card.collector_number,
+            language: card.lang,
+            scryfallId: card.id,
+            message: (err as Error).message,
+          })
+
+          if (!continueOnError) {
+            reject(err)
+            return
+          }
+        }
+
+        processedCount++
+
+        if (processedCount % 50 === 0) {
+          progress.processedCards = processedCount
+          saveProgress(progress)
+        }
+      }
+
+      isProcessing = false
+    }
+
+    const readStream = createReadStream(bulkDataPath)
+    const jsonParser = parser()
+    const arrayStream = streamArray()
+
+    readStream
+      .pipe(jsonParser)
+      .pipe(arrayStream)
+      .on('data', ({ value }: { value: ScryfallCard }) => {
+        const setCode = value.set?.toLowerCase()
+        if (setCode !== targetSet) return
+        if (EXCLUDED_SET_TYPES.includes(value.set_type)) return
+        if (!targetLanguages.includes(value.lang as SupportedLanguage)) return
+
+        cardQueue.push(value)
+
+        // Process in batches
+        if (cardQueue.length >= BATCH_SIZE) {
+          readStream.pause()
+          processQueue().then(() => {
+            readStream.resume()
+          })
+        }
+      })
+      .on('end', async () => {
+        // Process remaining cards
+        await processQueue()
+        resolve(result)
+      })
+      .on('error', reject)
+  })
 }
 
 /**
@@ -451,7 +543,11 @@ async function main() {
     logger.warn('DRY RUN MODE - No changes will be made')
   }
 
-  // Load bulk data
+  if (skipImages) {
+    logger.warn('SKIP IMAGES MODE - No images will be downloaded')
+  }
+
+  // Check bulk data file
   const bulkDataPath = path.resolve(process.cwd(), MAGIC_CONFIG.paths.bulkData)
 
   if (!fs.existsSync(bulkDataPath)) {
@@ -460,25 +556,10 @@ async function main() {
     process.exit(1)
   }
 
-  logger.download(`Loading bulk data from ${MAGIC_CONFIG.paths.bulkData}...`)
-  const rawData = fs.readFileSync(bulkDataPath, 'utf8')
-  const allCards: ScryfallCard[] = JSON.parse(rawData)
-  logger.success(`Loaded ${allCards.length.toLocaleString()} cards`)
+  const stats = fs.statSync(bulkDataPath)
+  logger.info(`Bulk data file: ${(stats.size / (1024 * 1024 * 1024)).toFixed(2)} GB`)
 
-  // Filter excluded set types
-  const filteredCards = filterExcludedSets(allCards)
-  logger.info(`After filtering: ${filteredCards.length.toLocaleString()} cards`)
-
-  // Deduplicate
-  const uniqueCards = deduplicateCards(filteredCards)
-  logger.info(`Unique cards: ${uniqueCards.length.toLocaleString()}`)
-
-  // Group by set
-  const cardsBySet = groupCardsBySet(uniqueCards)
-  const setCodes = Object.keys(cardsBySet).sort()
-  logger.info(`Sets: ${setCodes.length}`)
-
-  // Initialize Supabase client
+  // Initialize Supabase
   const supabase = createAdminClient()
 
   // Get TCG ID
@@ -487,16 +568,18 @@ async function main() {
     process.exit(1)
   }
 
-  // Initialize or load progress
+  logger.success(`TCG ID: ${tcgGameId}`)
+
+  // Load progress
   let progress = loadProgress()
   if (!progress) {
     progress = {
       startedAt: new Date().toISOString(),
       lastUpdated: new Date().toISOString(),
       status: 'in_progress',
-      totalSets: setCodes.length,
+      totalSets: 0,
       processedSets: 0,
-      totalCards: uniqueCards.length,
+      totalCards: 0,
       processedCards: 0,
       processedSetCodes: [],
       currentSet: null,
@@ -505,29 +588,39 @@ async function main() {
     }
   }
 
-  // Filter sets if --set argument provided
-  const setsToProcess = setArg
-    ? setCodes.filter(code => code === setArg)
-    : setCodes
-
-  if (setArg && setsToProcess.length === 0) {
-    logger.error(`Set '${setArg}' not found`)
-    logger.info('Available sets (first 20):')
-    setCodes.slice(0, 20).forEach(code => logger.info(`  - ${code}`))
-    process.exit(1)
+  if (resumeMode && progress.processedSetCodes.length > 0) {
+    logger.info(`Resuming: ${progress.processedSetCodes.length} sets already processed`)
   }
 
-  // Skip already processed sets in resume mode
-  const pendingSets = resumeMode
-    ? setsToProcess.filter(code => !progress!.processedSetCodes.includes(code))
-    : setsToProcess
-
+  // Pass 1: Collect set metadata
   logger.separator()
-  logger.info(`Sets to process: ${pendingSets.length}`)
+  logger.download('Pass 1: Scanning for sets (memory-efficient)...')
+
+  const setMetadata = await collectSetMetadata(
+    bulkDataPath,
+    targetLanguages,
+    setArg,
+    resumeMode ? progress.processedSetCodes : []
+  )
+
+  const setCodes = Array.from(setMetadata.keys()).sort()
+  progress.totalSets = setCodes.length
+
+  logger.info(`Sets to process: ${setCodes.length}`)
   logger.info(`Languages: ${targetLanguages.join(', ')}`)
   if (limitArg > 0) {
     logger.info(`Card limit per set: ${limitArg}`)
   }
+
+  if (setCodes.length === 0) {
+    if (setArg) {
+      logger.error(`Set '${setArg}' not found or already processed`)
+    } else {
+      logger.success('All sets already processed!')
+    }
+    return
+  }
+
   logger.separator()
 
   // Process each set
@@ -535,22 +628,58 @@ async function main() {
   let totalErrors = 0
   let totalSkipped = 0
 
-  for (let i = 0; i < pendingSets.length; i++) {
-    const setCode = pendingSets[i]
-    const setCards = cardsBySet[setCode]
+  for (let i = 0; i < setCodes.length; i++) {
+    const setCode = setCodes[i]
+    const metadata = setMetadata.get(setCode)!
+
+    logger.processing(`Processing set ${i + 1}/${setCodes.length}: ${setCode.toUpperCase()} (${metadata.name})`)
+    logger.info(`  English cards: ${metadata.cardCount}`)
 
     progress.currentSet = setCode
     saveProgress(progress)
 
+    if (dryRun) {
+      logger.success(`  [DRY RUN] Would process ~${metadata.cardCount * targetLanguages.length} cards`)
+      totalSuccess += metadata.cardCount * targetLanguages.length
+      continue
+    }
+
+    // Create series
+    const seriesId = await getOrCreateSeries(supabase, tcgGameId, metadata)
+    if (!seriesId) {
+      logger.error(`  Failed to create series, skipping`)
+      continue
+    }
+
+    // Pass 2: Process cards for this set
     try {
-      const result = await processSet(supabase, tcgGameId, setCode, setCards, progress)
+      const result = await processSetCards(
+        bulkDataPath,
+        supabase,
+        setCode,
+        seriesId,
+        targetLanguages,
+        limitArg,
+        progress
+      )
+
       totalSuccess += result.success
       totalErrors += result.errors
       totalSkipped += result.skipped
 
-      logger.progress(`Progress: ${i + 1}/${pendingSets.length} sets (${((i + 1) / pendingSets.length * 100).toFixed(1)}%)`)
+      // Update series with actual English card count
+      const englishCount = Math.floor(result.success / targetLanguages.length)
+      await updateSeriesCardCount(supabase, seriesId, englishCount)
+
+      logger.success(`  Completed: ${result.success} cards (${result.errors} errors, ${result.skipped} skipped)`)
+
+      // Mark as processed
+      progress.processedSetCodes.push(setCode)
+      progress.processedSets++
+      saveProgress(progress)
+
     } catch (error) {
-      logger.error(`Error processing set ${setCode}: ${(error as Error).message}`)
+      logger.error(`  Error: ${(error as Error).message}`)
 
       logError({
         timestamp: new Date().toISOString(),
@@ -564,10 +693,16 @@ async function main() {
       }
     }
 
+    logger.progress(`Overall: ${i + 1}/${setCodes.length} sets (${((i + 1) / setCodes.length * 100).toFixed(1)}%)`)
     logger.separator()
+
+    // Force garbage collection between sets
+    if (global.gc) {
+      global.gc()
+    }
   }
 
-  // Update final progress
+  // Final progress
   progress.status = 'completed'
   progress.currentSet = null
   saveProgress(progress)
@@ -577,13 +712,10 @@ async function main() {
   logger.success(`Cards processed: ${totalSuccess.toLocaleString()}`)
   if (totalErrors > 0) {
     logger.error(`Errors: ${totalErrors}`)
+    logger.info(`See: ${MAGIC_CONFIG.paths.errors}`)
   }
   if (totalSkipped > 0) {
     logger.warn(`Skipped: ${totalSkipped}`)
-  }
-
-  if (totalErrors > 0) {
-    logger.info(`See errors: ${MAGIC_CONFIG.paths.errors}`)
   }
 
   logger.info('')
