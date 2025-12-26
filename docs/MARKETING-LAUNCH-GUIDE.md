@@ -1,411 +1,397 @@
-# Guide de Lancement Marketing - CollectorVerse TCG
+# Marketing Launch Guide - CollectorVerse TCG
 
-> **Derniere mise a jour** : Decembre 2024
-> **Statut** : Pre-lancement
-> **Budget pub** : 0€
+> **Last updated**: December 2024
+> **Status**: Pre-launch
+> **Ad budget**: $0
 
-Ce guide operationnel accompagne la strategie [GO-TO-MARKET.md](./GO-TO-MARKET.md) avec un focus sur l'execution et le suivi des taches.
-
----
-
-## Table des matieres
-
-1. [Tableau de bord Marketing](#tableau-de-bord-marketing)
-2. [Phase 1 : Preparation technique](#phase-1--preparation-technique)
-3. [Phase 2 : Lancement Soft](#phase-2--lancement-soft)
-4. [Phase 3 : Croissance](#phase-3--croissance)
-5. [Assets et visuels](#assets-et-visuels)
-6. [Automatisation](#automatisation)
-7. [FAQ et decisions](#faq-et-decisions)
+Minimal effort launch strategy: one message + one image per platform.
 
 ---
 
-## Tableau de bord Marketing
+## Table of Contents
 
-### Statut des elements cles
-
-| Element                      | Status        | Priorite   | Notes |
-|------------------------------|---------------|------------|-------|
-| Visuels/assets marketing     | A verifier    | Haute      | Banniere Twitter, screenshots app |
-| Posts Reddit (participation) | A verifier    | Haute      | Compte avec karma requis |
-| Contenu Twitter regulier     | A verifier    | Haute      | Compte cree ? |
-| Contenu TikTok/Reels         | A verifier    | Haute      | Compte cree ? |
-| Product Hunt listing         | Non fait      | Moyenne    | Attendre traction initiale |
-| BetaList listing             | Non fait      | Moyenne    | Soumettre pendant Phase 2 |
-| Contact influenceurs         | Non fait      | Moyenne    | Commencer semaine 3 |
-
-### Statut technique (prerequis)
-
-| Element | Status | Doc |
-|---------|--------|-----|
-| sitemap.xml | Fait | [SEO-SETUP.md](./SEO-SETUP.md) |
-| robots.txt | Fait | [SEO-SETUP.md](./SEO-SETUP.md) |
-| Google Analytics 4 | A configurer | [SEO-SETUP.md](./SEO-SETUP.md) |
-| Google Search Console | A configurer | [SEO-SETUP.md](./SEO-SETUP.md) |
-| PWA installable | Fait | - |
-| Open Graph meta tags | A verifier | - |
+1. [Launch Dashboard](#launch-dashboard)
+2. [Phase 1: Technical Setup](#phase-1-technical-setup)
+3. [Phase 2: Launch Day](#phase-2-launch-day)
+4. [Phase 3: Growth](#phase-3-growth)
+5. [Assets Checklist](#assets-checklist)
+6. [Message Templates](#message-templates)
+7. [Automation](#automation)
 
 ---
 
-## Phase 1 : Preparation technique
+## Launch Dashboard
 
-**Duree estimee** : 3-4 jours
-**Objectif** : Tout mettre en place avant de communiquer
+### Marketing Status
 
-### Jour 1-2 : SEO Foundation
+| Item                     | Status      | Priority | Notes |
+|--------------------------|-------------|----------|-------|
+| Marketing visuals        | To check    | High     | 1 image per platform |
+| Reddit account (karma)   | To check    | High     | Need 100+ karma |
+| Twitter/X account        | To check    | High     | - |
+| TikTok account           | To check    | High     | - |
+| Discord server           | To check    | High     | Main community hub |
+| Product Hunt listing     | Not done    | Medium   | Wait for traction |
+| BetaList listing         | Not done    | Medium   | Submit week 2 |
+| Influencer outreach      | Not done    | Medium   | Start week 3 |
 
-```
-[ ] 1. Configurer Google Analytics 4
-    - Creer propriete GA4
-    - Recuperer Measurement ID (G-XXXXXXXXXX)
-    - Ajouter dans .env.local : NEXT_PUBLIC_GA_MEASUREMENT_ID=
-    - Redeployer
-    - Verifier dans GA4 > Temps reel
+### Technical Prerequisites
 
-[ ] 2. Configurer Google Search Console
-    - Ajouter propriete : https://collectorverse.io
-    - Verifier via balise HTML ou fichier
-    - Soumettre sitemap.xml
-
-[ ] 3. Verifier les fichiers SEO
-    - Tester https://collectorverse.io/sitemap.xml
-    - Tester https://collectorverse.io/robots.txt
-    - Verifier Open Graph avec https://developers.facebook.com/tools/debug/
-```
-
-**Reference detaillee** : [SEO-SETUP.md](./SEO-SETUP.md)
-
-### Jour 3-4 : Assets marketing
-
-#### Visuels a creer
-
-| Asset | Dimensions | Usage | Outil suggere |
-|-------|------------|-------|---------------|
-| Banniere Twitter/X | 1500x500 px | Profil Twitter | Canva |
-| Banniere LinkedIn | 1584x396 px | Profil LinkedIn | Canva |
-| Carre Instagram/TikTok | 1080x1080 px | Posts | Canva |
-| Story/Reel cover | 1080x1920 px | Stories | Canva |
-| Screenshots app | 1280x720 px | Presentations | OBS/Screenshot |
-| Favicon/Logo | 512x512 px | Partout | Figma |
-
-#### Screenshots necessaires
-
-```
-[ ] 1. Page d'accueil avec selection TCG
-[ ] 2. Liste des series Pokemon
-[ ] 3. Vue d'une serie avec progression
-[ ] 4. Grille de cartes
-[ ] 5. Vue mobile (PWA)
-```
-
-#### Video demo (optionnel mais recommande)
-
-```
-[ ] Enregistrer video demo 30-60 secondes :
-    - Montrer la selection TCG
-    - Parcourir une serie
-    - Ajouter quelques cartes
-    - Montrer la progression
-
-Outils : OBS Studio (capture) + CapCut (montage)
-```
+| Item | Status | Doc |
+|------|--------|-----|
+| sitemap.xml | Done | [SEO-SETUP.md](./SEO-SETUP.md) |
+| robots.txt | Done | [SEO-SETUP.md](./SEO-SETUP.md) |
+| Google Analytics 4 | To configure | [SEO-SETUP.md](./SEO-SETUP.md) |
+| Google Search Console | To configure | [SEO-SETUP.md](./SEO-SETUP.md) |
 
 ---
 
-## Phase 2 : Lancement Soft
+## Phase 1: Technical Setup
 
-**Duree** : 1 semaine
-**Objectif** : Premiers utilisateurs et feedback
+**Duration**: 2 days
 
-### Calendrier type
-
-| Jour | Action principale | Action secondaire |
-|------|-------------------|-------------------|
-| Lundi | Post Twitter annonce + epingler | Setup profil complet |
-| Mardi | Premier TikTok/Reel (demo rapide) | Engagement Twitter |
-| Mercredi | Post Reddit r/pokemoncardcollectors | Repondre commentaires |
-| Jeudi | Story Instagram + post carre | Engagement Reddit |
-| Vendredi | Post Reddit r/Lorcana | Engagement TikTok |
-| Weekend | Engagement + partage Discord | Analyse metriques |
-
-### Checklist Lundi - Twitter Launch
+### Day 1: SEO & Analytics
 
 ```
-[ ] 1. Finaliser profil Twitter
-    - Photo de profil (logo)
-    - Banniere 1500x500
-    - Bio optimisee (voir template ci-dessous)
-    - Lien vers l'app
+[ ] Configure Google Analytics 4
+    - Create GA4 property
+    - Get Measurement ID (G-XXXXXXXXXX)
+    - Add to .env.local: NEXT_PUBLIC_GA_MEASUREMENT_ID=
+    - Redeploy
 
-[ ] 2. Publier tweet d'annonce
-    - Texte + 2-4 screenshots
-    - Hashtags : #PokemonTCG #Lorcana #TCG
-    - Epingler le tweet
-
-[ ] 3. Follow comptes strategiques
-    - Creaturs TCG
-    - Comptes officiels
-    - Boutiques de cartes
+[ ] Configure Google Search Console
+    - Add property: https://collectorverse.io
+    - Verify ownership
+    - Submit sitemap.xml
 ```
 
-**Template bio Twitter** :
-```
-Gerez toutes vos collections TCG en un seul endroit
-Pokemon • Lorcana • One Piece • Star Wars • Riftbound
-Gratuit | Mobile & Desktop | Multi-langue
-Beta ouverte
-[lien]
-```
+### Day 2: Create Assets
 
-### Checklist Mardi - TikTok/Reels
+**You need exactly 3 images:**
 
-```
-[ ] 1. Creer compte TikTok @collectorverse
-    - Photo profil
-    - Bio courte avec lien
+| Asset | Dimensions | Used on |
+|-------|------------|---------|
+| Banner (landscape) | 1200x630 px | Twitter, Reddit, Discord announcement |
+| Square | 1080x1080 px | Instagram, TikTok profile |
+| Vertical | 1080x1920 px | TikTok video, Instagram Story |
 
-[ ] 2. Publier premiere video
-    - Format : Screen recording de l'app
-    - Duree : 15-30 secondes
-    - Son tendance
-    - Texte a l'ecran
-    - CTA : "Lien dans la bio"
+**What to show:**
+- App screenshot with multiple TCGs visible
+- Text overlay: "Track all your TCG collections in one place"
+- Logo + URL
 
-Idees de videos :
-- "POV : Tu trouves enfin une app pour toutes tes collections"
-- "Ma collection Pokemon en 15 secondes"
-- "Comment je track mes cartes Lorcana"
-```
+---
 
-### Checklist Mercredi - Reddit Pokemon
+## Phase 2: Launch Day
+
+### One Message Per Platform
+
+**Goal**: Post everywhere the same day, invite people to Discord.
+
+#### Launch Checklist
 
 ```
-[ ] 1. Verifier karma du compte (minimum recommande : 100+)
+[ ] 1. Twitter/X
+    - Post message + banner image
+    - Pin the tweet
 
-[ ] 2. Lire les regles de r/pokemoncardcollectors
+[ ] 2. Reddit (r/pokemoncardcollectors first)
+    - Post message (no direct link in post)
+    - Add link in comments
 
-[ ] 3. Publier post (voir template dans GO-TO-MARKET.md)
-    - Titre accrocheur
-    - Texte authentique (pas pub)
-    - Pas de lien direct dans le post
-    - Mentionner "lien dans mon profil"
+[ ] 3. TikTok
+    - Post 15-30s screen recording of the app
+    - Use trending sound
+    - Text overlay + CTA
 
-[ ] 4. Repondre a TOUS les commentaires
+[ ] 4. Instagram
+    - Post square image
+    - Story with link
 
-[ ] 5. Ne pas reposter pendant 1 semaine sur ce sub
-```
+[ ] 5. Discord servers (TCG communities)
+    - Share in appropriate channels
+    - Invite to your Discord
 
-### Checklist Vendredi - Reddit Lorcana
-
-```
-[ ] 1. Adapter le message pour communaute Lorcana
-
-[ ] 2. Publier sur r/Lorcana ou r/DisneyLorcana
-
-[ ] 3. Engagement avec les commentaires
+[ ] 6. Your own Discord
+    - Announcement in #announcements
 ```
 
 ---
 
-## Phase 3 : Croissance
+## Phase 3: Growth
 
-**Duree** : Semaines 2-4
-**Objectif** : Augmenter la visibilite et les inscriptions
+### Weekly Rhythm (Minimal Effort)
 
-### Rythme hebdomadaire recommande
+| Day | Action | Time |
+|-----|--------|------|
+| Monday | 1 Tweet + engagement | 15 min |
+| Tuesday | 1 TikTok | 30 min |
+| Wednesday | Reddit engagement | 15 min |
+| Thursday | 1 Tweet | 10 min |
+| Friday | 1 Reddit post (different sub) | 20 min |
+| Weekend | Discord engagement | 20 min |
 
-| Activite | Frequence | Temps estime |
-|----------|-----------|--------------|
-| TikToks/Reels | 3-4/semaine | 30 min/video |
-| Posts Twitter | Quotidien | 10 min/jour |
-| Posts Reddit | 1-2/semaine | 20 min/post |
-| Engagement (commentaires, likes) | Quotidien | 20 min/jour |
-| Contact influenceurs | 2-3/semaine | 15 min/contact |
+**Total: ~2 hours/week**
 
-### Subreddits a cibler (en rotation)
+### Reddit Rotation
 
-| Semaine | Subreddit 1 | Subreddit 2 |
-|---------|-------------|-------------|
-| 2 | r/PokemonTCG | r/OnePieceTCG |
-| 3 | r/tcgcollecting | r/StarWarsUnlimited |
-| 4 | r/pokemon (discussion) | r/Lorcana (2eme post) |
-
-### Product Hunt et BetaList
-
-```
-[ ] BetaList (semaine 2)
-    - Soumettre sur https://betalist.com/submit
-    - Gratuit, review en 2-3 semaines
-
-[ ] Product Hunt (semaine 4 ou mois 2)
-    - Preparer assets specifiques
-    - Choisir un mardi ou mercredi (meilleurs jours)
-    - Mobiliser communaute pour votes
-```
-
-### Micro-influenceurs a contacter
-
-**Criteres** :
-- 1k-50k followers
-- Contenu TCG regulier
-- Engagement actif (commentaires)
-- Francophone de preference (pour commencer)
-
-**Template DM** (voir [GO-TO-MARKET.md](./GO-TO-MARKET.md#email-dm-influenceur))
+| Week | Subreddit |
+|------|-----------|
+| 1 | r/pokemoncardcollectors |
+| 2 | r/Lorcana |
+| 3 | r/OnePieceTCG |
+| 4 | r/PokemonTCG |
+| 5 | r/StarWarsUnlimited |
+| 6 | r/tcgcollecting |
 
 ---
 
-## Assets et visuels
+## Assets Checklist
 
-### Structure de dossier recommandee
+### Required Assets (Minimum)
+
+```
+[ ] 1. Banner image (1200x630)
+    - For: Twitter, Reddit, Discord, Open Graph
+
+[ ] 2. Square image (1080x1080)
+    - For: Instagram post, TikTok profile
+
+[ ] 3. Screen recording (15-30s)
+    - For: TikTok, Instagram Reel
+    - Show: Browse TCGs > Open series > See cards > Add to collection
+```
+
+### Folder Structure
 
 ```
 marketing/
-├── logos/
-│   ├── logo-512.png
-│   ├── logo-256.png
-│   └── logo-round.png
-├── banners/
-│   ├── twitter-1500x500.png
-│   ├── linkedin-1584x396.png
-│   └── discord-960x540.png
-├── screenshots/
-│   ├── home-desktop.png
-│   ├── series-list.png
-│   ├── cards-grid.png
-│   └── mobile-pwa.png
-├── social/
-│   ├── post-square-1.png
-│   ├── post-square-2.png
-│   └── story-template.png
-└── videos/
-    ├── demo-30s.mp4
-    └── tiktok-1.mp4
+├── banner-1200x630.png
+├── square-1080x1080.png
+├── video-demo.mp4
+└── logo-512.png
 ```
-
-### Charte graphique rapide
-
-| Element | Valeur |
-|---------|--------|
-| Couleur primaire | A definir (gradient actuel ?) |
-| Couleur secondaire | A definir |
-| Police titres | Inter / System |
-| Style | Clean, moderne, coloré (TCG vibe) |
 
 ---
 
-## Automatisation
+## Message Templates
 
-### Outils gratuits pour automatiser
+### Main Launch Message (adapt per platform)
 
-| Tache | Outil | Gratuit ? |
-|-------|-------|-----------|
-| Planification posts Twitter | Buffer / TweetDeck | Oui (limite) |
-| Planification posts LinkedIn | Buffer | Oui (limite) |
-| Planification TikTok | TikTok native | Oui |
-| Analytics centralises | Google Analytics | Oui |
-| Monitoring mentions | Google Alerts | Oui |
-| Gestion todo | Notion / Trello | Oui |
+**English version:**
 
-### Google Alerts a configurer
+```
+Track all your TCG collections in one place
+
+Finally, one app for Pokemon, Lorcana, One Piece, Star Wars & more.
+
+- 100% Free
+- Works on mobile & desktop
+- All cards, all languages
+
+Join our Discord for updates and feature requests!
+
+[Discord link]
+[App link]
+```
+
+### Twitter/X
+
+```
+Finally, one app for ALL your TCG collections
+
+Pokemon + Lorcana + One Piece + Star Wars + Riftbound
+
+- Free forever
+- Mobile & desktop
+- Track your progress
+
+Beta is live! Join our Discord
+
+[link]
+
+#PokemonTCG #Lorcana #OnePieceTCG #TCG
+```
+
+### Reddit Title
+
+```
+I built a free app to track all your TCG collections (Pokemon, Lorcana, One Piece, Star Wars) - Looking for feedback!
+```
+
+### Reddit Body
+
+```
+Hey collectors!
+
+I was tired of using separate apps for each TCG I collect, so I built CollectorVerse - a free web app that tracks everything in one place.
+
+**What it does:**
+- Track cards across Pokemon, Lorcana, One Piece, Star Wars Unlimited, and Riftbound
+- See your completion progress per set
+- Works on phone and desktop (PWA)
+- Multiple languages supported
+
+**What I'm looking for:**
+- Feedback on missing features
+- Bug reports
+- TCGs you'd like to see added
+
+The app is free and will stay free. Link in my profile if you want to try it.
+
+Also started a Discord if you want to chat or suggest features: [Discord link]
+```
+
+### TikTok/Reel Caption
+
+```
+POV: You finally find an app for ALL your card collections
+
+#pokemontcg #lorcana #onepiecetcg #tcg #cardcollector #pokemon
+```
+
+### Discord Announcement
+
+```
+@everyone
+
+**CollectorVerse is now in open beta!**
+
+Track all your TCG collections in one place:
+- Pokemon
+- Disney Lorcana
+- One Piece
+- Star Wars Unlimited
+- Riftbound
+
+**Try it now:** [link]
+
+Drop your feedback in #suggestions!
+```
+
+---
+
+## Automation
+
+### Tools (Free)
+
+| Task | Tool |
+|------|------|
+| Schedule tweets | TweetDeck (free) |
+| Schedule TikToks | TikTok native scheduling |
+| Track mentions | Google Alerts |
+| Analytics | Google Analytics |
+
+### Google Alerts to Create
 
 ```
 [ ] "CollectorVerse"
-[ ] "pokemon collection app"
-[ ] "lorcana collection tracker"
-[ ] "tcg collection manager"
+[ ] "tcg collection app"
+[ ] "pokemon collection tracker"
 ```
 
-### Workflow type (automatisable)
+### Weekly Workflow
 
 ```
-1. [Dimanche soir] Planifier les posts de la semaine dans Buffer
-2. [Quotidien] 15 min engagement (repondre, liker, commenter)
-3. [Mardi/Jeudi] Creer et publier nouveau TikTok
-4. [Vendredi] Analyser metriques de la semaine
-5. [Mensuel] Review et ajustement strategie
+Sunday: Plan and schedule all posts for the week (1 hour)
+Daily: 10 min engagement (reply to comments/mentions)
 ```
 
 ---
 
-## FAQ et decisions
+## Discord Strategy
 
-### Questions en attente
+### Why Discord is the Hub
 
-> Ces questions doivent etre repondues avant de lancer :
+- Direct communication with users
+- Feature requests and feedback
+- Community building
+- Less algorithm-dependent than social media
 
-#### 1. Contenu existant
-- [ ] As-tu deja du contenu publie sur Twitter/TikTok/Instagram ?
-- [ ] Si oui, quels comptes utiliser ?
+### Discord CTA on Every Post
 
-#### 2. Visuels
-- [ ] As-tu des assets marketing (bannieres, screenshots) prets ?
-- [ ] As-tu un logo definitif ?
+Always end with:
+```
+Join our Discord: [link]
+```
 
-#### 3. Reddit
-- [ ] As-tu un compte Reddit avec du karma ?
-- [ ] Si non, prevoir 2 semaines de participation avant de poster
+### Discord Server Structure (Minimal)
 
-#### 4. Priorite geographique
-- [ ] Commencer par FR uniquement ?
-- [ ] Ou FR + EN en parallele ?
-- [ ] Impact : templates en 2 langues, subreddits differents
+```
+# INFO
+├── welcome
+├── announcements
+└── rules
 
-#### 5. Budget temps
-- [ ] Combien d'heures/semaine disponibles pour le marketing ?
-  - < 5h : Focus Twitter + 1 TikTok/semaine + 1 Reddit/semaine
-  - 5-10h : Strategie complete recommandee
-  - > 10h : Ajouter YouTube, blog, plus d'influenceurs
+# COMMUNITY
+├── general
+├── suggestions
+└── bug-reports
 
----
-
-## Metriques de succes
-
-### KPIs Phase 1 (Preparation)
-
-| Metrique | Objectif |
-|----------|----------|
-| GA4 configure | Oui/Non |
-| Search Console OK | Oui/Non |
-| Assets prets | 100% |
-
-### KPIs Phase 2 (Soft Launch - Semaine 1)
-
-| Metrique | Objectif |
-|----------|----------|
-| Followers Twitter | 50+ |
-| Vues TikTok | 500+ |
-| Upvotes Reddit | 20+ |
-| Nouveaux utilisateurs | 50+ |
-
-### KPIs Phase 3 (Croissance - Mois 1)
-
-| Metrique | Objectif |
-|----------|----------|
-| Followers Twitter | 500+ |
-| Total vues TikTok | 10,000+ |
-| Utilisateurs inscrits | 500+ |
-| Cartes trackees | 50,000+ |
+# COLLECTIONS
+├── pokemon
+├── lorcana
+├── one-piece
+└── star-wars
+```
 
 ---
 
-## Liens utiles
+## Success Metrics
 
-- [GO-TO-MARKET.md](./GO-TO-MARKET.md) - Strategie complete
-- [SEO-SETUP.md](./SEO-SETUP.md) - Configuration technique SEO
-- [Canva](https://www.canva.com) - Creation visuels
-- [Buffer](https://buffer.com) - Planification posts
-- [Google Analytics](https://analytics.google.com)
-- [Google Search Console](https://search.google.com/search-console)
-- [Product Hunt](https://www.producthunt.com)
-- [BetaList](https://betalist.com)
+### Week 1
+
+| Metric | Target |
+|--------|--------|
+| Discord members | 50+ |
+| App signups | 100+ |
+| Twitter followers | 100+ |
+
+### Month 1
+
+| Metric | Target |
+|--------|--------|
+| Discord members | 200+ |
+| App signups | 500+ |
+| Cards tracked | 50,000+ |
 
 ---
 
-## Historique des actions
+## Quick Reference
 
-| Date | Action | Resultat |
-|------|--------|----------|
+### Image Dimensions
+
+| Platform | Size |
+|----------|------|
+| Twitter banner | 1500x500 |
+| Twitter post | 1200x675 |
+| Reddit | 1200x630 |
+| Instagram post | 1080x1080 |
+| Instagram story | 1080x1920 |
+| TikTok | 1080x1920 |
+| Discord banner | 960x540 |
+| Open Graph | 1200x630 |
+
+### Hashtags
+
+```
+#PokemonTCG #Pokemon #Lorcana #DisneyLorcana #OnePieceTCG
+#StarWarsUnlimited #TCG #CardCollector #CardCollection
+```
+
+---
+
+## Action Log
+
+| Date | Action | Result |
+|------|--------|--------|
 | - | - | - |
 
-> Mettre a jour ce tableau au fur et a mesure des actions effectuees.
+> Update this table as you complete actions.
+
+---
+
+## Related Docs
+
+- [GO-TO-MARKET.md](./GO-TO-MARKET.md) - Full marketing strategy
+- [SEO-SETUP.md](./SEO-SETUP.md) - Technical SEO setup
