@@ -484,5 +484,86 @@
     "language": "en",
     "scryfallId": "096cbccf-cd00-49d6-9885-54ba68667c27",
     "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:26:19.239Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TCMR-2",
+    "language": "en",
+    "scryfallId": "0e9451cc-fec9-449b-8dbc-d7c509fe24c3",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:26:26.930Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TXLN-6",
+    "language": "en",
+    "scryfallId": "0f8659bf-fa41-4a08-a124-ca9d08e02223",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:27:12.578Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TNEC-12",
+    "language": "en",
+    "scryfallId": "14367470-3458-4102-a9e5-989e4b6f7595",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:27:36.470Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TAKH-16",
+    "language": "en",
+    "scryfallId": "16fd4a9c-34e3-4432-b208-e14f6d56b4e3",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:28:15.055Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TSTX-5",
+    "language": "en",
+    "scryfallId": "1ae25997-391f-45b2-bdc1-d86cf6b69223",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:28:33.138Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TXLN-1",
+    "language": "en",
+    "scryfallId": "1c9ace77-f1e7-4abf-beb3-369febda9394",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:29:12.671Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TGRN-2",
+    "language": "en",
+    "scryfallId": "20a9bda0-5673-4071-9201-83670a317f8a",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:29:15.215Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TRIX-6",
+    "language": "en",
+    "scryfallId": "213a979d-45bf-40dc-bbd1-42230373947d",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:30:27.173Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TSTX-8",
+    "language": "en",
+    "scryfallId": "28427ccd-d106-4388-835b-aee29288fc40",
+    "message": "Parse failed"
   }
 ]
