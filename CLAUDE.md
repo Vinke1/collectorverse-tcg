@@ -53,6 +53,9 @@ Documentation détaillée disponible dans le dossier `docs/` :
 | Fichier | Description |
 |---------|-------------|
 | `docs/BACKUP.md` | Guide complet de backup et restauration |
+| `docs/SEO-SETUP.md` | Configuration GA4 et Search Console |
+| `docs/GO-TO-MARKET.md` | Stratégie marketing complète |
+| `docs/MARKETING-LAUNCH-GUIDE.md` | Guide opérationnel de lancement |
 
 ## Project Architecture
 
