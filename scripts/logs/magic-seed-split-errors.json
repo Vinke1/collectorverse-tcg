@@ -727,5 +727,77 @@
     "language": "en",
     "scryfallId": "6f5ae536-3ef6-41cb-b33b-0ac458d77a56",
     "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:43:43.637Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TAKH-17",
+    "language": "en",
+    "scryfallId": "7728b4ea-4288-4699-b45f-21beb327d4ce",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:44:59.588Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TM21-20",
+    "language": "en",
+    "scryfallId": "7ebd7482-0f67-4afa-ba82-bf12e7e07b30",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:45:17.898Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TMKM-1",
+    "language": "en",
+    "scryfallId": "8031f333-c818-4793-8cf8-232bf9088a96",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:45:25.268Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TWOE-11",
+    "language": "en",
+    "scryfallId": "80f84312-9a4e-4dce-b6a0-365679574cf7",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:45:50.859Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TC21-25",
+    "language": "en",
+    "scryfallId": "83d3d765-81ef-42a2-90e1-ba157f0aba76",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:46:16.569Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TMID-16",
+    "language": "en",
+    "scryfallId": "85e58363-4531-408f-98f6-2732d8479a0c",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:46:20.460Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TMKM-15",
+    "language": "en",
+    "scryfallId": "861bc4e3-0445-44e6-bf58-a469b4a92192",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:46:28.054Z",
+    "type": "database",
+    "setCode": "plst",
+    "cardNumber": "TISD-5",
+    "language": "en",
+    "scryfallId": "8711cd95-4f99-48aa-b0e6-92a1354372f4",
+    "message": "Parse failed"
   }
 ]
