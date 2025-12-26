@@ -349,5 +349,86 @@
     "language": "en",
     "scryfallId": "c6002fe4-a5c0-426d-860b-59f66896c75c",
     "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:15:48.907Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1507",
+    "language": "en",
+    "scryfallId": "cb7c6d71-c575-4c1b-a161-a4d4186ea9c6",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:16:15.262Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "15",
+    "language": "en",
+    "scryfallId": "d2f51f4d-eb6d-4503-b9a4-559db1b9b16f",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:16:34.682Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "219",
+    "language": "en",
+    "scryfallId": "d99cc0a4-4868-47f3-bd1d-f46b7cb74650",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:16:57.535Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1398",
+    "language": "en",
+    "scryfallId": "e134190e-772a-458d-b0e1-633154f16809",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:17:00.397Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "200",
+    "language": "en",
+    "scryfallId": "e2311cf5-ab73-48d6-9fa0-54c19a7ae98f",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:17:01.971Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1906",
+    "language": "en",
+    "scryfallId": "e2f533d5-6835-444f-bdbf-ada3d0d402d8",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:17:10.338Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1516",
+    "language": "en",
+    "scryfallId": "e5d07ad5-0701-4696-91fd-87451997ef23",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:17:21.988Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "2012",
+    "language": "en",
+    "scryfallId": "e8db2269-0d77-4d0c-881c-67b05fd22c1d",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:18:06.631Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "2065",
+    "language": "en",
+    "scryfallId": "f69d028b-5d25-432d-a2b2-d11479320af1",
+    "message": "Parse failed"
   }
 ]

@@ -63,7 +63,7 @@ const CONFIG = {
   // Community category - language-specific channels
   communityCategory: 'communaute',
   languageChannelToRole: {
-    'fr': '🇫🇷 French',
+    '🇫🇷': '🇫🇷 French',
     'en': '🇬🇧 English',
     'jp': '🇯🇵 Japanese',
     'cn': '🇨🇳 Chinese',
