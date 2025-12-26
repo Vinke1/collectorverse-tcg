@@ -37,7 +37,9 @@
       "Bash(done:*)",
       "Bash(du:*)",
       "WebSearch",
-      "WebFetch(domain:*)"
+      "WebFetch(domain:*)",
+      "WebFetch(domain:scryfall.com)",
+      "WebFetch(domain:docs.magicthegathering.io)"
     ],
     "deny": [],
     "ask": []

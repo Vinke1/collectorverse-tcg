@@ -1185,3 +1185,192 @@ export async function deletePokemonSeriesImages(seriesCode: string, language?: s
     return { success: false, error }
   }
 }
+
+// ============================================
+// MAGIC: THE GATHERING STORAGE FUNCTIONS
+// ============================================
+
+/**
+ * Crée le bucket pour les cartes Magic: The Gathering s'il n'existe pas déjà
+ */
+export async function createMagicBucket() {
+  try {
+    const { data: buckets } = await supabaseAdmin.storage.listBuckets()
+    const bucketExists = buckets?.some(bucket => bucket.name === 'mtg-cards')
+
+    if (bucketExists) {
+      console.log('✅ Bucket "mtg-cards" existe déjà')
+      return { success: true, message: 'Bucket existe déjà' }
+    }
+
+    const { data, error } = await supabaseAdmin.storage.createBucket('mtg-cards', {
+      public: true,
+      fileSizeLimit: 5242880, // 5MB max
+      allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp']
+    })
+
+    if (error) {
+      console.error('❌ Erreur création bucket:', error)
+      return { success: false, error }
+    }
+
+    console.log('✅ Bucket "mtg-cards" créé avec succès')
+    return { success: true, data }
+  } catch (error) {
+    console.error('❌ Erreur:', error)
+    return { success: false, error }
+  }
+}
+
+/**
+ * Upload une image de carte Magic: The Gathering depuis Scryfall
+ * @param imageUrl URL de l'image source (Scryfall)
+ * @param cardNumber Numéro de la carte (ex: "001", "143", "★123")
+ * @param seriesCode Code de la série (ex: "vow", "mid", "bro")
+ * @param language Langue de la carte (ex: "en", "fr", "ja", "zhs")
+ */
+export async function uploadMagicCardImage(
+  imageUrl: string,
+  cardNumber: string,
+  seriesCode: string,
+  language: string = 'en'
+): Promise<{ success: boolean; url?: string; error?: any }> {
+  try {
+    console.log(`📥 Téléchargement de l'image ${seriesCode}-${cardNumber} (${language})...`)
+
+    const response = await fetch(imageUrl)
+    if (!response.ok) {
+      throw new Error(`Échec du téléchargement: ${response.statusText}`)
+    }
+
+    const arrayBuffer = await response.arrayBuffer()
+    const buffer = Buffer.from(arrayBuffer)
+
+    // Optimiser l'image avec Sharp
+    console.log(`🔧 Optimisation de l'image ${cardNumber}...`)
+    const optimizedImage = await sharp(buffer)
+      .resize(480, 672, {
+        fit: 'contain',
+        background: { r: 0, g: 0, b: 0, alpha: 0 }
+      })
+      .webp({ quality: 85 })
+      .toBuffer()
+
+    // Format: vow/en/001.webp ou vow/fr/143.webp
+    // Remplacer les caractères spéciaux dans le numéro de carte
+    const safeCardNumber = cardNumber.replace(/[\/★]/g, '-')
+    const fileName = `${seriesCode}/${language}/${safeCardNumber}.webp`
+
+    console.log(`☁️  Upload de ${fileName}...`)
+    const { data, error } = await supabaseAdmin.storage
+      .from('mtg-cards')
+      .upload(fileName, optimizedImage, {
+        contentType: 'image/webp',
+        upsert: true
+      })
+
+    if (error) {
+      console.error(`❌ Erreur upload ${cardNumber}:`, error)
+      return { success: false, error }
+    }
+
+    const { data: publicUrlData } = supabaseAdmin.storage
+      .from('mtg-cards')
+      .getPublicUrl(fileName)
+
+    console.log(`✅ Image ${cardNumber} uploadée avec succès`)
+    return { success: true, url: publicUrlData.publicUrl }
+
+  } catch (error) {
+    console.error(`❌ Erreur traitement image ${cardNumber}:`, error)
+    return { success: false, error }
+  }
+}
+
+/**
+ * Upload une image de série Magic: The Gathering
+ */
+export async function uploadMagicSeriesImage(
+  imageUrl: string,
+  seriesCode: string
+): Promise<{ success: boolean; url?: string; error?: any }> {
+  try {
+    console.log(`📥 Téléchargement de l'image de la série ${seriesCode}...`)
+
+    const response = await fetch(imageUrl)
+    if (!response.ok) {
+      throw new Error(`Échec du téléchargement: ${response.statusText}`)
+    }
+
+    const arrayBuffer = await response.arrayBuffer()
+    const buffer = Buffer.from(arrayBuffer)
+
+    // Optimiser l'image
+    const optimizedImage = await sharp(buffer)
+      .resize(800, null, {
+        fit: 'inside',
+        withoutEnlargement: true
+      })
+      .webp({ quality: 90 })
+      .toBuffer()
+
+    const fileName = `series/${seriesCode}.webp`
+
+    const { data, error } = await supabaseAdmin.storage
+      .from('mtg-cards')
+      .upload(fileName, optimizedImage, {
+        contentType: 'image/webp',
+        upsert: true
+      })
+
+    if (error) {
+      return { success: false, error }
+    }
+
+    const { data: publicUrlData } = supabaseAdmin.storage
+      .from('mtg-cards')
+      .getPublicUrl(fileName)
+
+    console.log(`✅ Image de série ${seriesCode} uploadée`)
+    return { success: true, url: publicUrlData.publicUrl }
+
+  } catch (error) {
+    console.error(`❌ Erreur traitement image série ${seriesCode}:`, error)
+    return { success: false, error }
+  }
+}
+
+/**
+ * Supprime toutes les images d'une série Magic (utile pour réinitialiser)
+ */
+export async function deleteMagicSeriesImages(seriesCode: string, language?: string) {
+  try {
+    const path = language ? `${seriesCode}/${language}` : seriesCode
+    const { data: files, error: listError } = await supabaseAdmin.storage
+      .from('mtg-cards')
+      .list(path)
+
+    if (listError) {
+      return { success: false, error: listError }
+    }
+
+    if (!files || files.length === 0) {
+      return { success: true, message: 'Aucun fichier à supprimer' }
+    }
+
+    const filePaths = files.map(file => `${path}/${file.name}`)
+    const { error: deleteError } = await supabaseAdmin.storage
+      .from('mtg-cards')
+      .remove(filePaths)
+
+    if (deleteError) {
+      return { success: false, error: deleteError }
+    }
+
+    console.log(`✅ ${files.length} images supprimées pour ${path}`)
+    return { success: true, count: files.length }
+
+  } catch (error) {
+    return { success: false, error }
+  }
+}

@@ -315,6 +315,55 @@ export function getAllNarutoRarities(): RarityConfig[] {
 }
 
 /**
+ * Magic: The Gathering rarity definitions
+ */
+export const MAGIC_RARITIES: Record<string, RarityConfig> = {
+  'common': {
+    id: 'common',
+    short: 'C',
+    icon: '/images/icons/rarities/mtg/common.webp',
+    aliases: ['common']
+  },
+  'uncommon': {
+    id: 'uncommon',
+    short: 'U',
+    icon: '/images/icons/rarities/mtg/uncommon.webp',
+    aliases: ['uncommon']
+  },
+  'rare': {
+    id: 'rare',
+    short: 'R',
+    icon: '/images/icons/rarities/mtg/rare.webp',
+    aliases: ['rare']
+  },
+  'mythic': {
+    id: 'mythic',
+    short: 'M',
+    icon: '/images/icons/rarities/mtg/mythic.webp',
+    aliases: ['mythic', 'mythic rare']
+  },
+  'special': {
+    id: 'special',
+    short: 'S',
+    icon: '/images/icons/rarities/mtg/special.webp',
+    aliases: ['special', 'timeshifted']
+  },
+  'bonus': {
+    id: 'bonus',
+    short: 'B',
+    icon: '/images/icons/rarities/mtg/bonus.webp',
+    aliases: ['bonus']
+  }
+}
+
+/**
+ * Get all Magic: The Gathering rarity configs as an array
+ */
+export function getAllMagicRarities(): RarityConfig[] {
+  return Object.values(MAGIC_RARITIES)
+}
+
+/**
  * Normalizes a rarity name from the database to its standard ID
  * @param rarity - The rarity name to normalize (case-insensitive)
  * @returns The normalized rarity ID or null if not found
@@ -338,6 +387,13 @@ export function normalizeRarity(rarity: string): string | null {
     }
   }
 
+  // Check Magic: The Gathering rarities
+  for (const [id, config] of Object.entries(MAGIC_RARITIES)) {
+    if (config.aliases.some(alias => alias.toLowerCase() === normalized)) {
+      return id
+    }
+  }
+
   return null
 }
 
@@ -347,7 +403,7 @@ export function normalizeRarity(rarity: string): string | null {
  * @returns The rarity config or undefined if not found
  */
 export function getRarityConfig(rarityId: string): RarityConfig | undefined {
-  return LORCANA_RARITIES[rarityId] || NARUTO_KAYOU_RARITIES[rarityId]
+  return LORCANA_RARITIES[rarityId] || NARUTO_KAYOU_RARITIES[rarityId] || MAGIC_RARITIES[rarityId]
 }
 
 /**
