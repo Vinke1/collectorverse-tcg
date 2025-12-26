@@ -54,3 +54,5 @@ NUL
 # Misc generated files
 *.png.bak
 cardmarket-product-catalog-test.png
+scripts/data/scryfall-all-cards.json
+scripts/data/magic-sets/

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Gamepad2, Sparkles, Zap, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/providers/language-provider";
+import { SponsorBanner } from "@/components/sponsor-banner";
 
 interface TcgGame {
   name: string;
@@ -238,6 +239,13 @@ export default function Home() {
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Sponsor Banner - Right Sidebar */}
+      <SponsorBanner
+        videoSrc="/image/gac.mp4"
+        href="https://grandanimecard.com?sca_ref=10218430.NZJlM6il2M"
+        name="Grand Anime Card"
+      />
     </main>
   );
 }
