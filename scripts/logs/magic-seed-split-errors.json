@@ -214,5 +214,140 @@
     "language": "en",
     "scryfallId": "73f94f72-a689-41ca-b1af-6004e2a57e9c",
     "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:11:23.705Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "2010",
+    "language": "en",
+    "scryfallId": "7774606b-2584-4c17-8fc1-f8e196643f1f",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:11:27.158Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "2013",
+    "language": "en",
+    "scryfallId": "7917a093-44b8-407e-a9f1-8adc1a59d27c",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:11:44.577Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "16",
+    "language": "en",
+    "scryfallId": "7df94cc3-fed3-493d-9aa5-c85d6a2aeb05",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:11:45.249Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1306",
+    "language": "en",
+    "scryfallId": "7e82b125-df5e-4e5f-8759-51c32c447c1d",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:11:54.466Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1357",
+    "language": "en",
+    "scryfallId": "8150833a-9c83-4d00-ae2f-470088700fdb",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:12:18.723Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1736",
+    "language": "en",
+    "scryfallId": "88bae2c8-9d6d-42d4-a63b-c1133d772fec",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:13:21.077Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "2101",
+    "language": "en",
+    "scryfallId": "9d54ed64-573d-45cc-9d5c-94c5d0fc88ec",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:13:36.977Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "150",
+    "language": "en",
+    "scryfallId": "a121c039-ec93-4383-bdb5-bc7acf9e1a05",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:13:53.103Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1681",
+    "language": "en",
+    "scryfallId": "a5dd2627-3118-4643-83e2-4637f8821ab4",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:13:59.250Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "151",
+    "language": "en",
+    "scryfallId": "a7940307-6ae3-423e-b752-a72acddb9087",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:14:42.506Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "149",
+    "language": "en",
+    "scryfallId": "b4c637c4-c1cc-4852-9561-78add390ef52",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:14:46.595Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1907",
+    "language": "en",
+    "scryfallId": "b5ff6dba-952e-432c-a73e-dd4c5353ab17",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:14:50.710Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "348",
+    "language": "en",
+    "scryfallId": "b7c52125-929a-4e03-a955-d55ae34a905b",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:15:22.721Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "1613",
+    "language": "en",
+    "scryfallId": "c1ffdaf6-472e-46be-a74a-4be985b29df4",
+    "message": "Parse failed"
+  },
+  {
+    "timestamp": "2025-12-26T17:15:34.521Z",
+    "type": "database",
+    "setCode": "sld",
+    "cardNumber": "2064",
+    "language": "en",
+    "scryfallId": "c6002fe4-a5c0-426d-860b-59f66896c75c",
+    "message": "Parse failed"
   }
 ]
